@@ -7,6 +7,9 @@
 
 import Foundation
 
+// Хранилище
+var cars: [Car] = []
+
 enum Body: String {
 	case sedan = "Седан"
 	case hatchback = "Хэтчбек"
@@ -38,6 +41,24 @@ func readMenuCommand() -> Int {
 	}
 }
 
+func addCar() {
+	print("Производитель:"); let manufacturer = readLine() ?? ""
+	print("Модель:"); let model = readLine() ?? ""
+	let body = chooseBody()
+	print("Год выпуска (пусто — нет):"); let yearValue = Int(readLine() ?? "")
+	print("Гос. номер (пусто — нет):"); let numberText = readLine() ?? ""
+	let carNumber = numberText.isEmpty ? nil : numberText
+	cars.append(
+		Car(
+			manufacturer: manufacturer,
+			model: model,
+			body: body,
+			yearOfIssue: yearValue,
+			carNumber: carNumber
+		)
+	)
+}
+
 func chooseBody() -> Body {
 	while true {
 		print(
@@ -63,3 +84,6 @@ func chooseBody() -> Body {
 	}
 }
 
+
+
+printMenu()
