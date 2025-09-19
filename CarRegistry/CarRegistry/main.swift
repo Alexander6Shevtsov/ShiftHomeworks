@@ -22,3 +22,9 @@ struct Car {
 	let yearOfIssue: Int?
 	let carNumber: String?
 }
+
+func printMenu() -> Void {
+	print(
+		"\nМеню:\n1 — Добавить автомобиль\n2 — Список автомобилей\n3 — Список по типу кузова\nВведите номер команды и нажмите Enter:"
+	)
+}
