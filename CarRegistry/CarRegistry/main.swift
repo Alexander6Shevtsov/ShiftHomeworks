@@ -59,6 +59,16 @@ func addCar() {
 	)
 }
 
+func printCar(_ car: Car) {
+	print("Производитель: \(car.manufacturer)")
+	print("Модель: \(car.model)")
+	print("Тип кузова: \(car.body.rawValue)")
+	print("Год выпуска: \(car.yearOfIssue.map(String.init) ?? "-")")
+	if let carNumber = car.carNumber, !carNumber.isEmpty {
+		print("Гос. номер: \(carNumber)")
+	}
+}
+
 func chooseBody() -> Body {
 	while true {
 		print(
