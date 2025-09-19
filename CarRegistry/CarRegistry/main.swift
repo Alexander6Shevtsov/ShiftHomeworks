@@ -26,6 +26,20 @@ struct Car {
 	let carNumber: String?
 }
 
+// цикл
+func runApp() {
+	while true {
+		printMenu()
+		switch readMenuCommand() {
+		case 1: addCar()
+		case 2: listCars()
+		case 3: listBody()
+		default:
+			return
+		}
+	}
+}
+
 func printMenu() -> Void {
 	print(
 		"\nМеню:\n1 — Добавить автомобиль\n2 — Список автомобилей\n3 — Список по типу кузова\nВведите номер команды и нажмите Enter:"
@@ -69,6 +83,27 @@ func printCar(_ car: Car) {
 	}
 }
 
+// Список автомобилей
+func listCars() {
+	if cars.isEmpty {
+		print("Список пуст")
+		return
+	}
+	for car in cars {
+		printCar(car)
+		print()
+	}
+}
+
+// Фильтр по кузову
+func listBody() {
+	let chosenBody = chooseBody()
+	for carBody in cars where carBody.body == chosenBody {
+		printCar(carBody)
+		print()
+	}
+}
+
 func chooseBody() -> Body {
 	while true {
 		print(
@@ -94,6 +129,4 @@ func chooseBody() -> Body {
 	}
 }
 
-
-
-printMenu()
+runApp()
