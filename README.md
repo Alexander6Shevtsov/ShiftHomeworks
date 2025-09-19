@@ -1,4 +1,3 @@
-feature/homework-1
 # CarRegistry
 ### Консольное приложение для учёта автомобилей
 
