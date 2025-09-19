@@ -34,15 +34,14 @@ func runApp() {
 		case 1: addCar()
 		case 2: listCars()
 		case 3: listBody()
-		default:
-			return
+		default: break
 		}
 	}
 }
 
 func printMenu() -> Void {
 	print(
-		"\nМеню:\n1 — Добавить автомобиль\n2 — Список автомобилей\n3 — Список по типу кузова\nВведите номер команды и нажмите Enter:"
+		"\nМеню:\n1 — Добавить автомобиль\n2 — Список автомобилей\n3 — Список по типу кузова\nВведите номер команды и нажмите Enter"
 	)
 }
 
@@ -51,7 +50,7 @@ func readMenuCommand() -> Int {
 		if let value = Int(readLine() ?? ""), (0...3).contains(value) {
 			return value
 		}
-		print("Неверная команда, повторите ввод:")
+		print("Неверная команда, повторите ввод")
 	}
 }
 
@@ -59,8 +58,8 @@ func addCar() {
 	print("Производитель:"); let manufacturer = readLine() ?? ""
 	print("Модель:"); let model = readLine() ?? ""
 	let body = chooseBody()
-	print("Год выпуска (пусто — нет):"); let yearValue = Int(readLine() ?? "")
-	print("Гос. номер (пусто — нет):"); let numberText = readLine() ?? ""
+	print("Год выпуска:"); let yearValue = Int(readLine() ?? "")
+	print("Гос. номер:"); let numberText = readLine() ?? ""
 	let carNumber = numberText.isEmpty ? nil : numberText
 	cars.append(
 		Car(
