@@ -37,3 +37,29 @@ func readMenuCommand() -> Int {
 		print("Неверная команда, повторите ввод:")
 	}
 }
+
+func chooseBody() -> Body {
+	while true {
+		print(
+			"\nВыберите тип кузова:\n" +
+			"1 — Седан\n" +
+			"2 — Хэтчбек\n" +
+			"3 — Купе\n" +
+			"4 — Внедорожник\n" +
+			"5 — Универсал\n" +
+			"Введите номер и нажмите Enter:"
+		)
+		if let number = Int(readLine() ?? "") {
+			switch number {
+			case 1: return .sedan
+			case 2: return .hatchback
+			case 3: return .coupe
+			case 4: return .suv
+			case 5: return .wagon
+			default: break
+			}
+		}
+		print("Неверный номер, повторите ввод:")
+	}
+}
+
