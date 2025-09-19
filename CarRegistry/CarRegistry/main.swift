@@ -28,3 +28,12 @@ func printMenu() -> Void {
 		"\nМеню:\n1 — Добавить автомобиль\n2 — Список автомобилей\n3 — Список по типу кузова\nВведите номер команды и нажмите Enter:"
 	)
 }
+
+func readMenuCommand() -> Int {
+	while true {
+		if let value = Int(readLine() ?? ""), (0...3).contains(value) {
+			return value
+		}
+		print("Неверная команда, повторите ввод:")
+	}
+}
