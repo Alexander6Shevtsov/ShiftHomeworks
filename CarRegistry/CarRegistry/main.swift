@@ -7,5 +7,18 @@
 
 import Foundation
 
-print("Hello, World!")
+enum Body: String {
+	case sedan = "Седан"
+	case hatchback = "Хэтчбек"
+	case coupe = "Купе"
+	case suv = "Внедорожник"
+	case wagon = "Универсал"
+}
 
+struct Car {
+	let manufacturer: String
+	let model: String
+	let body: Body
+	let yearOfIssue: Int?
+	let carNumber: String?
+}
