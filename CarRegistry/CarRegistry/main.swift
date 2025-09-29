@@ -7,6 +7,11 @@
 
 import Foundation
 
+// MARK: - Constants
+enum Constants {
+	static let minYear = 1900
+}
+
 // MARK: - Models
 enum Body: Int, CaseIterable {
 	case sedan = 1
@@ -121,7 +126,7 @@ func getCurrentYear() -> Int {
 }
 
 func getYear(_ text: String) -> Int? {
-	let minYear = 1900
+	let minYear = Constants.minYear
 	let maxYear = getCurrentYear()
 	while true {
 		print(text, terminator: " ")
@@ -177,9 +182,7 @@ func printCar(_ car: Car) {
 }
 
 func printCars(_ cars: [Car]) {
-	for car in cars {
-		printCar(car)
-	}
+	cars.forEach(printCar)
 }
 
 func printCarsList() {
