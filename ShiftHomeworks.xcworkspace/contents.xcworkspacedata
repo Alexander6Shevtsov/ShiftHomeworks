@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ImageMark/ImageMark.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:CarRegistry/CarRegistry.xcodeproj">
    </FileRef>
 </Workspace>
