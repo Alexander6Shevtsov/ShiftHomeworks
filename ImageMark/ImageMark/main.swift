@@ -14,13 +14,20 @@ struct ProcessedImage {
 
 let imageService = ImageService()
 let imageNames = ["image1.png", "image2.jpg", "image3.jpg", "image4.jpg"]
+let startTime = CFAbsoluteTimeGetCurrent()
 
 DispatchQueue.main.async {
-	imageService.processImagesInParallel(imageNames: imageNames) { result in
-		print("Асинхронно обработано изображений: \(result.count)")
-		print("Результаты: \(results.map { $0.fileName })")
-	}
-	
 	print("Начинаем загружать и обрабатывать изображения")
+	
+	imageService.processImagesInParallel(imageNames: imageNames) { results in
+		print("Асинхронно обработано изображений: \(results.count)")
+		print("Результаты: \(results.map { $0.fileName })")
+		
+		let spent = CFAbsoluteTimeGetCurrent() - startTime
+		print(String(format: "Затраченное время: %.3f сек", spent))
+		
+		exit(EXIT_SUCCESS)
+	}
 }
 
+RunLoop.main.run()
