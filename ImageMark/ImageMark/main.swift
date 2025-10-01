@@ -12,11 +12,19 @@ struct ProcessedImage {
 	let status: String
 }
 
-// MARK: - Имитация загрузки изображения
+// MARK: - Имитация загрузки
 func loadImage(fileName: String, completion: @escaping (ProcessedImage) -> Void) {
 	let prepared = ProcessedImage(fileName: fileName, status: "loaded")
 	DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 2) {
 		completion(prepared)
+	}
+}
+
+// MARK: - Имитация нанесения водяного знака
+func addWatermark(_ image: ProcessedImage, completion: @escaping (ProcessedImage) -> Void) {
+	let marked = ProcessedImage(fileName: image.fileName, status: "watermarked")
+	DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 2) {
+		completion(marked)
 	}
 }
 
