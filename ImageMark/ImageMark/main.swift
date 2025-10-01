@@ -12,6 +12,14 @@ struct ProcessedImage {
 	let status: String
 }
 
+// MARK: - Имитация загрузки изображения
+func loadImage(fileName: String, completion: @escaping (ProcessedImage) -> Void) {
+	let prepared = ProcessedImage(fileName: fileName, status: "loaded")
+	DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 2) {
+		completion(prepared)
+	}
+}
+
 let imageService = ImageService()
 let imageNames = ["image1.png", "image2.jpg", "image3.jpg", "image4.jpg"]
 let startTime = CFAbsoluteTimeGetCurrent()
