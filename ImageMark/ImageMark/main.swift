@@ -12,6 +12,30 @@ struct ProcessedImage {
 	let status: String
 }
 
+final class ImageService {
+	func processImagesInParallel(
+		imageNames: [String],
+		completion: @escaping ([ProcessedImage]) -> Void
+	) {
+		let queue = DispatchGroup()
+		let storage = DataManager<ProcessedImage>()
+		
+		for fileName in imageNames {
+			queue.enter()
+			loadImage(fileName: fileName) { loadImage in
+				addWatermark(loadImage) { markedImage in
+					storage.append(markedImage)
+					queue.leave()
+				}
+			}
+		}
+		
+		queue.notify(queue: .main) {
+			completion(storage.items())
+		}
+	}
+}
+
 // MARK: - Имитация загрузки
 func loadImage(fileName: String, completion: @escaping (ProcessedImage) -> Void) {
 	let prepared = ProcessedImage(fileName: fileName, status: "loaded")
