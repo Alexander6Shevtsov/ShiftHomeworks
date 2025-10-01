@@ -8,6 +8,7 @@
 import Foundation
 
 final class DataManager<Element> {
+	
 	private var storage: [Element] = []
 	private let queue = DispatchQueue(label: "DataManagerQueue")
 	

@@ -17,20 +17,20 @@ final class ImageService {
 		imageNames: [String],
 		completion: @escaping ([ProcessedImage]) -> Void
 	) {
-		let queue = DispatchGroup()
+		let group = DispatchGroup()
 		let storage = DataManager<ProcessedImage>()
 		
 		for fileName in imageNames {
-			queue.enter()
-			loadImage(fileName: fileName) { loadImage in
-				addWatermark(loadImage) { markedImage in
+			group.enter()
+			loadImage(fileName: fileName) { loadedImage in
+				addWatermark(loadedImage) { markedImage in
 					storage.append(markedImage)
-					queue.leave()
+					group.leave()
 				}
 			}
 		}
 		
-		queue.notify(queue: .main) {
+		group.notify(queue: .main) {
 			completion(storage.items())
 		}
 	}
@@ -47,7 +47,7 @@ func loadImage(fileName: String, completion: @escaping (ProcessedImage) -> Void)
 // MARK: - Имитация нанесения водяного знака
 func addWatermark(_ image: ProcessedImage, completion: @escaping (ProcessedImage) -> Void) {
 	let marked = ProcessedImage(fileName: image.fileName, status: "watermarked")
-	DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 2) {
+	DispatchQueue.global(qos: .userInitiated).async {
 		completion(marked)
 	}
 }
@@ -57,14 +57,14 @@ let imageNames = ["image1.png", "image2.jpg", "image3.jpg", "image4.jpg"]
 let startTime = CFAbsoluteTimeGetCurrent()
 
 DispatchQueue.main.async {
-	print("Начинаем загружать и обрабатывать изображения")
+	print("Начинаем загружать и обрабатывать изображения!")
 	
 	imageService.processImagesInParallel(imageNames: imageNames) { results in
 		print("Асинхронно обработано изображений: \(results.count)")
 		print("Результаты: \(results.map { $0.fileName })")
 		
 		let spent = CFAbsoluteTimeGetCurrent() - startTime
-		print(String(format: "Затраченное время: %.3f сек", spent))
+		print(String(format: "Процесс занял: %.0f сек", spent))
 		
 		exit(EXIT_SUCCESS)
 	}
