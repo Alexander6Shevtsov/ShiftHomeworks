@@ -13,6 +13,7 @@
 		4205B0FA2E8E7367004EC2C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205B0EC2E8E7367004EC2C6 /* AppDelegate.swift */; };
 		4205B0FB2E8E7367004EC2C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205B0F32E8E7367004EC2C6 /* SceneDelegate.swift */; };
 		4205B0FC2E8E7367004EC2C6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205B0F42E8E7367004EC2C6 /* ViewController.swift */; };
+		4205B0FE2E8FB360004EC2C6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205B0FD2E8FB360004EC2C6 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		4205B0F12E8E7367004EC2C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4205B0F32E8E7367004EC2C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4205B0F42E8E7367004EC2C6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4205B0FD2E8FB360004EC2C6 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				4205B0F42E8E7367004EC2C6 /* ViewController.swift */,
+				4205B0FD2E8FB360004EC2C6 /* Models.swift */,
 				4205B0EC2E8E7367004EC2C6 /* AppDelegate.swift */,
 				4205B0F32E8E7367004EC2C6 /* SceneDelegate.swift */,
 				4205B0F22E8E7367004EC2C6 /* Main.storyboard */,
@@ -144,6 +147,7 @@
 				4205B0FA2E8E7367004EC2C6 /* AppDelegate.swift in Sources */,
 				4205B0FB2E8E7367004EC2C6 /* SceneDelegate.swift in Sources */,
 				4205B0FC2E8E7367004EC2C6 /* ViewController.swift in Sources */,
+				4205B0FE2E8FB360004EC2C6 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
