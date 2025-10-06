@@ -19,4 +19,8 @@ final class DataManager<Element> {
 	func items() -> [Element] {
 		queue.sync { storage }
 	}
+	
+	func clear() {
+		queue.sync { storage.removeAll(keepingCapacity: false) }
+	}
 }
