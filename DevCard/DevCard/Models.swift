@@ -8,12 +8,9 @@
 import Foundation
 
 struct Person {
-	let firstName: String
-	let lastName: String
-	let age: Int
+	let fullName: String
 	let education: String
 	let city: String
-	let homeTown: String
 	let photo: String
 }
 
