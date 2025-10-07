@@ -8,7 +8,16 @@
 import UIKit
 
 final class HobbiesViewController: UIViewController {
-
+	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		self.tabBarItem = UITabBarItem(
+			title: "Хобби",
+			image: UIImage(systemName: "sparkles"),
+			selectedImage: UIImage(systemName: "sparkles")
+		)
+	}
+	
 	private let titleLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Увлечения"
@@ -31,8 +40,8 @@ final class HobbiesViewController: UIViewController {
 	private let hobbiesStack = UIStackView()
 	
 	private let hobby = Hobby(hobbies: [
-		"Горные лыжи",
-		"Спорт",
+		"Сноуборд",
+		"Фотография",
 		"Путешествия",
 		"Настольные игры"
 	])
@@ -40,15 +49,8 @@ final class HobbiesViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .systemBackground
-		
-		tabBarItem = UITabBarItem(
-			title: "Хобби",
-			image: UIImage(systemName: "sparkles"),
-			selectedImage: UIImage(systemName: "sparkles")
-		)
-		
 		setup()
-		configure(hobby)
+		configure(with: hobby)
 	}
 	
 	private func setup() {
@@ -76,22 +78,21 @@ final class HobbiesViewController: UIViewController {
 		])
 	}
 	
-	private func configure(_ hobby: Hobby) {
+	private func configure(with hobby: Hobby) {
 		hobbiesStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
 		
-		for hobbyItem in hobby.hobbies {
+		for item in hobby.hobbies {
 			let label = UILabel()
 			label.numberOfLines = 0
 			label.font = .preferredFont(forTextStyle: .body)
 			label.adjustsFontForContentSizeCategory = true
-			label.text = "• \(hobbyItem)"
+			label.text = "• \(item)"
 			hobbiesStack.addArrangedSubview(label)
 		}
 		
-//		// нижний отступ
-//		let spacer = UIView()
-//		spacer.translatesAutoresizingMaskIntoConstraints = false
-//		spacer.heightAnchor.constraint(equalToConstant: 20).isActive = true
-//		hobbiesStack.addArrangedSubview(spacer)
+		let spacer = UIView()
+		spacer.translatesAutoresizingMaskIntoConstraints = false
+		spacer.heightAnchor.constraint(equalToConstant: 20).isActive = true
+		hobbiesStack.addArrangedSubview(spacer)
 	}
 }

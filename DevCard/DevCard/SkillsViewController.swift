@@ -56,7 +56,7 @@ final class SkillsViewController: UIViewController {
 	private let skills = DevelopSkills(
 		experienceYears: 1,
 		languages: "Swift",
-		internshipResults: "Практикуюсь в iOS, хочу прокачать архитектуры и верстку."
+		internshipResults: "Хочу заполнить пробелы и углубить уже имеющиеся знания."
 	)
 	
 	override func viewDidLoad() {
@@ -68,9 +68,11 @@ final class SkillsViewController: UIViewController {
 	
 	private func setup() {
 		stack.axis = .vertical
-		stack.spacing = 12
+		stack.spacing = 16
 		
 		[titleLabel, experienceLabel, languagesLabel, resultsLabel].forEach(stack.addArrangedSubview)
+		
+		stack.setCustomSpacing(40, after: titleLabel)
 		
 		view.addSubview(stack)
 		stack.translatesAutoresizingMaskIntoConstraints = false
