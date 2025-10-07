@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="922.5" y="103.52112676056338"/>
         </scene>
-        <!--View Controller-->
+        <!--Skills View Controller-->
         <scene sceneID="tJR-Rc-8sc">
             <objects>
-                <viewController id="9rg-v7-SfX" sceneMemberID="viewController">
+                <viewController id="9rg-v7-SfX" customClass="SkillsViewController" customModule="DevCard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ova-98-R5s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,10 +86,10 @@
             </objects>
             <point key="canvasLocation" x="1648" y="104"/>
         </scene>
-        <!--View Controller-->
+        <!--Hobbies View Controller-->
         <scene sceneID="93z-aK-vmz">
             <objects>
-                <viewController id="tUr-ar-GJ1" sceneMemberID="viewController">
+                <viewController id="tUr-ar-GJ1" customClass="HobbiesViewController" customModule="DevCard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jsl-CO-8SK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

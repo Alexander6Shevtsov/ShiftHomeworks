@@ -16,6 +16,7 @@
 		4205B0FE2E8FB360004EC2C6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205B0FD2E8FB360004EC2C6 /* Models.swift */; };
 		423BAB0D2E90EAFD00CE0206 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 423BAB0C2E90EAFD00CE0206 /* SnapKit */; };
 		425AAC2F2E94259000F54FF6 /* SkillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AAC2E2E94259000F54FF6 /* SkillsViewController.swift */; };
+		425AAC312E94269200F54FF6 /* HobbiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425AAC302E94269200F54FF6 /* HobbiesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		4205B0F42E8E7367004EC2C6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4205B0FD2E8FB360004EC2C6 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		425AAC2E2E94259000F54FF6 /* SkillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsViewController.swift; sourceTree = "<group>"; };
+		425AAC302E94269200F54FF6 /* HobbiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HobbiesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				4205B0F42E8E7367004EC2C6 /* ProfileViewController.swift */,
 				425AAC2E2E94259000F54FF6 /* SkillsViewController.swift */,
+				425AAC302E94269200F54FF6 /* HobbiesViewController.swift */,
 				4205B0FD2E8FB360004EC2C6 /* Models.swift */,
 				4205B0EC2E8E7367004EC2C6 /* AppDelegate.swift */,
 				4205B0F32E8E7367004EC2C6 /* SceneDelegate.swift */,
@@ -156,6 +159,7 @@
 				4205B0FA2E8E7367004EC2C6 /* AppDelegate.swift in Sources */,
 				4205B0FB2E8E7367004EC2C6 /* SceneDelegate.swift in Sources */,
 				4205B0FC2E8E7367004EC2C6 /* ProfileViewController.swift in Sources */,
+				425AAC312E94269200F54FF6 /* HobbiesViewController.swift in Sources */,
 				425AAC2F2E94259000F54FF6 /* SkillsViewController.swift in Sources */,
 				4205B0FE2E8FB360004EC2C6 /* Models.swift in Sources */,
 			);
