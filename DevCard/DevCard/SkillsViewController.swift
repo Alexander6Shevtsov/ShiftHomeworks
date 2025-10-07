@@ -9,12 +9,21 @@ import UIKit
 
 final class SkillsViewController: UIViewController {
 	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		self.tabBarItem = UITabBarItem(
+			title: "Навыки",
+			image: UIImage(systemName: "hammer.fill"),
+			selectedImage: UIImage(systemName: "hammer.fill")
+		)
+	}
+	
 	private let titleLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Навыки разработчика"
 		label.font = .preferredFont(forTextStyle: .title2)
-		label.adjustsFontForContentSizeCategory = true       
 		label.textAlignment = .center
+		label.adjustsFontForContentSizeCategory = true
 		return label
 	}()
 	
@@ -53,13 +62,6 @@ final class SkillsViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .systemBackground
-		
-		tabBarItem = UITabBarItem(
-			title: "Навыки",
-			image: UIImage(systemName: "hammer.fill"),
-			selectedImage: UIImage(systemName: "hammer.fill")
-		)
-		
 		setup()
 		configure(with: skills)
 	}
@@ -68,12 +70,7 @@ final class SkillsViewController: UIViewController {
 		stack.axis = .vertical
 		stack.spacing = 12
 		
-		[
-			titleLabel,
-			experienceLabel,
-			languagesLabel,
-			resultsLabel
-		].forEach(stack.addArrangedSubview)
+		[titleLabel, experienceLabel, languagesLabel, resultsLabel].forEach(stack.addArrangedSubview)
 		
 		view.addSubview(stack)
 		stack.translatesAutoresizingMaskIntoConstraints = false
@@ -86,7 +83,7 @@ final class SkillsViewController: UIViewController {
 	}
 	
 	private func configure(with skills: DevelopSkills) {
-		experienceLabel.text = "Опыт: 1 год"
+		experienceLabel.text = "Опыт: \(skills.experienceYears) год"
 		languagesLabel.text = "Языки: \(skills.languages)"
 		resultsLabel.text = "Ожидания: \(skills.internshipResults)"
 	}
