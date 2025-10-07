@@ -14,77 +14,77 @@ final class SkillsViewController: UIViewController {
 		self.tabBarItem = UITabBarItem(
 			title: "Навыки",
 			image: UIImage(systemName: "hammer.fill"),
-			selectedImage: UIImage(systemName: "hammer.fill")
+			tag: 0
 		)
 	}
 	
 	private let titleLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Навыки разработчика"
-		label.font = .preferredFont(forTextStyle: .title2)
+		label.font = .systemFont(ofSize: 22, weight: .semibold)
 		label.textAlignment = .center
-		label.adjustsFontForContentSizeCategory = true
 		return label
 	}()
 	
 	private let experienceLabel: UILabel = {
 		let label = UILabel()
 		label.numberOfLines = 0
-		label.font = .preferredFont(forTextStyle: .body)
-		label.adjustsFontForContentSizeCategory = true
+		label.font = .systemFont(ofSize: 20, weight: .regular)
 		return label
 	}()
 	
 	private let languagesLabel: UILabel = {
 		let label = UILabel()
 		label.numberOfLines = 0
-		label.font = .preferredFont(forTextStyle: .body)
-		label.adjustsFontForContentSizeCategory = true
+		label.font = .systemFont(ofSize: 20, weight: .regular)
 		return label
 	}()
 	
 	private let resultsLabel: UILabel = {
 		let label = UILabel()
 		label.numberOfLines = 0
-		label.font = .preferredFont(forTextStyle: .body)
-		label.adjustsFontForContentSizeCategory = true
+		label.font = .systemFont(ofSize: 20, weight: .regular)
 		return label
 	}()
 	
-	private let stack = UIStackView()
+	private let skillsStack = UIStackView()
 	
 	private let skills = DevelopSkills(
 		experienceYears: 1,
 		languages: "Swift",
-		internshipResults: "Хочу заполнить пробелы и углубить уже имеющиеся знания."
+		internshipResults: "Хочу заполнить пробелы, углубить знания, получить оффер и на практике применять и улучшать навыки."
 	)
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .systemBackground
 		setup()
-		configure(with: skills)
+		configure(skills)
 	}
 	
 	private func setup() {
-		stack.axis = .vertical
-		stack.spacing = 16
+		view.addSubview(titleLabel)
+		titleLabel.translatesAutoresizingMaskIntoConstraints = false
 		
-		[titleLabel, experienceLabel, languagesLabel, resultsLabel].forEach(stack.addArrangedSubview)
+		skillsStack.axis = .vertical
+		skillsStack.spacing = 16
+		[experienceLabel, languagesLabel, resultsLabel].forEach(skillsStack.addArrangedSubview)
 		
-		stack.setCustomSpacing(40, after: titleLabel)
-		
-		view.addSubview(stack)
-		stack.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(skillsStack)
+		skillsStack.translatesAutoresizingMaskIntoConstraints = false
 		
 		NSLayoutConstraint.activate([
-			stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-			stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-			stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+			titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+			titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+			titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+			
+			skillsStack.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 60),
+			skillsStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+			skillsStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
 		])
 	}
 	
-	private func configure(with skills: DevelopSkills) {
+	private func configure(_ skills: DevelopSkills) {
 		experienceLabel.text = "Опыт: \(skills.experienceYears) год"
 		languagesLabel.text = "Языки: \(skills.languages)"
 		resultsLabel.text = "Ожидания: \(skills.internshipResults)"
