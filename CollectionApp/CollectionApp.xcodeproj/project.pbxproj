@@ -3,16 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		42F646F02E96889D00B82F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42F646E72E96889D00B82F72 /* Assets.xcassets */; };
 		42F646F22E96889D00B82F72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42F646EA2E96889D00B82F72 /* LaunchScreen.storyboard */; };
-		42F646F32E96889D00B82F72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42F646EC2E96889D00B82F72 /* Main.storyboard */; };
 		42F646F42E96889D00B82F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F646E62E96889D00B82F72 /* AppDelegate.swift */; };
 		42F646F52E96889D00B82F72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F646ED2E96889D00B82F72 /* SceneDelegate.swift */; };
-		42F646F62E96889D00B82F72 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F646EE2E96889D00B82F72 /* ViewController.swift */; };
+		42F646F82E96A4E600B82F72 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F646F72E96A4E600B82F72 /* CatalogViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,18 +20,15 @@
 		42F646E72E96889D00B82F72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42F646E82E96889D00B82F72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42F646E92E96889D00B82F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		42F646EB2E96889D00B82F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		42F646ED2E96889D00B82F72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		42F646EE2E96889D00B82F72 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		42F646F72E96A4E600B82F72 /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		42F646CB2E96883B00B82F72 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -56,13 +52,12 @@
 		42F646EF2E96889D00B82F72 /* CollectionApp */ = {
 			isa = PBXGroup;
 			children = (
-				42F646EE2E96889D00B82F72 /* ViewController.swift */,
-				42F646E62E96889D00B82F72 /* AppDelegate.swift */,
+				42F646F72E96A4E600B82F72 /* CatalogViewController.swift */,
 				42F646ED2E96889D00B82F72 /* SceneDelegate.swift */,
+				42F646E62E96889D00B82F72 /* AppDelegate.swift */,
 				42F646E72E96889D00B82F72 /* Assets.xcassets */,
 				42F646E82E96889D00B82F72 /* Info.plist */,
 				42F646EA2E96889D00B82F72 /* LaunchScreen.storyboard */,
-				42F646EC2E96889D00B82F72 /* Main.storyboard */,
 			);
 			path = CollectionApp;
 			sourceTree = "<group>";
@@ -80,11 +75,7 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			name = CollectionApp;
-			packageProductDependencies = (
-			);
 			productName = CollectionApp;
 			productReference = 42F646CE2E96883B00B82F72 /* CollectionApp.app */;
 			productType = "com.apple.product-type.application";
@@ -113,7 +104,7 @@
 			);
 			mainGroup = 42F646C52E96883B00B82F72;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 42F646CF2E96883B00B82F72 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,26 +117,21 @@
 /* Begin PBXResourcesBuildPhase section */
 		42F646CC2E96883B00B82F72 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				42F646F02E96889D00B82F72 /* Assets.xcassets in Resources */,
 				42F646F22E96889D00B82F72 /* LaunchScreen.storyboard in Resources */,
-				42F646F32E96889D00B82F72 /* Main.storyboard in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		42F646CA2E96883B00B82F72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
+				42F646F82E96A4E600B82F72 /* CatalogViewController.swift in Sources */,
 				42F646F42E96889D00B82F72 /* AppDelegate.swift in Sources */,
 				42F646F52E96889D00B82F72 /* SceneDelegate.swift in Sources */,
-				42F646F62E96889D00B82F72 /* ViewController.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -158,18 +144,10 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		42F646EC2E96889D00B82F72 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				42F646EB2E96889D00B82F72 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		42F646E22E96883D00B82F72 /* Debug */ = {
+		42F646E22E96883D00B82F72 /* Debug configuration for PBXNativeTarget "CollectionApp" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -180,7 +158,6 @@
 				INFOPLIST_FILE = CollectionApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
@@ -205,7 +182,7 @@
 			};
 			name = Debug;
 		};
-		42F646E32E96883D00B82F72 /* Release */ = {
+		42F646E32E96883D00B82F72 /* Release configuration for PBXNativeTarget "CollectionApp" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -216,7 +193,6 @@
 				INFOPLIST_FILE = CollectionApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
@@ -241,7 +217,7 @@
 			};
 			name = Release;
 		};
-		42F646E42E96883D00B82F72 /* Debug */ = {
+		42F646E42E96883D00B82F72 /* Debug configuration for PBXProject "CollectionApp" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -304,7 +280,7 @@
 			};
 			name = Debug;
 		};
-		42F646E52E96883D00B82F72 /* Release */ = {
+		42F646E52E96883D00B82F72 /* Release configuration for PBXProject "CollectionApp" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -366,19 +342,17 @@
 		42F646C92E96883B00B82F72 /* Build configuration list for PBXProject "CollectionApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				42F646E42E96883D00B82F72 /* Debug */,
-				42F646E52E96883D00B82F72 /* Release */,
+				42F646E42E96883D00B82F72 /* Debug configuration for PBXProject "CollectionApp" */,
+				42F646E52E96883D00B82F72 /* Release configuration for PBXProject "CollectionApp" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		42F646E12E96883D00B82F72 /* Build configuration list for PBXNativeTarget "CollectionApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				42F646E22E96883D00B82F72 /* Debug */,
-				42F646E32E96883D00B82F72 /* Release */,
+				42F646E22E96883D00B82F72 /* Debug configuration for PBXNativeTarget "CollectionApp" */,
+				42F646E32E96883D00B82F72 /* Release configuration for PBXNativeTarget "CollectionApp" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
