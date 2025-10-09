@@ -12,6 +12,7 @@
 		42F646F42E96889D00B82F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F646E62E96889D00B82F72 /* AppDelegate.swift */; };
 		42F646F52E96889D00B82F72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F646ED2E96889D00B82F72 /* SceneDelegate.swift */; };
 		42F646F82E96A4E600B82F72 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F646F72E96A4E600B82F72 /* CatalogViewController.swift */; };
+		42F647102E97F3C300B82F72 /* Phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F6470F2E97F3C300B82F72 /* Phone.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		42F646E92E96889D00B82F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42F646ED2E96889D00B82F72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		42F646F72E96A4E600B82F72 /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
+		42F6470F2E97F3C300B82F72 /* Phone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phone.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				42F646F72E96A4E600B82F72 /* CatalogViewController.swift */,
+				42F6470F2E97F3C300B82F72 /* Phone.swift */,
 				42F646ED2E96889D00B82F72 /* SceneDelegate.swift */,
 				42F646E62E96889D00B82F72 /* AppDelegate.swift */,
 				42F646E72E96889D00B82F72 /* Assets.xcassets */,
@@ -128,6 +131,7 @@
 		42F646CA2E96883B00B82F72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				42F647102E97F3C300B82F72 /* Phone.swift in Sources */,
 				42F646F82E96A4E600B82F72 /* CatalogViewController.swift in Sources */,
 				42F646F42E96889D00B82F72 /* AppDelegate.swift in Sources */,
 				42F646F52E96889D00B82F72 /* SceneDelegate.swift in Sources */,
