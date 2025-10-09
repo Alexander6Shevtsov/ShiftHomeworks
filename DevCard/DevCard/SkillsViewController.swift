@@ -9,15 +9,6 @@ import UIKit
 
 final class SkillsViewController: UIViewController {
 	
-	required init?(coder: NSCoder) {
-		super.init(coder: coder)
-		self.tabBarItem = UITabBarItem(
-			title: "Навыки",
-			image: UIImage(systemName: "hammer.fill"),
-			tag: 0
-		)
-	}
-	
 	private let titleLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Навыки разработчика"
@@ -54,6 +45,15 @@ final class SkillsViewController: UIViewController {
 		languages: "Swift",
 		internshipResults: "Хочу заполнить пробелы, углубить знания, получить оффер и на практике применять и улучшать навыки."
 	)
+	
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		self.tabBarItem = UITabBarItem(
+			title: "Навыки",
+			image: UIImage(systemName: "hammer.fill"),
+			tag: 0
+		)
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()

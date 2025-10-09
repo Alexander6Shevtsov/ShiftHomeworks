@@ -9,15 +9,6 @@ import UIKit
 
 final class HobbiesViewController: UIViewController {
 	
-	required init?(coder: NSCoder) {
-		super.init(coder: coder)
-		self.tabBarItem = UITabBarItem(
-			title: "Хобби",
-			image: UIImage(systemName: "sparkles"),
-			tag: 0
-		)
-	}
-	
 	private let titleLabel: UILabel = {
 		let label = UILabel()
 		label.text = "Увлечения"
@@ -34,6 +25,15 @@ final class HobbiesViewController: UIViewController {
 		"Кроссфит",
 		"Настольные игры"
 	])
+	
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		self.tabBarItem = UITabBarItem(
+			title: "Хобби",
+			image: UIImage(systemName: "sparkles"),
+			tag: 0
+		)
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()

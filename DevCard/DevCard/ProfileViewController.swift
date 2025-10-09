@@ -25,10 +25,8 @@ final class ProfileViewController: UIViewController {
 		super.viewDidLoad()
 		setupUI()
 		configureView(person)
-	}
-	
-	override func viewDidLayoutSubviews() {
-		super.viewDidLayoutSubviews()
+		
+		view.layoutIfNeeded()
 		avatarImageView.layer.cornerRadius = avatarImageView.bounds.height / 2
 		avatarImageView.clipsToBounds = true
 	}
