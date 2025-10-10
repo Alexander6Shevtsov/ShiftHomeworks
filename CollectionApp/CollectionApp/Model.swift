@@ -1,5 +1,5 @@
 //
-//  Phone.swift
+//  Model.swift
 //  CollectionApp
 //
 //  Created by Alexander Shevtsov on 09.10.2025.
