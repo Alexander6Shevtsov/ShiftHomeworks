@@ -23,6 +23,7 @@ final class CatalogViewController: UIViewController {
 		collection.dataSource = self
 		collection.delegate = self
 		collection.register(PhoneCell.self, forCellWithReuseIdentifier: PhoneCell.reuseID)
+		collection.allowsSelection = true
 		return collection
 	}()
 	
@@ -48,6 +49,7 @@ final class CatalogViewController: UIViewController {
 }
 
 extension CatalogViewController: UICollectionViewDataSource {
+	
 	func collectionView(
 		_ collectionView: UICollectionView,
 		numberOfItemsInSection section: Int
@@ -86,5 +88,12 @@ extension CatalogViewController: UICollectionViewDelegateFlowLayout {
 		let itemWidth = floor(availableWidth / columns)
 		let itemHeight = itemWidth + 36
 		return CGSize(width: itemWidth, height: itemHeight)
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		collectionView.deselectItem(at: indexPath, animated: true)
+		let phone = phones[indexPath.item]
+		let details = PhoneDetailsViewController(phone: phone)
+		navigationController?.pushViewController(details, animated: true)
 	}
 }

@@ -45,7 +45,8 @@ final class PhoneCell: UICollectionViewCell {
 		contentView.layer.cornerRadius = 12
 		contentView.layer.masksToBounds = true
 		
-		imageView.contentMode = .scaleAspectFill
+		// Вписываем изображение целиком без обрезания
+		imageView.contentMode = .scaleAspectFit
 		
 		nameLabel.font = .preferredFont(forTextStyle: .headline)
 		nameLabel.numberOfLines = 1
@@ -78,6 +79,7 @@ final class PhoneCell: UICollectionViewCell {
 			stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
 			stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
 			
+			// Оставляем квадратную область для изображения; scaleAspectFit покажет его целиком
 			imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.0)
 		])
 	}

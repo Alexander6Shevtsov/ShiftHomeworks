@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42E56C7A2E9C1AFE003E7EEC /* PhoneDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E56C792E9C1AFE003E7EEC /* PhoneDetailsViewController.swift */; };
+		42E56C822E9CF0E8003E7EEC /* InnovationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E56C812E9CF0E8003E7EEC /* InnovationsViewController.swift */; };
 		42F646F02E96889D00B82F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42F646E72E96889D00B82F72 /* Assets.xcassets */; };
 		42F646F22E96889D00B82F72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42F646EA2E96889D00B82F72 /* LaunchScreen.storyboard */; };
 		42F646F42E96889D00B82F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F646E62E96889D00B82F72 /* AppDelegate.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42E56C792E9C1AFE003E7EEC /* PhoneDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneDetailsViewController.swift; sourceTree = "<group>"; };
+		42E56C812E9CF0E8003E7EEC /* InnovationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnovationsViewController.swift; sourceTree = "<group>"; };
 		42F646CE2E96883B00B82F72 /* CollectionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F646E62E96889D00B82F72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42F646E72E96889D00B82F72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				42F646F72E96A4E600B82F72 /* CatalogViewController.swift */,
+				42E56C792E9C1AFE003E7EEC /* PhoneDetailsViewController.swift */,
+				42E56C812E9CF0E8003E7EEC /* InnovationsViewController.swift */,
 				42F6470F2E97F3C300B82F72 /* Model.swift */,
 				42F647112E98E88400B82F72 /* PhoneCell.swift */,
 				42F646ED2E96889D00B82F72 /* SceneDelegate.swift */,
@@ -134,10 +140,12 @@
 		42F646CA2E96883B00B82F72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				42E56C822E9CF0E8003E7EEC /* InnovationsViewController.swift in Sources */,
 				42F647102E97F3C300B82F72 /* Model.swift in Sources */,
 				42F646F82E96A4E600B82F72 /* CatalogViewController.swift in Sources */,
 				42F646F42E96889D00B82F72 /* AppDelegate.swift in Sources */,
 				42F646F52E96889D00B82F72 /* SceneDelegate.swift in Sources */,
+				42E56C7A2E9C1AFE003E7EEC /* PhoneDetailsViewController.swift in Sources */,
 				42F647122E98E88400B82F72 /* PhoneCell.swift in Sources */,
 			);
 		};
