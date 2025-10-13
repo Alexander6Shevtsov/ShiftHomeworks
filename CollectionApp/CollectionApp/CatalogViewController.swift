@@ -14,8 +14,10 @@ final class CatalogViewController: UIViewController {
 	private lazy var collectionView: UICollectionView = {
 		let layout = UICollectionViewFlowLayout()
 		layout.minimumInteritemSpacing = 8
-		layout.minimumLineSpacing = 8
-		layout.sectionInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+		layout.minimumLineSpacing = 6
+		layout.sectionInset = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
+		layout.sectionInsetReference = .fromSafeArea
+		layout.estimatedItemSize = .zero
 		
 		let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		collection.backgroundColor = .systemBackground
@@ -29,22 +31,33 @@ final class CatalogViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		title = "Catalog"
+		title = "Каталог"
 		view.backgroundColor = .systemBackground
 		view.addSubview(collectionView)
 		collectionView.translatesAutoresizingMaskIntoConstraints = false
 		
+		let safe = view.safeAreaLayoutGuide
 		NSLayoutConstraint.activate([
-			collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-			collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+			collectionView.topAnchor.constraint(equalTo: safe.topAnchor),
+			collectionView.leadingAnchor.constraint(equalTo: safe.leadingAnchor),
+			collectionView.trailingAnchor.constraint(equalTo: safe.trailingAnchor),
+			collectionView.bottomAnchor.constraint(equalTo: safe.bottomAnchor)
 		])
 	}
 	
 	override func viewWillLayoutSubviews() {
 		super.viewWillLayoutSubviews()
 		collectionView.collectionViewLayout.invalidateLayout()
+	}
+	
+	override func viewWillTransition(
+		to size: CGSize,
+		with coordinator: UIViewControllerTransitionCoordinator
+	) {
+		super.viewWillTransition(to: size, with: coordinator)
+		coordinator.animate(alongsideTransition: { _ in
+			self.collectionView.collectionViewLayout.invalidateLayout()
+		})
 	}
 }
 
@@ -80,13 +93,21 @@ extension CatalogViewController: UICollectionViewDelegateFlowLayout {
 			return CGSize(width: 120, height: 160)
 		}
 		
-		let isLandscape = view.bounds.width > view.bounds.height
+		let safeFrame = view.safeAreaLayoutGuide.layoutFrame
+		let isLandscape = safeFrame.width > safeFrame.height
 		let columns: CGFloat = isLandscape ? 3 : 1
-		let insert = layout.sectionInset.left + layout.sectionInset.right
-		let spacing = layout.minimumInteritemSpacing * (columns - 1)
-		let availableWidth = collection.bounds.width - insert - spacing
+		
+		let horizontalInsets = layout.sectionInset.left + layout.sectionInset.right
+		let interitemSpacing = layout.minimumInteritemSpacing * (columns - 1)
+		let availableWidth = collection.bounds.inset(by: collection.adjustedContentInset).width - horizontalInsets - interitemSpacing
 		let itemWidth = floor(availableWidth / columns)
-		let itemHeight = itemWidth + 36
+		
+		let rows: CGFloat = isLandscape ? 1 : 2
+		let verticalInsets = layout.sectionInset.top + layout.sectionInset.bottom
+		let lineSpacing = layout.minimumLineSpacing * (rows - 1)
+		let availableHeight = collection.bounds.inset(by: collection.adjustedContentInset).height - verticalInsets - lineSpacing
+		let itemHeight = floor(availableHeight / rows)
+		
 		return CGSize(width: itemWidth, height: itemHeight)
 	}
 	

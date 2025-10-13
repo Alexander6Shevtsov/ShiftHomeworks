@@ -42,17 +42,13 @@ final class PhoneDetailsViewController: UIViewController {
 	
 	private func setupView() {
 		view.backgroundColor = .systemBackground
-		title = phone.name
+		navigationItem.title = nil
+		navigationItem.largeTitleDisplayMode = .never
 	}
 	
-	// MARK: - Построение иерархии
-	
 	private func setupHierarchy() {
-		
 		stackView.axis = .vertical
 		stackView.spacing = 12
-		stackView.alignment = .fill
-		stackView.distribution = .fill
 		
 		titleLabel.font = .preferredFont(forTextStyle: .title2)
 		titleLabel.textColor = .label
@@ -61,27 +57,19 @@ final class PhoneDetailsViewController: UIViewController {
 		releaseDateTitle.text = "Дата выхода:"
 		releaseDateTitle.font = .preferredFont(forTextStyle: .headline)
 		releaseDateTitle.textColor = .secondaryLabel
-		releaseDateTitle.numberOfLines = 1
 		
 		releaseDateValue.font = .preferredFont(forTextStyle: .body)
 		releaseDateValue.textColor = .label
-		releaseDateValue.numberOfLines = 1
 		
 		screenSizeTitle.text = "Размер экрана:"
 		screenSizeTitle.font = .preferredFont(forTextStyle: .headline)
 		screenSizeTitle.textColor = .secondaryLabel
-		screenSizeTitle.numberOfLines = 1
 		
 		screenSizeValue.font = .preferredFont(forTextStyle: .body)
 		screenSizeValue.textColor = .label
-		screenSizeValue.numberOfLines = 1
 		
 		moreButton.setTitle("Подробнее", for: .normal)
-		moreButton.addTarget(
-			self,
-			action: #selector(moreTapped),
-			for: .touchUpInside
-		)
+		moreButton.addTarget(self, action: #selector(moreTapped), for: .touchUpInside)
 		
 		view.addSubview(scrollView)
 		scrollView.addSubview(contentView)
@@ -96,7 +84,6 @@ final class PhoneDetailsViewController: UIViewController {
 	}
 	
 	private func setupLayout() {
-		
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
 		contentView.translatesAutoresizingMaskIntoConstraints = false
 		stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -134,7 +121,6 @@ final class PhoneDetailsViewController: UIViewController {
 	@objc private func moreTapped() {
 		let modal = InnovationsViewController(featuresText: phone.features)
 		let nav = UINavigationController(rootViewController: modal)
-		nav.modalPresentationStyle = .automatic
-		present(nav, animated: true)                                   
+		present(nav, animated: true)
 	}
 }

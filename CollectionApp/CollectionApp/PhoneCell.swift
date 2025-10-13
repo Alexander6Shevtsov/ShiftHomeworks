@@ -13,9 +13,8 @@ final class PhoneCell: UICollectionViewCell {
 	
 	private let imageView = UIImageView()
 	private let nameLabel = UILabel()
-	private let detailsLabel = UILabel()
 	
-	private let stack = UIStackView()
+	private var imageAspectConstraint: NSLayoutConstraint!
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -31,12 +30,10 @@ final class PhoneCell: UICollectionViewCell {
 		super.prepareForReuse()
 		imageView.image = nil
 		nameLabel.text = nil
-		detailsLabel.text = nil
 	}
 	
 	func configure(_ phone: Phone) {
 		nameLabel.text = phone.name
-		detailsLabel.text = "\(phone.releaseDate) • \(phone.screenSize)"
 		imageView.image = UIImage(named: phone.imageName)
 	}
 	
@@ -45,42 +42,34 @@ final class PhoneCell: UICollectionViewCell {
 		contentView.layer.cornerRadius = 12
 		contentView.layer.masksToBounds = true
 		
-		// Вписываем изображение целиком без обрезания
 		imageView.contentMode = .scaleAspectFit
 		
 		nameLabel.font = .preferredFont(forTextStyle: .headline)
+		nameLabel.textColor = .label
 		nameLabel.numberOfLines = 1
-		
-		detailsLabel.font = .preferredFont(forTextStyle: .subheadline)
-		detailsLabel.textColor = .secondaryLabel
-		detailsLabel.numberOfLines = 2
-		
-		stack.axis = .vertical
-		stack.spacing = 6
+		nameLabel.setContentCompressionResistancePriority(.required, for: .vertical)
 		
 		contentView.addSubview(imageView)
-		contentView.addSubview(stack)
-		
-		stack.addArrangedSubview(nameLabel)
-		stack.addArrangedSubview(detailsLabel)
+		contentView.addSubview(nameLabel)
 		
 		imageView.translatesAutoresizingMaskIntoConstraints = false
-		stack.translatesAutoresizingMaskIntoConstraints = false
+		nameLabel.translatesAutoresizingMaskIntoConstraints = false
 	}
 	
 	private func setupLayout() {
+		imageAspectConstraint = imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
+		imageAspectConstraint.priority = .defaultHigh
+		
 		NSLayoutConstraint.activate([
-			imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+			imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
 			imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
 			imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+			imageAspectConstraint,
 			
-			stack.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 8),
-			stack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-			stack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-			stack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-			
-			// Оставляем квадратную область для изображения; scaleAspectFit покажет его целиком
-			imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.0)
+			nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 4),
+			nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+			nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+			nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
 		])
 	}
 }

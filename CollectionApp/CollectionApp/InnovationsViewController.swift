@@ -24,12 +24,8 @@ final class InnovationsViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		viewDidLoadSetup()
-	}
-	
-	private func viewDidLoadSetup() { //?????
 		view.backgroundColor = .systemBackground
-		title = "Иновации"
+		title = "Инновации"
 		
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
 			barButtonSystemItem: .close,
@@ -55,6 +51,7 @@ final class InnovationsViewController: UIViewController {
 	}
 	
 	@objc private func closeTapped() {
-		dismiss(animated: true)           
+		dismiss(animated: true)
 	}
 }
+
