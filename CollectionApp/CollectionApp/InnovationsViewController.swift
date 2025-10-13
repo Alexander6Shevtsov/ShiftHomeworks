@@ -10,7 +10,7 @@ import UIKit
 final class InnovationsViewController: UIViewController {
 	
 	private let featuresText: String
-	private let textView = UITextView()
+	private let label = UILabel()
 	
 	init(featuresText: String) {
 		self.featuresText = featuresText
@@ -33,20 +33,20 @@ final class InnovationsViewController: UIViewController {
 			action: #selector(closeTapped)
 		)
 		
-		textView.text = featuresText
-		textView.font = .preferredFont(forTextStyle: .body)
-		textView.isEditable = false
-		textView.alwaysBounceVertical = true
-		textView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-		textView.translatesAutoresizingMaskIntoConstraints = false
+		label.text = featuresText
+		label.font = .preferredFont(forTextStyle: .body)
+		label.textColor = .label
+		label.numberOfLines = 0
+		label.translatesAutoresizingMaskIntoConstraints = false
 		
-		view.addSubview(textView)
+		view.addSubview(label)
 		
+		let inset: CGFloat = 16
+		let safe = view.safeAreaLayoutGuide
 		NSLayoutConstraint.activate([
-			textView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-			textView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			textView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			textView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+			label.topAnchor.constraint(equalTo: safe.topAnchor, constant: inset),
+			label.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: inset),
+			label.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -inset),
 		])
 	}
 	

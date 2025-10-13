@@ -22,6 +22,7 @@ final class CatalogViewController: UIViewController {
 		let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		collection.backgroundColor = .systemBackground
 		collection.alwaysBounceVertical = true
+		collection.isScrollEnabled = true
 		collection.dataSource = self
 		collection.delegate = self
 		collection.register(PhoneCell.self, forCellWithReuseIdentifier: PhoneCell.reuseID)
@@ -75,12 +76,13 @@ extension CatalogViewController: UICollectionViewDataSource {
 			assertionFailure("Failed to dequeue PhoneCell")
 			return UICollectionViewCell()
 		}
-		cell.configure(phones[indexPath.item])
+		cell.setupCell(phones[indexPath.item])
 		return cell
 	}
 }
 
 extension CatalogViewController: UICollectionViewDelegateFlowLayout {
+	
 	func collectionView(
 		_ collection: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,

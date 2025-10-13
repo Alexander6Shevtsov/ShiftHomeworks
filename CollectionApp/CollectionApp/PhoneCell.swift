@@ -24,13 +24,7 @@ final class PhoneCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	override func prepareForReuse() {
-		super.prepareForReuse()
-		imageView.image = nil
-		nameLabel.text = nil
-	}
-	
-	func configure(_ phone: Phone) {
+	func setupCell(_ phone: Phone) {
 		nameLabel.text = phone.name
 		imageView.image = UIImage(named: phone.imageName)
 	}

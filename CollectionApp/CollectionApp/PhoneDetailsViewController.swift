@@ -10,9 +10,6 @@ import UIKit
 final class PhoneDetailsViewController: UIViewController {
 	
 	private let phone: Phone
-	
-	private let scrollView = UIScrollView()
-	private let contentView = UIView()
 	private let stackView = UIStackView()
 	
 	private let titleLabel = UILabel()
@@ -34,25 +31,18 @@ final class PhoneDetailsViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		view.backgroundColor = .systemBackground
 		setupView()
-		setupHierarchy()
 		setupLayout()
 		configure(phone)
 	}
 	
 	private func setupView() {
-		view.backgroundColor = .systemBackground
-		navigationItem.title = nil
-		navigationItem.largeTitleDisplayMode = .never
-	}
-	
-	private func setupHierarchy() {
 		stackView.axis = .vertical
 		stackView.spacing = 12
 		
 		titleLabel.font = .preferredFont(forTextStyle: .title2)
 		titleLabel.textColor = .label
-		titleLabel.numberOfLines = 0
 		
 		releaseDateTitle.text = "Дата выхода:"
 		releaseDateTitle.font = .preferredFont(forTextStyle: .headline)
@@ -68,12 +58,10 @@ final class PhoneDetailsViewController: UIViewController {
 		screenSizeValue.font = .preferredFont(forTextStyle: .body)
 		screenSizeValue.textColor = .label
 		
-		moreButton.setTitle("Подробнее", for: .normal)
+		moreButton.setTitle("Подробно", for: .normal)
 		moreButton.addTarget(self, action: #selector(moreTapped), for: .touchUpInside)
 		
-		view.addSubview(scrollView)
-		scrollView.addSubview(contentView)
-		contentView.addSubview(stackView)
+		view.addSubview(stackView)
 		
 		stackView.addArrangedSubview(titleLabel)
 		stackView.addArrangedSubview(releaseDateTitle)
@@ -84,31 +72,15 @@ final class PhoneDetailsViewController: UIViewController {
 	}
 	
 	private func setupLayout() {
-		scrollView.translatesAutoresizingMaskIntoConstraints = false
-		contentView.translatesAutoresizingMaskIntoConstraints = false
 		stackView.translatesAutoresizingMaskIntoConstraints = false
 		
-		NSLayoutConstraint.activate([
-			scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-			scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-			scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-		])
-		
-		NSLayoutConstraint.activate([
-			contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
-			contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
-			contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
-			contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
-			contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor)
-		])
-		
 		let padding: CGFloat = 16
+		let safe = view.safeAreaLayoutGuide
 		NSLayoutConstraint.activate([
-			stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-			stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-			stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-			stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
+			stackView.topAnchor.constraint(equalTo: safe.topAnchor, constant: padding),
+			stackView.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: padding),
+			stackView.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -padding),
+			stackView.bottomAnchor.constraint(lessThanOrEqualTo: safe.bottomAnchor, constant: -padding)
 		])
 	}
 	
