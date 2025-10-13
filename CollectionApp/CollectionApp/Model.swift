@@ -21,7 +21,7 @@ enum PhoneCatalog {
 			name: "iPhone",
 			releaseDate: "Июнь 2007 г.",
 			screenSize: "3.5\"",
-			features: "Мультитач, Safari, Visual Voicemail",
+			features: "Мультитач, Safari, изменил представление о телефоне",
 			imageName: "iphone-2007"
 		),
 		Phone(
@@ -35,49 +35,49 @@ enum PhoneCatalog {
 			name: "iPhone 4",
 			releaseDate: "Июнь 2010 г.",
 			screenSize: "3.5\"",
-			features: "Retina‑дисплей, FaceTime",
+			features: "Retina‑дисплей, FaceTime, новый дизайн",
 			imageName: "iphone-4"
 		),
 		Phone(
 			name: "iPhone 4s",
 			releaseDate: "Октябрь 2011 г.",
 			screenSize: "3.5\"",
-			features: "Siri, камера 8 Мп",
+			features: "Siri, камера 8 Мп, A5",
 			imageName: "iphone-4S"
 		),
 		Phone(
 			name: "iPhone 5",
 			releaseDate: "Сентябрь 2012 г.",
 			screenSize: "4.0\"",
-			features: "Экран 4\", Lightning",
+			features: "Экран 4\", LTE, Lightning",
 			imageName: "iphone-5"
 		),
 		Phone(
 			name: "iPhone 6",
 			releaseDate: "Сентябрь 2014 г.",
 			screenSize: "4.7\"",
-			features: "Тонкий корпус, Apple Pay",
+			features: "Бóльший экран, NFC, Apple Pay",
 			imageName: "iphone-6"
 		),
 		Phone(
 			name: "iPhone SE",
 			releaseDate: "Март 2016 г.",
 			screenSize: "4.0\"",
-			features: "Компактный корпус, A9, Touch ID",
+			features: "Компактный, A9, Touch ID",
 			imageName: "iphone-SE"
 		),
 		Phone(
 			name: "iPhone 7",
 			releaseDate: "Сентябрь 2016 г.",
 			screenSize: "4.7\"",
-			features: "Защита от воды, стереодинамики",
+			features: "IP67, стереодинамики, без 3,5 мм",
 			imageName: "iphone-7"
 		),
 		Phone(
 			name: "iPhone 8",
 			releaseDate: "Сентябрь 2017 г.",
 			screenSize: "4.7\"",
-			features: "Беспроводная зарядка, A11",
+			features: "Стекло, Qi‑зарядка, True Tone, A11",
 			imageName: "iphone-8"
 		),
 		Phone(
@@ -91,14 +91,14 @@ enum PhoneCatalog {
 			name: "iPhone XR",
 			releaseDate: "Октябрь 2018 г.",
 			screenSize: "6.1\"",
-			features: "Liquid Retina, Face ID",
+			features: "Liquid Retina, A12, eSIM",
 			imageName: "iphone-XR"
 		),
 		Phone(
 			name: "iPhone 11",
 			releaseDate: "Сентябрь 2019 г.",
 			screenSize: "6.1\"",
-			features: "Двойная камера, ночной режим",
+			features: "Двойная камера, Ночной режим, A13",
 			imageName: "iphone-11"
 		),
 	]

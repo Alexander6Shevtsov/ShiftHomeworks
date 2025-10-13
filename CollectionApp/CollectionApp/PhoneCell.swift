@@ -14,8 +14,6 @@ final class PhoneCell: UICollectionViewCell {
 	private let imageView = UIImageView()
 	private let nameLabel = UILabel()
 	
-	private var imageAspectConstraint: NSLayoutConstraint!
-	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		setupViews()
@@ -57,7 +55,10 @@ final class PhoneCell: UICollectionViewCell {
 	}
 	
 	private func setupLayout() {
-		imageAspectConstraint = imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
+		let imageAspectConstraint = imageView.heightAnchor.constraint(
+			equalTo: imageView.widthAnchor
+		)
+		
 		imageAspectConstraint.priority = .defaultHigh
 		
 		NSLayoutConstraint.activate([

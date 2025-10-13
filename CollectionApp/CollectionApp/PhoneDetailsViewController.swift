@@ -21,7 +21,7 @@ final class PhoneDetailsViewController: UIViewController {
 	private let screenSizeTitle = UILabel()
 	private let screenSizeValue = UILabel()
 	private let moreButton = UIButton(type: .system)
-
+	
 	init(phone: Phone) {
 		self.phone = phone
 		super.init(nibName: nil, bundle: nil)
@@ -37,7 +37,7 @@ final class PhoneDetailsViewController: UIViewController {
 		setupView()
 		setupHierarchy()
 		setupLayout()
-		configure(with: phone)
+		configure(phone)
 	}
 	
 	private func setupView() {
@@ -112,7 +112,7 @@ final class PhoneDetailsViewController: UIViewController {
 		])
 	}
 	
-	private func configure(with phone: Phone) {
+	private func configure(_ phone: Phone) {
 		titleLabel.text = phone.name
 		releaseDateValue.text = phone.releaseDate
 		screenSizeValue.text = phone.screenSize

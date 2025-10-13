@@ -54,4 +54,3 @@ final class InnovationsViewController: UIViewController {
 		dismiss(animated: true)
 	}
 }
-

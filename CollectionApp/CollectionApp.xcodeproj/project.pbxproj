@@ -60,13 +60,13 @@
 		42F646EF2E96889D00B82F72 /* CollectionApp */ = {
 			isa = PBXGroup;
 			children = (
+				42F646E62E96889D00B82F72 /* AppDelegate.swift */,
+				42F646ED2E96889D00B82F72 /* SceneDelegate.swift */,
 				42F646F72E96A4E600B82F72 /* CatalogViewController.swift */,
 				42E56C792E9C1AFE003E7EEC /* PhoneDetailsViewController.swift */,
 				42E56C812E9CF0E8003E7EEC /* InnovationsViewController.swift */,
-				42F6470F2E97F3C300B82F72 /* Model.swift */,
 				42F647112E98E88400B82F72 /* PhoneCell.swift */,
-				42F646ED2E96889D00B82F72 /* SceneDelegate.swift */,
-				42F646E62E96889D00B82F72 /* AppDelegate.swift */,
+				42F6470F2E97F3C300B82F72 /* Model.swift */,
 				42F646E72E96889D00B82F72 /* Assets.xcassets */,
 				42F646E82E96889D00B82F72 /* Info.plist */,
 				42F646EA2E96889D00B82F72 /* LaunchScreen.storyboard */,

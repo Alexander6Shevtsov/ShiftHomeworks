@@ -25,7 +25,6 @@ final class CatalogViewController: UIViewController {
 		collection.dataSource = self
 		collection.delegate = self
 		collection.register(PhoneCell.self, forCellWithReuseIdentifier: PhoneCell.reuseID)
-		collection.allowsSelection = true
 		return collection
 	}()
 	
@@ -43,11 +42,6 @@ final class CatalogViewController: UIViewController {
 			collectionView.trailingAnchor.constraint(equalTo: safe.trailingAnchor),
 			collectionView.bottomAnchor.constraint(equalTo: safe.bottomAnchor)
 		])
-	}
-	
-	override func viewWillLayoutSubviews() {
-		super.viewWillLayoutSubviews()
-		collectionView.collectionViewLayout.invalidateLayout()
 	}
 	
 	override func viewWillTransition(
@@ -74,10 +68,13 @@ extension CatalogViewController: UICollectionViewDataSource {
 		_ collectionView: UICollectionView,
 		cellForItemAt indexPath: IndexPath
 	) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(
+		guard let cell = collectionView.dequeueReusableCell(
 			withReuseIdentifier: PhoneCell.reuseID,
 			for: indexPath
-		) as! PhoneCell
+		) as? PhoneCell else {
+			assertionFailure("Failed to dequeue PhoneCell")
+			return UICollectionViewCell()
+		}
 		cell.configure(phones[indexPath.item])
 		return cell
 	}
@@ -99,19 +96,26 @@ extension CatalogViewController: UICollectionViewDelegateFlowLayout {
 		
 		let horizontalInsets = layout.sectionInset.left + layout.sectionInset.right
 		let interitemSpacing = layout.minimumInteritemSpacing * (columns - 1)
-		let availableWidth = collection.bounds.inset(by: collection.adjustedContentInset).width - horizontalInsets - interitemSpacing
+		let availableWidth = collection.bounds.inset(
+			by: collection.adjustedContentInset
+		).width - horizontalInsets - interitemSpacing
 		let itemWidth = floor(availableWidth / columns)
 		
 		let rows: CGFloat = isLandscape ? 1 : 2
 		let verticalInsets = layout.sectionInset.top + layout.sectionInset.bottom
 		let lineSpacing = layout.minimumLineSpacing * (rows - 1)
-		let availableHeight = collection.bounds.inset(by: collection.adjustedContentInset).height - verticalInsets - lineSpacing
+		let availableHeight = collection.bounds.inset(
+			by: collection.adjustedContentInset
+		).height - verticalInsets - lineSpacing
 		let itemHeight = floor(availableHeight / rows)
 		
 		return CGSize(width: itemWidth, height: itemHeight)
 	}
 	
-	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+	func collectionView(
+		_ collectionView: UICollectionView,
+		didSelectItemAt indexPath: IndexPath
+	) {
 		collectionView.deselectItem(at: indexPath, animated: true)
 		let phone = phones[indexPath.item]
 		let details = PhoneDetailsViewController(phone: phone)
