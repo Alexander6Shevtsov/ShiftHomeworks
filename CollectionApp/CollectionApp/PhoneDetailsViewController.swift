@@ -7,9 +7,10 @@
 
 import UIKit
 
-final class PhoneDetailsViewController: UIViewController {
+final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 	
-	private let phone: Phone
+	var presenter: PhoneDetailsPresenter!
+	
 	private let stackView = UIStackView()
 	
 	private let titleLabel = UILabel()
@@ -19,8 +20,7 @@ final class PhoneDetailsViewController: UIViewController {
 	private let screenSizeValue = UILabel()
 	private let moreButton = UIButton(type: .system)
 	
-	init(phone: Phone) {
-		self.phone = phone
+	init() {
 		super.init(nibName: nil, bundle: nil)
 	}
 	
@@ -34,7 +34,7 @@ final class PhoneDetailsViewController: UIViewController {
 		view.backgroundColor = .systemBackground
 		setupView()
 		setupLayout()
-		configure(phone)
+		presenter.viewDidLoad()
 	}
 	
 	private func setupView() {
@@ -84,15 +84,30 @@ final class PhoneDetailsViewController: UIViewController {
 		])
 	}
 	
-	private func configure(_ phone: Phone) {
-		titleLabel.text = phone.name
-		releaseDateValue.text = phone.releaseDate
-		screenSizeValue.text = phone.screenSize
+	@objc private func moreTapped() {
+		presenter.didTapMore()
 	}
 	
-	@objc private func moreTapped() {
-		let modal = InnovationsViewController(featuresText: phone.features)
-		let nav = UINavigationController(rootViewController: modal)
-		present(nav, animated: true)
+	func display(title: String) {
+		self.title = title
+		titleLabel.text = title
+	}
+	
+	func displayReleaseDate(_ text: String) {
+		releaseDateValue.text = text
+	}
+	
+	func displayScreenSize(_ text: String) {
+		screenSizeValue.text = text
+	}
+	
+	func setMoreButtonTitle(_ title: String) {
+		moreButton.setTitle(title, for: .normal)
+	}
+	
+	func showInnovations(featuresText: String) {
+		let inovationView = InnovationsViewController(featuresText: featuresText)
+		let navigationControll = UINavigationController(rootViewController: inovationView)
+		present(navigationControll, animated: true)
 	}
 }

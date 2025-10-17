@@ -106,7 +106,11 @@ extension CatalogViewController: UICollectionViewDelegateFlowLayout {
 	) {
 		collectionView.deselectItem(at: indexPath, animated: true)
 		let phone = phones[indexPath.item]
-		let details = PhoneDetailsViewController(phone: phone)
-		navigationController?.pushViewController(details, animated: true)
+		
+		let detailsVC = PhoneDetailsViewController()
+		let presenter = PhoneDetailsPresenter(view: detailsVC, phone: phone)
+		detailsVC.presenter = presenter
+		
+		navigationController?.pushViewController(detailsVC, animated: true)
 	}
 }
