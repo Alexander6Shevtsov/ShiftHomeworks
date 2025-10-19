@@ -106,8 +106,8 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 	}
 	
 	func showInnovations(featuresText: String) {
-		let inovationView = InnovationsViewController(featuresText: featuresText)
-		let navigationControll = UINavigationController(rootViewController: inovationView)
+		let innovationView = InnovationsViewController(featuresText: featuresText)
+		let navigationControll = UINavigationController(rootViewController: innovationView)
 		present(navigationControll, animated: true)
 	}
 }

@@ -9,11 +9,11 @@ import UIKit
 
 final class InnovationsViewController: UIViewController {
 	
-	private let featuresText: String
 	private let label = UILabel()
+	private let viewModel: InnovationsViewModel
 	
 	init(featuresText: String) {
-		self.featuresText = featuresText
+		self.viewModel = InnovationsViewModel(featuresText: featuresText)
 		super.init(nibName: nil, bundle: nil)
 	}
 	
@@ -33,7 +33,7 @@ final class InnovationsViewController: UIViewController {
 			action: #selector(closeTapped)
 		)
 		
-		label.text = featuresText
+		label.text = viewModel.text
 		label.font = .preferredFont(forTextStyle: .body)
 		label.textColor = .label
 		label.numberOfLines = 0
@@ -48,6 +48,20 @@ final class InnovationsViewController: UIViewController {
 			label.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: inset),
 			label.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -inset),
 		])
+
+		viewModel.onTextChanged = { [weak self] newText in
+			self?.label.text = newText
+		}
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		viewModel.startUpdating()
+	}
+
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		viewModel.stopUpdating()
 	}
 	
 	@objc private func closeTapped() {

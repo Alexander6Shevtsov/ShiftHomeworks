@@ -29,7 +29,7 @@ final class PhoneDetailsPresenter {
 		view?.display(title: phone.name)
 		view?.displayReleaseDate(phone.releaseDate)
 		view?.displayScreenSize(phone.screenSize)
-		view?.setMoreButtonTitle("Подробно")
+		view?.setMoreButtonTitle("Инновации")
 	}
 	
 	func didTapMore() {
