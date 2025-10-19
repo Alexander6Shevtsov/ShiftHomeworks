@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4224F6AE2EA113C2003D8C48 /* CatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4224F6AD2EA113C2003D8C48 /* CatalogView.swift */; };
 		4224F6B02EA29E3A003D8C48 /* PhoneDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4224F6AF2EA29E3A003D8C48 /* PhoneDetailsPresenter.swift */; };
+		4224F6B22EA2C8FA003D8C48 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4224F6B12EA2C8FA003D8C48 /* ViewModel.swift */; };
 		42E56C7A2E9C1AFE003E7EEC /* PhoneDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E56C792E9C1AFE003E7EEC /* PhoneDetailsViewController.swift */; };
 		42E56C822E9CF0E8003E7EEC /* InnovationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E56C812E9CF0E8003E7EEC /* InnovationsViewController.swift */; };
 		42F646F02E96889D00B82F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42F646E72E96889D00B82F72 /* Assets.xcassets */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		4224F6AD2EA113C2003D8C48 /* CatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogView.swift; sourceTree = "<group>"; };
 		4224F6AF2EA29E3A003D8C48 /* PhoneDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneDetailsPresenter.swift; sourceTree = "<group>"; };
+		4224F6B12EA2C8FA003D8C48 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		42E56C792E9C1AFE003E7EEC /* PhoneDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneDetailsViewController.swift; sourceTree = "<group>"; };
 		42E56C812E9CF0E8003E7EEC /* InnovationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnovationsViewController.swift; sourceTree = "<group>"; };
 		42F646CE2E96883B00B82F72 /* CollectionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +75,7 @@
 				42F647112E98E88400B82F72 /* PhoneCell.swift */,
 				42F6470F2E97F3C300B82F72 /* Model.swift */,
 				4224F6AF2EA29E3A003D8C48 /* PhoneDetailsPresenter.swift */,
+				4224F6B12EA2C8FA003D8C48 /* ViewModel.swift */,
 				42F646E72E96889D00B82F72 /* Assets.xcassets */,
 				42F646E82E96889D00B82F72 /* Info.plist */,
 				42F646EA2E96889D00B82F72 /* LaunchScreen.storyboard */,
@@ -146,6 +149,7 @@
 		42F646CA2E96883B00B82F72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				4224F6B22EA2C8FA003D8C48 /* ViewModel.swift in Sources */,
 				42E56C822E9CF0E8003E7EEC /* InnovationsViewController.swift in Sources */,
 				42F647102E97F3C300B82F72 /* Model.swift in Sources */,
 				4224F6AE2EA113C2003D8C48 /* CatalogView.swift in Sources */,
