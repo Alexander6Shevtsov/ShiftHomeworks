@@ -9,9 +9,9 @@ import Foundation
 
 protocol PhoneDetailsView: AnyObject {
 	func display(title: String)
-	func displayReleaseDate(_ text: String)
-	func displayScreenSize(_ text: String)
-	func setMoreButtonTitle(_ title: String)
+	func displayReleaseDate(text: String)
+	func displayScreenSize(text: String)
+	func setMoreButtonTitle(title: String)
 	func showInnovations(featuresText: String)
 }
 
@@ -27,9 +27,9 @@ final class PhoneDetailsPresenter {
 	
 	func viewDidLoad() {
 		view?.display(title: phone.name)
-		view?.displayReleaseDate(phone.releaseDate)
-		view?.displayScreenSize(phone.screenSize)
-		view?.setMoreButtonTitle("Инновации")
+		view?.displayReleaseDate(text: phone.releaseDate)
+		view?.displayScreenSize(text: phone.screenSize)
+		view?.setMoreButtonTitle(title: "Инновации")
 	}
 	
 	func didTapMore() {

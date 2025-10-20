@@ -12,7 +12,6 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 	var presenter: PhoneDetailsPresenter!
 	
 	private let stackView = UIStackView()
-	
 	private let titleLabel = UILabel()
 	private let releaseDateTitle = UILabel()
 	private let releaseDateValue = UILabel()
@@ -58,7 +57,6 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 		screenSizeValue.font = .preferredFont(forTextStyle: .body)
 		screenSizeValue.textColor = .label
 		
-		moreButton.setTitle("Подробно", for: .normal)
 		moreButton.addTarget(self, action: #selector(moreTapped), for: .touchUpInside)
 		
 		view.addSubview(stackView)
@@ -93,21 +91,22 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 		titleLabel.text = title
 	}
 	
-	func displayReleaseDate(_ text: String) {
+	func displayReleaseDate(text: String) {
 		releaseDateValue.text = text
 	}
 	
-	func displayScreenSize(_ text: String) {
+	func displayScreenSize(text: String) {
 		screenSizeValue.text = text
 	}
 	
-	func setMoreButtonTitle(_ title: String) {
+	func setMoreButtonTitle(title: String) {
 		moreButton.setTitle(title, for: .normal)
 	}
 	
 	func showInnovations(featuresText: String) {
 		let innovationView = InnovationsViewController(featuresText: featuresText)
-		let navigationControll = UINavigationController(rootViewController: innovationView)
-		present(navigationControll, animated: true)
+		let navController = UINavigationController(rootViewController: innovationView)
+		present(navController, animated: true)
 	}
 }
+

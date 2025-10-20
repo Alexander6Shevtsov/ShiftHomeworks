@@ -7,15 +7,12 @@
 
 import Foundation
 
-@MainActor
 final class InnovationsViewModel {
 	
-	private let allLines: [String]
-	
 	private(set) var text: String
-	
 	var onTextChanged: ((String) -> Void)?
 	
+	private let allLines: [String]
 	private var updateTask: Task<Void, Never>?
 	private var revealedCount: Int = 0
 	
@@ -36,15 +33,15 @@ final class InnovationsViewModel {
 		
 		updateTask = Task { [weak self] in
 			while Task.isCancelled == false {
-				let delay = UInt64(Int.random(in: 1...4)) * 1_000_000_000
-				try? await Task.sleep(nanoseconds: delay)
+				let delay: Duration = .seconds(Int.random(in: 1...4))
+				try? await Task.sleep(for: delay)
 				
 				guard Task.isCancelled == false, let self else { break }
 				
-				if revealedCount < allLines.count {
-					revealedCount += 1
+				if allLines.isEmpty {
+					revealedCount = 0
 				} else {
-					revealedCount = 1
+					revealedCount = (revealedCount % allLines.count) + 1
 				}
 				
 				showNextState()
@@ -55,6 +52,10 @@ final class InnovationsViewModel {
 	func stopUpdating() {
 		updateTask?.cancel()
 		updateTask = nil
+	}
+	
+	deinit {
+		updateTask?.cancel()
 	}
 	
 	private func showNextState() {
@@ -68,3 +69,4 @@ final class InnovationsViewModel {
 		onTextChanged?(self.text)
 	}
 }
+

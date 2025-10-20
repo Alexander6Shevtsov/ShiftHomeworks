@@ -70,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				4224F6AD2EA113C2003D8C48 /* CatalogView.swift */,
+				42C998762EA5210200470A98 /* Cells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -160,6 +161,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		42C998762EA5210200470A98 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				42F647112E98E88400B82F72 /* PhoneCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		42F646C52E96883B00B82F72 = {
 			isa = PBXGroup;
 			children = (
@@ -181,7 +190,6 @@
 			children = (
 				42C9985F2EA4E39100470A98 /* App */,
 				42C998642EA4EC2500470A98 /* Modules */,
-				42F647112E98E88400B82F72 /* PhoneCell.swift */,
 				42C998602EA4E52600470A98 /* Resources */,
 			);
 			path = CollectionApp;
@@ -292,7 +300,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -327,7 +335,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

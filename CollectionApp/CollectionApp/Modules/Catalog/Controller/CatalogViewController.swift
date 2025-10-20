@@ -62,7 +62,7 @@ extension CatalogViewController: UICollectionViewDataSource {
 			assertionFailure("Failed to dequeue PhoneCell")
 			return UICollectionViewCell()
 		}
-		cell.setupCell(phones[indexPath.item])
+		cell.setupCell(phone: phones[indexPath.item])
 		return cell
 	}
 }
@@ -83,10 +83,10 @@ extension CatalogViewController: UICollectionViewDelegateFlowLayout {
 		let columns: CGFloat = isLandscape ? 3 : 1
 		
 		let horizontalInsets = layout.sectionInset.left + layout.sectionInset.right
-		let interitemSpacing = layout.minimumInteritemSpacing * (columns - 1)
+		let interItemSpacing = layout.minimumInteritemSpacing * (columns - 1)
 		let availableWidth = collection.bounds.inset(
 			by: collection.adjustedContentInset
-		).width - horizontalInsets - interitemSpacing
+		).width - horizontalInsets - interItemSpacing
 		let itemWidth = floor(availableWidth / columns)
 		
 		let rows: CGFloat = isLandscape ? 1 : 2

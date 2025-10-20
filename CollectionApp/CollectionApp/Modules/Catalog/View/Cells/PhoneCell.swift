@@ -24,7 +24,13 @@ final class PhoneCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func setupCell(_ phone: Phone) {
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		imageView.image = nil
+		nameLabel.text = nil
+	}
+	
+	func setupCell(phone: Phone) {
 		nameLabel.text = phone.name
 		imageView.image = UIImage(named: phone.imageName)
 	}
@@ -35,6 +41,7 @@ final class PhoneCell: UICollectionViewCell {
 		contentView.layer.masksToBounds = true
 		
 		imageView.contentMode = .scaleAspectFit
+		imageView.clipsToBounds = true
 		
 		nameLabel.font = .preferredFont(forTextStyle: .headline)
 		nameLabel.textColor = .label
@@ -52,7 +59,6 @@ final class PhoneCell: UICollectionViewCell {
 		let imageAspectConstraint = imageView.heightAnchor.constraint(
 			equalTo: imageView.widthAnchor
 		)
-		
 		imageAspectConstraint.priority = .defaultHigh
 		
 		NSLayoutConstraint.activate([
@@ -68,3 +74,4 @@ final class PhoneCell: UICollectionViewCell {
 		])
 	}
 }
+

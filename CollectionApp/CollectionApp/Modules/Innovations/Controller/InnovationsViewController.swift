@@ -37,6 +37,7 @@ final class InnovationsViewController: UIViewController {
 		label.font = .preferredFont(forTextStyle: .body)
 		label.textColor = .label
 		label.numberOfLines = 0
+		label.lineBreakMode = .byWordWrapping
 		label.translatesAutoresizingMaskIntoConstraints = false
 		
 		view.addSubview(label)
@@ -47,6 +48,7 @@ final class InnovationsViewController: UIViewController {
 			label.topAnchor.constraint(equalTo: safe.topAnchor, constant: inset),
 			label.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: inset),
 			label.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -inset),
+			label.bottomAnchor.constraint(lessThanOrEqualTo: safe.bottomAnchor, constant: -inset)
 		])
 
 		viewModel.onTextChanged = { [weak self] newText in
@@ -68,3 +70,4 @@ final class InnovationsViewController: UIViewController {
 		dismiss(animated: true)
 	}
 }
+
