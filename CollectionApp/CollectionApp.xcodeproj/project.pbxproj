@@ -12,6 +12,8 @@
 		4224F6B22EA2C8FA003D8C48 /* InnovationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4224F6B12EA2C8FA003D8C48 /* InnovationsViewModel.swift */; };
 		42E56C7A2E9C1AFE003E7EEC /* PhoneDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E56C792E9C1AFE003E7EEC /* PhoneDetailsViewController.swift */; };
 		42E56C822E9CF0E8003E7EEC /* InnovationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E56C812E9CF0E8003E7EEC /* InnovationsViewController.swift */; };
+		42F534842EAF77AF009C3577 /* DogBreedEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F534832EAF77AF009C3577 /* DogBreedEntities.swift */; };
+		42F534B22EAF8091009C3577 /* DogBreedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F534B12EAF8091009C3577 /* DogBreedDetailsViewController.swift */; };
 		42F646F02E96889D00B82F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42F646E72E96889D00B82F72 /* Assets.xcassets */; };
 		42F646F22E96889D00B82F72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42F646EA2E96889D00B82F72 /* LaunchScreen.storyboard */; };
 		42F646F42E96889D00B82F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F646E62E96889D00B82F72 /* AppDelegate.swift */; };
@@ -27,6 +29,8 @@
 		4224F6B12EA2C8FA003D8C48 /* InnovationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnovationsViewModel.swift; sourceTree = "<group>"; };
 		42E56C792E9C1AFE003E7EEC /* PhoneDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneDetailsViewController.swift; sourceTree = "<group>"; };
 		42E56C812E9CF0E8003E7EEC /* InnovationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnovationsViewController.swift; sourceTree = "<group>"; };
+		42F534832EAF77AF009C3577 /* DogBreedEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedEntities.swift; sourceTree = "<group>"; };
+		42F534B12EAF8091009C3577 /* DogBreedDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedDetailsViewController.swift; sourceTree = "<group>"; };
 		42F646CE2E96883B00B82F72 /* CollectionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F646E62E96889D00B82F72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42F646E72E96889D00B82F72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -191,6 +195,8 @@
 				42C9985F2EA4E39100470A98 /* App */,
 				42C998642EA4EC2500470A98 /* Modules */,
 				42C998602EA4E52600470A98 /* Resources */,
+				42F534832EAF77AF009C3577 /* DogBreedEntities.swift */,
+				42F534B12EAF8091009C3577 /* DogBreedDetailsViewController.swift */,
 			);
 			path = CollectionApp;
 			sourceTree = "<group>";
@@ -263,6 +269,8 @@
 			files = (
 				4224F6B22EA2C8FA003D8C48 /* InnovationsViewModel.swift in Sources */,
 				42E56C822E9CF0E8003E7EEC /* InnovationsViewController.swift in Sources */,
+				42F534842EAF77AF009C3577 /* DogBreedEntities.swift in Sources */,
+				42F534B22EAF8091009C3577 /* DogBreedDetailsViewController.swift in Sources */,
 				42F647102E97F3C300B82F72 /* PhoneCatalogModel.swift in Sources */,
 				4224F6AE2EA113C2003D8C48 /* CatalogView.swift in Sources */,
 				42F646F82E96A4E600B82F72 /* CatalogViewController.swift in Sources */,
