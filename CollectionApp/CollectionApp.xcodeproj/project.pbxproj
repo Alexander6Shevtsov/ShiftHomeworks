@@ -17,6 +17,7 @@
 		42F534E02EAFADEA009C3577 /* DogBreedDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F534DF2EAFADEA009C3577 /* DogBreedDetailsInteractor.swift */; };
 		42F534E22EAFB328009C3577 /* DogBreedDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F534E12EAFB328009C3577 /* DogBreedDetailsRouter.swift */; };
 		42F534E62EAFB55D009C3577 /* DogBreedDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F534E52EAFB55D009C3577 /* DogBreedDetailsPresenter.swift */; };
+		42F534EA2EAFB9B4009C3577 /* DogBreedDetailsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F534E92EAFB9B4009C3577 /* DogBreedDetailsBuilder.swift */; };
 		42F646F02E96889D00B82F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42F646E72E96889D00B82F72 /* Assets.xcassets */; };
 		42F646F22E96889D00B82F72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42F646EA2E96889D00B82F72 /* LaunchScreen.storyboard */; };
 		42F646F42E96889D00B82F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F646E62E96889D00B82F72 /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 		42F534DF2EAFADEA009C3577 /* DogBreedDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedDetailsInteractor.swift; sourceTree = "<group>"; };
 		42F534E12EAFB328009C3577 /* DogBreedDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedDetailsRouter.swift; sourceTree = "<group>"; };
 		42F534E52EAFB55D009C3577 /* DogBreedDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedDetailsPresenter.swift; sourceTree = "<group>"; };
+		42F534E92EAFB9B4009C3577 /* DogBreedDetailsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedDetailsBuilder.swift; sourceTree = "<group>"; };
 		42F646CE2E96883B00B82F72 /* CollectionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F646E62E96889D00B82F72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42F646E72E96889D00B82F72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				42F534DF2EAFADEA009C3577 /* DogBreedDetailsInteractor.swift */,
 				42F534E12EAFB328009C3577 /* DogBreedDetailsRouter.swift */,
 				42F534E52EAFB55D009C3577 /* DogBreedDetailsPresenter.swift */,
+				42F534E92EAFB9B4009C3577 /* DogBreedDetailsBuilder.swift */,
 			);
 			path = CollectionApp;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 		42F646CA2E96883B00B82F72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
+				42F534EA2EAFB9B4009C3577 /* DogBreedDetailsBuilder.swift in Sources */,
 				4224F6B22EA2C8FA003D8C48 /* InnovationsViewModel.swift in Sources */,
 				42E56C822E9CF0E8003E7EEC /* InnovationsViewController.swift in Sources */,
 				42F534842EAF77AF009C3577 /* DogBreedEntities.swift in Sources */,
