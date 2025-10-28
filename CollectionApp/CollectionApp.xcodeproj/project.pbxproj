@@ -19,6 +19,8 @@
 		42F534E62EAFB55D009C3577 /* DogBreedDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F534E52EAFB55D009C3577 /* DogBreedDetailsPresenter.swift */; };
 		42F534EA2EAFB9B4009C3577 /* DogBreedDetailsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F534E92EAFB9B4009C3577 /* DogBreedDetailsBuilder.swift */; };
 		42F534EC2EAFBBCA009C3577 /* DogBreedCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F534EB2EAFBBCA009C3577 /* DogBreedCatalog.swift */; };
+		42F534EE2EAFC546009C3577 /* DogsBreedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F534ED2EAFC546009C3577 /* DogsBreedsView.swift */; };
+		42F534F02EAFFA9B009C3577 /* DogBreedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F534EF2EAFFA9B009C3577 /* DogBreedCell.swift */; };
 		42F646F02E96889D00B82F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42F646E72E96889D00B82F72 /* Assets.xcassets */; };
 		42F646F22E96889D00B82F72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42F646EA2E96889D00B82F72 /* LaunchScreen.storyboard */; };
 		42F646F42E96889D00B82F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F646E62E96889D00B82F72 /* AppDelegate.swift */; };
@@ -41,6 +43,8 @@
 		42F534E52EAFB55D009C3577 /* DogBreedDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedDetailsPresenter.swift; sourceTree = "<group>"; };
 		42F534E92EAFB9B4009C3577 /* DogBreedDetailsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedDetailsBuilder.swift; sourceTree = "<group>"; };
 		42F534EB2EAFBBCA009C3577 /* DogBreedCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedCatalog.swift; sourceTree = "<group>"; };
+		42F534ED2EAFC546009C3577 /* DogsBreedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsBreedsView.swift; sourceTree = "<group>"; };
+		42F534EF2EAFFA9B009C3577 /* DogBreedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogBreedCell.swift; sourceTree = "<group>"; };
 		42F646CE2E96883B00B82F72 /* CollectionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F646E62E96889D00B82F72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42F646E72E96889D00B82F72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 				42F534E52EAFB55D009C3577 /* DogBreedDetailsPresenter.swift */,
 				42F534E92EAFB9B4009C3577 /* DogBreedDetailsBuilder.swift */,
 				42F534EB2EAFBBCA009C3577 /* DogBreedCatalog.swift */,
+				42F534ED2EAFC546009C3577 /* DogsBreedsView.swift */,
+				42F534EF2EAFFA9B009C3577 /* DogBreedCell.swift */,
 			);
 			path = CollectionApp;
 			sourceTree = "<group>";
@@ -284,6 +290,7 @@
 			files = (
 				42F534EA2EAFB9B4009C3577 /* DogBreedDetailsBuilder.swift in Sources */,
 				4224F6B22EA2C8FA003D8C48 /* InnovationsViewModel.swift in Sources */,
+				42F534EE2EAFC546009C3577 /* DogsBreedsView.swift in Sources */,
 				42E56C822E9CF0E8003E7EEC /* InnovationsViewController.swift in Sources */,
 				42F534842EAF77AF009C3577 /* DogBreedEntities.swift in Sources */,
 				42F534B22EAF8091009C3577 /* DogBreedDetailsViewController.swift in Sources */,
@@ -293,6 +300,7 @@
 				42F646F82E96A4E600B82F72 /* CatalogViewController.swift in Sources */,
 				42F646F42E96889D00B82F72 /* AppDelegate.swift in Sources */,
 				42F646F52E96889D00B82F72 /* SceneDelegate.swift in Sources */,
+				42F534F02EAFFA9B009C3577 /* DogBreedCell.swift in Sources */,
 				42F534EC2EAFBBCA009C3577 /* DogBreedCatalog.swift in Sources */,
 				42E56C7A2E9C1AFE003E7EEC /* PhoneDetailsViewController.swift in Sources */,
 				4224F6B02EA29E3A003D8C48 /* PhoneDetailsPresenter.swift in Sources */,

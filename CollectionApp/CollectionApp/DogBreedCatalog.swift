@@ -19,7 +19,6 @@ enum DogBreedCatalog {
  известная своей чистоплотностью и «лисиным» выражением. 
  Требует ранней социализации и последовательной дрессировки.
  """,
-			basePrice: 45000,
 			variants: [
 				DogOption(
 					name: "Люся",
@@ -48,7 +47,6 @@ enum DogBreedCatalog {
  Бордер-колли — выдающаяся рабочая собака с потребностью в умственных и физических нагрузках. 
  Идеальна для аджилити и активных хозяев.
  """,
-			basePrice: 50000,
 			variants: [
 				DogOption(
 					name: "Скай",
@@ -74,7 +72,6 @@ enum DogBreedCatalog {
 			imageName: "breed-samoyed",
 			shortDescription: "Дружелюбный «улыбающийся» северный шпиц.",
 			extendedDescription: "Самоед — ласковая и общительная порода с густой белой шерстью. Требует регулярного ухода за шерстью и достаточных прогулок.",
-			basePrice: 55000,
 			variants: [
 				DogOption(
 					name: "Снежок",
@@ -100,7 +97,6 @@ enum DogBreedCatalog {
 			imageName: "breed-husky",
 			shortDescription: "Выносливый, дружелюбный, с характерным «волчьим» взглядом.",
 			extendedDescription: "Хаски — энергичная порода, требующая активных прогулок и внимания. Умны и независимы, нуждаются в последовательной дрессировке.",
-			basePrice: 48000,
 			variants: [
 				DogOption(
 					name: "Луна",
@@ -126,7 +122,6 @@ enum DogBreedCatalog {
 			imageName: "breed-golden",
 			shortDescription: "Ласковая, уравновешенная семейная собака.",
 			extendedDescription: "Голден ретривер — добрая и умная порода, легко обучается и обожает приносить предметы. Прекрасно подходит для семьи.",
-			basePrice: 52000,
 			variants: [
 				DogOption(
 					name: "Санни",
@@ -152,7 +147,6 @@ enum DogBreedCatalog {
 			imageName: "breed-gsd",
 			shortDescription: "Интеллектуальная служебная порода, преданная и активная.",
 			extendedDescription: "Немецкая овчарка — универсальная порода для службы и спорта. Требует дрессировки и активных занятий.",
-			basePrice: 50000,
 			variants: [
 				DogOption(
 					name: "Рик",
@@ -178,7 +172,6 @@ enum DogBreedCatalog {
 			imageName: "breed-dalmatian",
 			shortDescription: "Активная, яркая порода с пятнистым окрасом.",
 			extendedDescription: "Далматины — энергичные и дружелюбные собаки. Нуждаются в регулярных нагрузках и внимании хозяина.",
-			basePrice: 47000,
 			variants: [
 				DogOption(
 					name: "Дотти",
@@ -204,7 +197,6 @@ enum DogBreedCatalog {
 			imageName: "breed-poodle",
 			shortDescription: "Умная, активная порода, различается по размерам.",
 			extendedDescription: "Пудели легко обучаемы, славятся сообразительностью. Требуют ухода за шерстью и регулярных прогулок.",
-			basePrice: 46000,
 			variants: [
 				DogOption(
 					name: "Коко",

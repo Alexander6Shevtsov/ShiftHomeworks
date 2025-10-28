@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum DogLocation {
+enum DogLocation: Equatable {
 	case spb
 	case other
 }
 
-struct DogOption {
+struct DogOption: Equatable {
 	let name: String
 	let ageYears: Int
 	let location: DogLocation
@@ -21,11 +21,10 @@ struct DogOption {
 	let description: String
 }
 
-struct DogBreed {
+struct DogBreed: Equatable {
 	let name: String
 	let imageName: String
 	let shortDescription: String
 	let extendedDescription: String
-	let basePrice: Int
 	let variants: [DogOption]
 }
