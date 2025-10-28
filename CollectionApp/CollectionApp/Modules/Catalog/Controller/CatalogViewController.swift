@@ -28,6 +28,12 @@ final class CatalogViewController: UIViewController {
 		
 		catalogView.collectionView.dataSource = self
 		catalogView.collectionView.delegate = self
+		
+		catalogView.breedsView.setBreeds(DogBreedCatalog.breeds)
+		catalogView.breedsView.onSelectBreed = { [weak self] breed in
+			let breedDetailsVC = DogBreedDetailsBuilder.build(breed: breed)
+			self?.navigationController?.pushViewController(breedDetailsVC, animated: true)
+		}
 	}
 	
 	override func viewWillTransition(
@@ -114,3 +120,4 @@ extension CatalogViewController: UICollectionViewDelegateFlowLayout {
 		navigationController?.pushViewController(detailsVC, animated: true)
 	}
 }
+
