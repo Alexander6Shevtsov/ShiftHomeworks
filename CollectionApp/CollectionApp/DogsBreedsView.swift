@@ -10,20 +10,11 @@ import UIKit
 final class DogsBreedsView: UICollectionReusableView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
 	static let reuseID = "DogsBreedsView"
-	static let preferredHeight: CGFloat = 44 + 8 + 160 + 12
+	static let preferredHeight: CGFloat = 160 + 24
 	
 	var onSelectBreed: ((DogBreed) -> Void)?
 	
 	private var breeds: [DogBreed] = []
-	
-	private let titleLabel: UILabel = {
-		let label = UILabel()
-		label.text = "Породы собак"
-		label.font = .preferredFont(forTextStyle: .headline)
-		label.textColor = .label
-		label.translatesAutoresizingMaskIntoConstraints = false
-		return label
-	}()
 	
 	private lazy var breedsCollectionView: UICollectionView = {
 		let layout = UICollectionViewFlowLayout()
@@ -64,17 +55,12 @@ final class DogsBreedsView: UICollectionReusableView, UICollectionViewDataSource
 		
 	private func setupView() {
 		backgroundColor = .systemBackground
-		addSubview(titleLabel)
 		addSubview(breedsCollectionView)
 	}
 	
 	private func setupLayout() {
 		NSLayoutConstraint.activate([
-			titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-			titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-			titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -16),
-			
-			breedsCollectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+			breedsCollectionView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
 			breedsCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
 			breedsCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
 			breedsCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),

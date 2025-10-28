@@ -93,7 +93,7 @@ enum DogBreedCatalog {
 		),
 		
 		DogBreed(
-			name: "Сибирский хаски",
+			name: "Хаски",
 			imageName: "breed-husky",
 			shortDescription: "Выносливый, дружелюбный, с характерным «волчьим» взглядом.",
 			extendedDescription: "Хаски — энергичная порода, требующая активных прогулок и внимания. Умны и независимы, нуждаются в последовательной дрессировке.",
@@ -118,7 +118,7 @@ enum DogBreedCatalog {
 		),
 		
 		DogBreed(
-			name: "Голден ретривер",
+			name: "Ретривер",
 			imageName: "breed-golden",
 			shortDescription: "Ласковая, уравновешенная семейная собака.",
 			extendedDescription: "Голден ретривер — добрая и умная порода, легко обучается и обожает приносить предметы. Прекрасно подходит для семьи.",
@@ -143,7 +143,7 @@ enum DogBreedCatalog {
 		),
 		
 		DogBreed(
-			name: "Немецкая овчарка",
+			name: "Овчарка",
 			imageName: "breed-gsd",
 			shortDescription: "Интеллектуальная служебная порода, преданная и активная.",
 			extendedDescription: "Немецкая овчарка — универсальная порода для службы и спорта. Требует дрессировки и активных занятий.",
@@ -168,7 +168,7 @@ enum DogBreedCatalog {
 		),
 		
 		DogBreed(
-			name: "Далматин",
+			name: "Далматинец",
 			imageName: "breed-dalmatian",
 			shortDescription: "Активная, яркая порода с пятнистым окрасом.",
 			extendedDescription: "Далматины — энергичные и дружелюбные собаки. Нуждаются в регулярных нагрузках и внимании хозяина.",
