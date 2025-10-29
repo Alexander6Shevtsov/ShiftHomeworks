@@ -188,7 +188,7 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 			adsCollectionView.topAnchor.constraint(equalTo: locationCheckbox.bottomAnchor, constant: 20),
 			adsCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
 			adsCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-			adsCollectionView.heightAnchor.constraint(equalToConstant: 110),
+			adsCollectionView.heightAnchor.constraint(equalToConstant: 130),
 			adsCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
 		])
 	}
@@ -279,7 +279,18 @@ extension DogBreedDetailsViewController:
 		layout collectionViewLayout: UICollectionViewLayout,
 		sizeForItemAt indexPath: IndexPath
 	) -> CGSize {
-		let height = collectionView.bounds.height - 8
-		return CGSize(width: 120, height: height)
+		guard let flow = collectionViewLayout as? UICollectionViewFlowLayout else {
+			let height = collectionView.bounds.height - 8
+			return CGSize(width: 120, height: height)
+		}
+		let columns: CGFloat = 3
+		let sectionInsets = flow.sectionInset
+		let spacing = flow.minimumInteritemSpacing
+		let availableWidth = collectionView.bounds.width
+		- sectionInsets.left - sectionInsets.right
+		- spacing * (columns - 1)
+		let itemWidth = floor(availableWidth / columns)
+		let itemHeight = collectionView.bounds.height - 8
+		return CGSize(width: itemWidth, height: itemHeight)
 	}
 }

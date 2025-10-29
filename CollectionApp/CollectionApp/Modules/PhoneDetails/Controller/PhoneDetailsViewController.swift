@@ -12,6 +12,7 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 	var presenter: PhoneDetailsPresenter!
 	
 	private let stackView = UIStackView()
+	private let imageView = UIImageView()
 	private let titleLabel = UILabel()
 	private let releaseDateTitle = UILabel()
 	private let releaseDateValue = UILabel()
@@ -40,6 +41,11 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 		stackView.axis = .vertical
 		stackView.spacing = 12
 		
+		imageView.contentMode = .scaleAspectFit
+		imageView.clipsToBounds = true
+		imageView.backgroundColor = .secondarySystemBackground
+		imageView.layer.cornerRadius = 12
+		
 		titleLabel.font = .preferredFont(forTextStyle: .title2)
 		titleLabel.textColor = .label
 		
@@ -61,6 +67,7 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 		
 		view.addSubview(stackView)
 		
+		stackView.addArrangedSubview(imageView)
 		stackView.addArrangedSubview(titleLabel)
 		stackView.addArrangedSubview(releaseDateTitle)
 		stackView.addArrangedSubview(releaseDateValue)
@@ -71,6 +78,7 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 	
 	private func setupLayout() {
 		stackView.translatesAutoresizingMaskIntoConstraints = false
+		imageView.translatesAutoresizingMaskIntoConstraints = false
 		
 		let padding: CGFloat = 16
 		let safe = view.safeAreaLayoutGuide
@@ -78,7 +86,9 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 			stackView.topAnchor.constraint(equalTo: safe.topAnchor, constant: padding),
 			stackView.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: padding),
 			stackView.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -padding),
-			stackView.bottomAnchor.constraint(lessThanOrEqualTo: safe.bottomAnchor, constant: -padding)
+			stackView.bottomAnchor.constraint(lessThanOrEqualTo: safe.bottomAnchor, constant: -padding),
+			
+			imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
 		])
 	}
 	
@@ -107,6 +117,10 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 		let innovationView = InnovationsViewController(featuresText: featuresText)
 		let navController = UINavigationController(rootViewController: innovationView)
 		present(navController, animated: true)
+	}
+	
+	func displayImage(named: String) {
+		imageView.image = UIImage(named: named)
 	}
 }
 
