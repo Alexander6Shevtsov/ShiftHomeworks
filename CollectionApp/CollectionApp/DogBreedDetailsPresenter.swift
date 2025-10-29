@@ -69,7 +69,7 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		view?.setDescriptionText(descriptionText)
 		
 		view?.setDogImage(UIImage(named: option.imageName))
-		view?.setPriceText("Цена: $\(option.price)")
+		view?.setPriceText("Цена: ₽\(option.price)")
 	}
 	
 	func didFailToLoadDog() {
@@ -82,5 +82,7 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 	
 	func didLoadAdPhones(_ phones: [Phone]) {
 		self.adPhones = phones
+		view?.setAdPhones(phones)
 	}
 }
+

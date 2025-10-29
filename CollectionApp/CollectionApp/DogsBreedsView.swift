@@ -10,7 +10,7 @@ import UIKit
 final class DogsBreedsView: UICollectionReusableView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
 	static let reuseID = "DogsBreedsView"
-	static let preferredHeight: CGFloat = 160 + 24
+	static let preferredHeight: CGFloat = 176 + 24
 	
 	var onSelectBreed: ((DogBreed) -> Void)?
 	
@@ -64,7 +64,7 @@ final class DogsBreedsView: UICollectionReusableView, UICollectionViewDataSource
 			breedsCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
 			breedsCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
 			breedsCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
-			breedsCollectionView.heightAnchor.constraint(equalToConstant: 160)
+			breedsCollectionView.heightAnchor.constraint(equalToConstant: 176)
 		])
 	}
 		
@@ -108,3 +108,4 @@ final class DogsBreedsView: UICollectionReusableView, UICollectionViewDataSource
 		return CGSize(width: 140, height: height - 4)
 	}
 }
+

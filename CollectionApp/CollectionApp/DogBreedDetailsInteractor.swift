@@ -21,34 +21,41 @@ protocol IDogBreedDetailsInteractor: AnyObject {
 }
 
 final class DogBreedDetailsInteractor: IDogBreedDetailsInteractor {
-
+	
 	weak var delegate: IDogBreedDetailsInteractorDelegate?
 	private let breed: DogBreed
 	
 	init(breed: DogBreed) {
 		self.breed = breed
 	}
-		
+	
 	func loadDefaultDog() {
-		guard let option = breed.variants.randomElement() else {
-			delegate?.didFailToLoadDog()
-			return
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+			guard let self else { return }
+			guard let option = self.breed.variants.randomElement() else {
+				self.delegate?.didFailToLoadDog()
+				return
+			}
+			self.delegate?.didLoadDog(option: option, breed: self.breed)
 		}
-		delegate?.didLoadDog(option: option, breed: breed)
 	}
 	
 	func loadDog(ageUnderThree: Bool, inSPB: Bool) {
-		let locationMatches: (DogOption) -> Bool = { option in
-			inSPB ? (option.location == .spb) : true
-		}
-		let ageMatches: (DogOption) -> Bool = { option in
-			ageUnderThree ? (option.ageYears <= 3) : true
-		}
-		
-		if let matched = breed.variants.first(where: { locationMatches($0) && ageMatches($0) }) {
-			delegate?.didLoadDog(option: matched, breed: breed)
-		} else {
-			delegate?.didFailToLoadDog()
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+			guard let self else { return }
+			
+			let locationMatches: (DogOption) -> Bool = { option in
+				inSPB ? (option.location == .spb) : true
+			}
+			let ageMatches: (DogOption) -> Bool = { option in
+				ageUnderThree ? (option.ageYears <= 3) : true
+			}
+			
+			if let matched = self.breed.variants.first(where: { locationMatches($0) && ageMatches($0) }) {
+				self.delegate?.didLoadDog(option: matched, breed: self.breed)
+			} else {
+				self.delegate?.didFailToLoadDog()
+			}
 		}
 	}
 	
@@ -57,3 +64,4 @@ final class DogBreedDetailsInteractor: IDogBreedDetailsInteractor {
 		delegate?.didLoadAdPhones(phones)
 	}
 }
+

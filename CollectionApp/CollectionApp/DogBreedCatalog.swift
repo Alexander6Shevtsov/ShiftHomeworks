@@ -13,7 +13,7 @@ enum DogBreedCatalog {
 		DogBreed(
 			name: "Сиба-ину",
 			imageName: "breed-shiba",
-			shortDescription: "Компактная, умная и независимая собака из Японии.",
+			shortDescription: "Компактная и умная из Японии.",
 			extendedDescription: """
  Сиба-ину — внимательная и независимая порода, 
  известная своей чистоплотностью и «лисиным» выражением. 
@@ -42,7 +42,7 @@ enum DogBreedCatalog {
 		DogBreed(
 			name: "Бордер-колли",
 			imageName: "breed-border-collie",
-			shortDescription: "Одна из самых умных пород, энергичная и работоспособная.",
+			shortDescription: "Умная, энергичная и работоспособная.",
 			extendedDescription: """
  Бордер-колли — выдающаяся рабочая собака с потребностью в умственных и физических нагрузках. 
  Идеальна для аджилити и активных хозяев.
@@ -70,8 +70,11 @@ enum DogBreedCatalog {
 		DogBreed(
 			name: "Самоед",
 			imageName: "breed-samoyed",
-			shortDescription: "Дружелюбный «улыбающийся» северный шпиц.",
-			extendedDescription: "Самоед — ласковая и общительная порода с густой белой шерстью. Требует регулярного ухода за шерстью и достаточных прогулок.",
+			shortDescription: "Дружелюбный северный шпиц.",
+			extendedDescription: """
+Самоед — ласковая и общительная порода с густой белой шерстью. 
+Требует регулярного ухода за шерстью и достаточных прогулок.
+""",
 			variants: [
 				DogOption(
 					name: "Снежок",
@@ -95,8 +98,11 @@ enum DogBreedCatalog {
 		DogBreed(
 			name: "Хаски",
 			imageName: "breed-husky",
-			shortDescription: "Выносливый, дружелюбный, с характерным «волчьим» взглядом.",
-			extendedDescription: "Хаски — энергичная порода, требующая активных прогулок и внимания. Умны и независимы, нуждаются в последовательной дрессировке.",
+			shortDescription: "Выносливый, «волчий» взгляд.",
+			extendedDescription: """
+Хаски — энергичная порода, требующая активных прогулок и внимания. 
+Умны и независимы, нуждаются в последовательной дрессировке.
+""",
 			variants: [
 				DogOption(
 					name: "Луна",
@@ -120,8 +126,11 @@ enum DogBreedCatalog {
 		DogBreed(
 			name: "Ретривер",
 			imageName: "breed-golden",
-			shortDescription: "Ласковая, уравновешенная семейная собака.",
-			extendedDescription: "Голден ретривер — добрая и умная порода, легко обучается и обожает приносить предметы. Прекрасно подходит для семьи.",
+			shortDescription: "Ласковая, семейная собака.",
+			extendedDescription: """
+Голден ретривер — добрая и умная порода, легко обучается и обожает приносить предметы. 
+Прекрасно подходит для семьи.
+""",
 			variants: [
 				DogOption(
 					name: "Санни",
@@ -145,8 +154,11 @@ enum DogBreedCatalog {
 		DogBreed(
 			name: "Овчарка",
 			imageName: "breed-gsd",
-			shortDescription: "Интеллектуальная служебная порода, преданная и активная.",
-			extendedDescription: "Немецкая овчарка — универсальная порода для службы и спорта. Требует дрессировки и активных занятий.",
+			shortDescription: "Преданная и активная.",
+			extendedDescription: """
+Немецкая овчарка — универсальная порода для службы и спорта. 
+Требует дрессировки и активных занятий.
+""",
 			variants: [
 				DogOption(
 					name: "Рик",
@@ -170,8 +182,11 @@ enum DogBreedCatalog {
 		DogBreed(
 			name: "Далматинец",
 			imageName: "breed-dalmatian",
-			shortDescription: "Активная, яркая порода с пятнистым окрасом.",
-			extendedDescription: "Далматины — энергичные и дружелюбные собаки. Нуждаются в регулярных нагрузках и внимании хозяина.",
+			shortDescription: "Активная и пятнистая.",
+			extendedDescription: """
+Далматины — энергичные и дружелюбные собаки. 
+Нуждаются в регулярных нагрузках и внимании хозяина.
+""",
 			variants: [
 				DogOption(
 					name: "Дотти",
@@ -195,8 +210,11 @@ enum DogBreedCatalog {
 		DogBreed(
 			name: "Пудель",
 			imageName: "breed-poodle",
-			shortDescription: "Умная, активная порода, различается по размерам.",
-			extendedDescription: "Пудели легко обучаемы, славятся сообразительностью. Требуют ухода за шерстью и регулярных прогулок.",
+			shortDescription: "Умная, активная и интересная.",
+			extendedDescription: """
+Пудели легко обучаемы, славятся сообразительностью. 
+Требуют ухода за шерстью и регулярных прогулок.
+""",
 			variants: [
 				DogOption(
 					name: "Коко",

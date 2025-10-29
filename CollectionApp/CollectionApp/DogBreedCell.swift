@@ -50,11 +50,14 @@ final class DogBreedCell: UICollectionViewCell {
 		
 		imageView.contentMode = .scaleAspectFit
 		imageView.clipsToBounds = true
+		imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
 		
 		descriptionLabel.font = .preferredFont(forTextStyle: .footnote)
 		descriptionLabel.textColor = .secondaryLabel
 		descriptionLabel.numberOfLines = 2
+		
 		descriptionLabel.textAlignment = .center
+		descriptionLabel.setContentCompressionResistancePriority(.required, for: .vertical)
 		
 		contentView.addSubview(nameLabel)
 		contentView.addSubview(imageView)
@@ -66,7 +69,7 @@ final class DogBreedCell: UICollectionViewCell {
 	}
 	
 	private func setupLayout() {
-		let imageAspect = imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
+		let imageAspect = imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.75)
 		imageAspect.priority = .required
 		
 		NSLayoutConstraint.activate([
@@ -82,7 +85,7 @@ final class DogBreedCell: UICollectionViewCell {
 			descriptionLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 4),
 			descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6),
 			descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6),
-			descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -6)
+			descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6)
 		])
 	}
 }
