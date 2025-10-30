@@ -130,11 +130,14 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 		button.setImage(UIImage(systemName: "square"), for: .normal)
 		button.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
 		button.tintColor = .systemBlue
-		button.contentHorizontalAlignment = .leading
 	}
 	
 	private func setupLayout() {
 		let safe = view.safeAreaLayoutGuide
+		
+		let nameLineHeight = ceil(nameLabel.font.lineHeight)
+		let priceLineHeight = ceil(priceLabel.font.lineHeight)
+		
 		NSLayoutConstraint.activate([
 			activity.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			activity.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -153,15 +156,18 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 			nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
 			nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
 			nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+			nameLabel.heightAnchor.constraint(equalToConstant: nameLineHeight),
 			
 			imageView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
 			imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
 			imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
 			imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.6),
+			imageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 180),
 			
 			priceLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 12),
 			priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
 			priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+			priceLabel.heightAnchor.constraint(equalToConstant: priceLineHeight),
 			
 			descriptionLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 8),
 			descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -204,7 +210,12 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 	}
 	
 	func showLoading(_ isLoading: Bool) {
-		isLoading ? activity.startAnimating() : activity.stopAnimating()
+		if isLoading {
+			view.bringSubviewToFront(activity)
+			activity.startAnimating()
+		} else {
+			activity.stopAnimating()
+		}
 	}
 	
 	func setBreedTitle(_ title: String) {

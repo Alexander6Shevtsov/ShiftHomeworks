@@ -20,6 +20,9 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 	
 	private var adPhones: [Phone] = []
 	
+	private var loadingWorkItem: DispatchWorkItem?
+	private var isWaitingForDog: Bool = false
+	
 	init(
 		view: IDogBreedDetailsView,
 		interactor: IDogBreedDetailsInteractor,
@@ -36,21 +39,21 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		view?.setBreedTitle(breed.name)
 		view?.setAgeUnderThreeChecked(isAgeUnderThreeOn)
 		view?.setLocationSPBChecked(isLocationSPBOn)
-		view?.showLoading(true)
 		
-		interactor.loadDefaultDog()
+		interactor.loadDog(ageUnderThree: isAgeUnderThreeOn, inSPB: isLocationSPBOn)
+		
 		interactor.loadRandomAdPhones(count: 3)
 	}
 	
 	func ageUnderThreeToggled(isOn: Bool) {
 		isAgeUnderThreeOn = isOn
-		view?.showLoading(true)
+		scheduleDelayedIndicator()
 		interactor.loadDog(ageUnderThree: isAgeUnderThreeOn, inSPB: isLocationSPBOn)
 	}
 	
 	func locationSPBToggled(isOn: Bool) {
 		isLocationSPBOn = isOn
-		view?.showLoading(true)
+		scheduleDelayedIndicator()
 		interactor.loadDog(ageUnderThree: isAgeUnderThreeOn, inSPB: isLocationSPBOn)
 	}
 	
@@ -59,9 +62,24 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		let phone = adPhones[index]
 		router.openPhoneDetails(phone)
 	}
+	
+	private func scheduleDelayedIndicator() {
+		loadingWorkItem?.cancel()
+		isWaitingForDog = true
 		
+		let work = DispatchWorkItem { [weak self] in
+			guard let self, self.isWaitingForDog else { return }
+			self.view?.showLoading(true)
+		}
+		loadingWorkItem = work
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: work)
+	}
+	
 	func didLoadDog(option: DogOption, breed: DogBreed) {
+		isWaitingForDog = false
+		loadingWorkItem?.cancel()
 		view?.showLoading(false)
+		
 		view?.setBreedTitle(breed.name)
 		view?.setDogName(option.name)
 		
@@ -73,11 +91,14 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 	}
 	
 	func didFailToLoadDog() {
+		isWaitingForDog = false
+		loadingWorkItem?.cancel()
 		view?.showLoading(false)
-		view?.setDogName("—")
+		
+		view?.setDogName("")
 		view?.setDescriptionText("Нет подходящей собачки под выбранные параметры.")
 		view?.setDogImage(nil)
-		view?.setPriceText("—")
+		view?.setPriceText("")
 	}
 	
 	func didLoadAdPhones(_ phones: [Phone]) {
@@ -85,4 +106,3 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		view?.setAdPhones(phones)
 	}
 }
-

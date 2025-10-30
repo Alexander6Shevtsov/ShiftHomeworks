@@ -21,7 +21,7 @@ enum DogBreedCatalog {
  """,
 			variants: [
 				DogOption(
-					name: "Люся",
+					name: "Люся 2 года, СПБ",
 					ageYears: 2,
 					location: .spb,
 					imageName: "dog-lucy-shiba",
@@ -29,7 +29,7 @@ enum DogBreedCatalog {
 					description: "Добродушная, активная, любит длительные прогулки."
 				),
 				DogOption(
-					name: "Кен",
+					name: "Кен 4 года, МСК",
 					ageYears: 4,
 					location: .other,
 					imageName: "dog-ken-shiba",
@@ -49,15 +49,15 @@ enum DogBreedCatalog {
  """,
 			variants: [
 				DogOption(
-					name: "Скай",
-					ageYears: 1,
+					name: "Скай 2 года, СПБ",
+					ageYears: 2,
 					location: .spb,
 					imageName: "dog-sky-border",
 					price: 60000,
 					description: "Очень обучаемый, обожает апорт и аджилити."
 				),
 				DogOption(
-					name: "Рой",
+					name: "Рой 5 лет, Новосиб",
 					ageYears: 5,
 					location: .other,
 					imageName: "dog-roy-border",
@@ -77,7 +77,7 @@ enum DogBreedCatalog {
 """,
 			variants: [
 				DogOption(
-					name: "Снежок",
+					name: "Снежок 2 года, Томск",
 					ageYears: 2,
 					location: .other,
 					imageName: "dog-snow-samoyed",
@@ -85,7 +85,7 @@ enum DogBreedCatalog {
 					description: "Очень общительный, любит детей и внимание."
 				),
 				DogOption(
-					name: "Айс",
+					name: "Айс 3 года, СПБ",
 					ageYears: 3,
 					location: .spb,
 					imageName: "dog-ice-samoyed",
@@ -105,15 +105,15 @@ enum DogBreedCatalog {
 """,
 			variants: [
 				DogOption(
-					name: "Луна",
-					ageYears: 1,
+					name: "Луна 2 года, СПБ",
+					ageYears: 2,
 					location: .spb,
 					imageName: "dog-luna-husky",
 					price: 53000,
 					description: "Ласковая, любит бег и фрисби."
 				),
 				DogOption(
-					name: "Грей",
+					name: "Грей 4 года, Брянск",
 					ageYears: 4,
 					location: .other,
 					imageName: "dog-grey-husky",
@@ -133,7 +133,7 @@ enum DogBreedCatalog {
 """,
 			variants: [
 				DogOption(
-					name: "Санни",
+					name: "Санни 2 года, СПБ",
 					ageYears: 2,
 					location: .spb,
 					imageName: "dog-sunny-golden",
@@ -141,7 +141,7 @@ enum DogBreedCatalog {
 					description: "Очень дружелюбный, любит воду и апорт."
 				),
 				DogOption(
-					name: "Голд",
+					name: "Голд 6 лет, Самара",
 					ageYears: 6,
 					location: .other,
 					imageName: "dog-gold-golden",
@@ -161,7 +161,7 @@ enum DogBreedCatalog {
 """,
 			variants: [
 				DogOption(
-					name: "Рик",
+					name: "Рик 3 года, СПБ",
 					ageYears: 3,
 					location: .spb,
 					imageName: "dog-rick-gsd",
@@ -169,7 +169,7 @@ enum DogBreedCatalog {
 					description: "Послушный, быстро обучается командам."
 				),
 				DogOption(
-					name: "Грета",
+					name: "Грета 5 лет, Луга",
 					ageYears: 5,
 					location: .other,
 					imageName: "dog-greta-gsd",
@@ -189,7 +189,7 @@ enum DogBreedCatalog {
 """,
 			variants: [
 				DogOption(
-					name: "Дотти",
+					name: "Дотти 2 года, Пушкин",
 					ageYears: 2,
 					location: .other,
 					imageName: "dog-dotty-dalmatian",
@@ -197,7 +197,7 @@ enum DogBreedCatalog {
 					description: "Игривый характер, любит долгие прогулки."
 				),
 				DogOption(
-					name: "Спот",
+					name: "Спот 4 года, СПБ",
 					ageYears: 4,
 					location: .spb,
 					imageName: "dog-spot-dalmatian",
@@ -217,15 +217,15 @@ enum DogBreedCatalog {
 """,
 			variants: [
 				DogOption(
-					name: "Коко",
-					ageYears: 1,
+					name: "Коко 2 года, СПБ",
+					ageYears: 2,
 					location: .spb,
 					imageName: "dog-coco-poodle",
 					price: 52000,
 					description: "Озорной характер, любит трюки и обучение."
 				),
 				DogOption(
-					name: "Бонни",
+					name: "Бонни 4 года, Красноярск",
 					ageYears: 4,
 					location: .other,
 					imageName: "dog-bonnie-poodle",

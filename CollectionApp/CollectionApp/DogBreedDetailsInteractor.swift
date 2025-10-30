@@ -43,15 +43,15 @@ final class DogBreedDetailsInteractor: IDogBreedDetailsInteractor {
 	func loadDog(ageUnderThree: Bool, inSPB: Bool) {
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
 			guard let self else { return }
+			let ageMatches: (DogOption) -> Bool = { option in
+				ageUnderThree ? (option.ageYears <= 3) : (option.ageYears > 3)
+			}
 			
 			let locationMatches: (DogOption) -> Bool = { option in
-				inSPB ? (option.location == .spb) : true
-			}
-			let ageMatches: (DogOption) -> Bool = { option in
-				ageUnderThree ? (option.ageYears <= 3) : true
+				inSPB ? (option.location == .spb) : (option.location != .spb)
 			}
 			
-			if let matched = self.breed.variants.first(where: { locationMatches($0) && ageMatches($0) }) {
+			if let matched = self.breed.variants.first(where: { ageMatches($0) && locationMatches($0) }) {
 				self.delegate?.didLoadDog(option: matched, breed: self.breed)
 			} else {
 				self.delegate?.didFailToLoadDog()
@@ -64,4 +64,3 @@ final class DogBreedDetailsInteractor: IDogBreedDetailsInteractor {
 		delegate?.didLoadAdPhones(phones)
 	}
 }
-
