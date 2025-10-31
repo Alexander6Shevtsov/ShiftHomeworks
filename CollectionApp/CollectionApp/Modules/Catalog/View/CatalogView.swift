@@ -16,7 +16,7 @@ final class CatalogView: UIView {
 		let layout = UICollectionViewFlowLayout()
 		layout.minimumInteritemSpacing = 8
 		layout.minimumLineSpacing = 6
-		layout.sectionInset = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
+		layout.sectionInset = UIEdgeInsets(top: 8, left: 12, bottom: 0, right: 12)
 		layout.sectionInsetReference = .fromSafeArea
 		layout.estimatedItemSize = .zero
 		
@@ -66,4 +66,3 @@ final class CatalogView: UIView {
 		])
 	}
 }
-

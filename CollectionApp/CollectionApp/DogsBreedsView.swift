@@ -7,9 +7,8 @@
 
 import UIKit
 
-final class DogsBreedsView: UICollectionReusableView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+final class DogsBreedsView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
-	static let reuseID = "DogsBreedsView"
 	static let preferredHeight: CGFloat = 176 + 24
 	
 	var onSelectBreed: ((DogBreed) -> Void)?
@@ -52,7 +51,7 @@ final class DogsBreedsView: UICollectionReusableView, UICollectionViewDataSource
 		self.breeds = breeds
 		breedsCollectionView.reloadData()
 	}
-	
+		
 	private func setupView() {
 		backgroundColor = .systemBackground
 		addSubview(breedsCollectionView)
@@ -67,7 +66,7 @@ final class DogsBreedsView: UICollectionReusableView, UICollectionViewDataSource
 			breedsCollectionView.heightAnchor.constraint(equalToConstant: 176)
 		])
 	}
-	
+		
 	func collectionView(
 		_ collectionView: UICollectionView,
 		numberOfItemsInSection section: Int
@@ -89,7 +88,7 @@ final class DogsBreedsView: UICollectionReusableView, UICollectionViewDataSource
 		cell.configure(breed: breed)
 		return cell
 	}
-	
+		
 	func collectionView(
 		_ collectionView: UICollectionView,
 		didSelectItemAt indexPath: IndexPath
@@ -98,7 +97,7 @@ final class DogsBreedsView: UICollectionReusableView, UICollectionViewDataSource
 		let breed = breeds[indexPath.item]
 		onSelectBreed?(breed)
 	}
-	
+		
 	func collectionView(
 		_ collectionView: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,

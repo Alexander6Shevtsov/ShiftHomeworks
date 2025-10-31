@@ -15,7 +15,6 @@ protocol IDogBreedDetailsInteractorDelegate: AnyObject {
 }
 
 protocol IDogBreedDetailsInteractor: AnyObject {
-	func loadDefaultDog()
 	func loadDog(ageUnderThree: Bool, inSPB: Bool)
 	func loadRandomAdPhones(count: Int)
 }
@@ -27,17 +26,6 @@ final class DogBreedDetailsInteractor: IDogBreedDetailsInteractor {
 	
 	init(breed: DogBreed) {
 		self.breed = breed
-	}
-	
-	func loadDefaultDog() {
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-			guard let self else { return }
-			guard let option = self.breed.variants.randomElement() else {
-				self.delegate?.didFailToLoadDog()
-				return
-			}
-			self.delegate?.didLoadDog(option: option, breed: self.breed)
-		}
 	}
 	
 	func loadDog(ageUnderThree: Bool, inSPB: Bool) {
