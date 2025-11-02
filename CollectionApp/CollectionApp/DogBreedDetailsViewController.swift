@@ -12,7 +12,7 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 	
 	var presenter: IDogBreedDetailsPresenter!
 	
-	private let activity = UIActivityIndicatorView(style: .medium)
+	private let activityIndicator = UIActivityIndicatorView(style: .large)
 	
 	private let scrollView = UIScrollView()
 	private let contentView = UIView()
@@ -33,7 +33,8 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 	private let locationRow = UIStackView()
 	
 	private var adPhones: [Phone] = []
-	private lazy var adsCollectionView: UICollectionView = {
+	
+	private lazy var phonesCollectionView: UICollectionView = {
 		let layout = UICollectionViewFlowLayout()
 		layout.scrollDirection = .horizontal
 		layout.minimumInteritemSpacing = 8
@@ -58,11 +59,14 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 	}
 	
 	private func setupUI() {
-		activity.hidesWhenStopped = true
-		activity.translatesAutoresizingMaskIntoConstraints = false
-		view.addSubview(activity)
+		activityIndicator.hidesWhenStopped = true
+		activityIndicator.isUserInteractionEnabled = false
+		activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+		view.addSubview(activityIndicator)
 		
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
+		scrollView.alwaysBounceVertical = true
+		scrollView.alwaysBounceHorizontal = false
 		contentView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(scrollView)
 		scrollView.addSubview(contentView)
@@ -131,7 +135,7 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 		mainStack.addArrangedSubview(priceLabel)
 		mainStack.addArrangedSubview(descriptionLabel)
 		mainStack.addArrangedSubview(filtersStack)
-		mainStack.addArrangedSubview(adsCollectionView)
+		mainStack.addArrangedSubview(phonesCollectionView)
 	}
 	
 	private func configureCheckboxButton(_ button: UIButton) {
@@ -147,8 +151,8 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 		let priceLineHeight = ceil(priceLabel.font.lineHeight)
 		
 		NSLayoutConstraint.activate([
-			activity.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			activity.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+			activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 			
 			scrollView.topAnchor.constraint(equalTo: safe.topAnchor),
 			scrollView.leadingAnchor.constraint(equalTo: safe.leadingAnchor),
@@ -177,7 +181,7 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 			imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.6),
 			imageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 180),
 			
-			adsCollectionView.heightAnchor.constraint(equalToConstant: 130),
+			phonesCollectionView.heightAnchor.constraint(equalToConstant: 130),
 		])
 	}
 	
@@ -193,10 +197,10 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 	
 	func showLoading(_ isLoading: Bool) {
 		if isLoading {
-			view.bringSubviewToFront(activity)
-			activity.startAnimating()
+			view.bringSubviewToFront(activityIndicator)
+			activityIndicator.startAnimating()
 		} else {
-			activity.stopAnimating()
+			activityIndicator.stopAnimating()
 		}
 	}
 	
@@ -225,7 +229,7 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 	
 	func setAdPhones(_ phones: [Phone]) {
 		self.adPhones = phones
-		adsCollectionView.reloadData()
+		phonesCollectionView.reloadData()
 	}
 }
 
@@ -282,3 +286,4 @@ extension DogBreedDetailsViewController:
 		return CGSize(width: itemWidth, height: itemHeight)
 	}
 }
+
