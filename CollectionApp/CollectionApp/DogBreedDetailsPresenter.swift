@@ -37,6 +37,12 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 	
 	func viewDidLoad() {
 		view?.setBreedTitle(breed.name)
+		
+		if let anyOption = breed.variants.randomElement() {
+			isAgeUnderThreeOn = anyOption.ageYears <= 3
+			isLocationSPBOn = (anyOption.location == .spb)
+		}
+		
 		view?.setAgeUnderThreeChecked(isAgeUnderThreeOn)
 		view?.setLocationSPBChecked(isLocationSPBOn)
 		
@@ -72,9 +78,9 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 			self.view?.showLoading(true)
 		}
 		loadingWorkItem = work
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: work)
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.15, execute: work)
 	}
-	
+		
 	func didLoadDog(option: DogOption, breed: DogBreed) {
 		isWaitingForDog = false
 		loadingWorkItem?.cancel()
@@ -82,10 +88,7 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		
 		view?.setBreedTitle(breed.name)
 		view?.setDogName(option.name)
-		
-		let descriptionText = option.description.isEmpty ? breed.extendedDescription : option.description
-		view?.setDescriptionText(descriptionText)
-		
+		view?.setDescriptionText(option.description)
 		view?.setDogImage(UIImage(named: option.imageName))
 		view?.setPriceText("Цена: ₽\(option.price)")
 	}
@@ -106,3 +109,4 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		view?.setAdPhones(phones)
 	}
 }
+

@@ -40,28 +40,32 @@ final class AdPhoneCell: UICollectionViewCell {
 		
 		imageView.contentMode = .scaleAspectFit
 		imageView.clipsToBounds = true
+		imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
 		
 		titleLabel.font = .preferredFont(forTextStyle: .footnote)
 		titleLabel.textAlignment = .center
 		titleLabel.textColor = .label
 		titleLabel.numberOfLines = 2
+		titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
 		
 		imageView.translatesAutoresizingMaskIntoConstraints = false
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
 		contentView.addSubview(imageView)
 		contentView.addSubview(titleLabel)
 		
+		let imageAspectLE = imageView.heightAnchor.constraint(lessThanOrEqualTo: imageView.widthAnchor)
+		imageAspectLE.priority = .required
+		
 		NSLayoutConstraint.activate([
 			imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
 			imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
 			imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-			imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
+			imageAspectLE,
 			
 			titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 4),
 			titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6),
 			titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6),
-			titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -6)
+			titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6)
 		])
 	}
 }
-

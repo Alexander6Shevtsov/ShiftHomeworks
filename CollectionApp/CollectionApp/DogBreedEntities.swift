@@ -25,6 +25,6 @@ struct DogBreed: Equatable {
 	let name: String
 	let imageName: String
 	let shortDescription: String
-	let extendedDescription: String
 	let variants: [DogOption]
 }
+

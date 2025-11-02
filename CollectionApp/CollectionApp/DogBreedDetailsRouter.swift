@@ -22,4 +22,3 @@ final class DogBreedDetailsRouter: IDogBreedDetailsRouter {
 		viewController?.navigationController?.pushViewController(detailsVC, animated: true)
 	}
 }
-

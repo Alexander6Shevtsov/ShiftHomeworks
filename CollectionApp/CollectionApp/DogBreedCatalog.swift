@@ -14,11 +14,6 @@ enum DogBreedCatalog {
 			name: "Сиба-ину",
 			imageName: "breed-shiba",
 			shortDescription: "Компактная и умная из Японии.",
-			extendedDescription: """
- Сиба-ину — внимательная и независимая порода, 
- известная своей чистоплотностью и «лисиным» выражением. 
- Требует ранней социализации и последовательной дрессировки.
- """,
 			variants: [
 				DogOption(
 					name: "Люся 2 года, СПБ",
@@ -43,10 +38,6 @@ enum DogBreedCatalog {
 			name: "Бордер-колли",
 			imageName: "breed-border-collie",
 			shortDescription: "Умная, энергичная и работоспособная.",
-			extendedDescription: """
- Бордер-колли — выдающаяся рабочая собака с потребностью в умственных и физических нагрузках. 
- Идеальна для аджилити и активных хозяев.
- """,
 			variants: [
 				DogOption(
 					name: "Скай 2 года, СПБ",
@@ -54,7 +45,7 @@ enum DogBreedCatalog {
 					location: .spb,
 					imageName: "dog-sky-border",
 					price: 60000,
-					description: "Очень обучаемый, обожает апорт и аджилити."
+					description: "Очень обучаемый, обожает апорт и воду."
 				),
 				DogOption(
 					name: "Рой 5 лет, Новосиб",
@@ -71,10 +62,6 @@ enum DogBreedCatalog {
 			name: "Самоед",
 			imageName: "breed-samoyed",
 			shortDescription: "Дружелюбный северный шпиц.",
-			extendedDescription: """
-Самоед — ласковая и общительная порода с густой белой шерстью. 
-Требует регулярного ухода за шерстью и достаточных прогулок.
-""",
 			variants: [
 				DogOption(
 					name: "Снежок 2 года, Томск",
@@ -99,10 +86,6 @@ enum DogBreedCatalog {
 			name: "Хаски",
 			imageName: "breed-husky",
 			shortDescription: "Выносливый, «волчий» взгляд.",
-			extendedDescription: """
-Хаски — энергичная порода, требующая активных прогулок и внимания. 
-Умны и независимы, нуждаются в последовательной дрессировке.
-""",
 			variants: [
 				DogOption(
 					name: "Луна 2 года, СПБ",
@@ -127,10 +110,6 @@ enum DogBreedCatalog {
 			name: "Ретривер",
 			imageName: "breed-golden",
 			shortDescription: "Ласковая, семейная собака.",
-			extendedDescription: """
-Голден ретривер — добрая и умная порода, легко обучается и обожает приносить предметы. 
-Прекрасно подходит для семьи.
-""",
 			variants: [
 				DogOption(
 					name: "Санни 2 года, СПБ",
@@ -138,7 +117,7 @@ enum DogBreedCatalog {
 					location: .spb,
 					imageName: "dog-sunny-golden",
 					price: 59000,
-					description: "Очень дружелюбный, любит воду и апорт."
+					description: "Очень дружелюбный, любит воду и играть."
 				),
 				DogOption(
 					name: "Голд 6 лет, Самара",
@@ -155,10 +134,6 @@ enum DogBreedCatalog {
 			name: "Овчарка",
 			imageName: "breed-gsd",
 			shortDescription: "Преданная и активная.",
-			extendedDescription: """
-Немецкая овчарка — универсальная порода для службы и спорта. 
-Требует дрессировки и активных занятий.
-""",
 			variants: [
 				DogOption(
 					name: "Рик 3 года, СПБ",
@@ -183,10 +158,6 @@ enum DogBreedCatalog {
 			name: "Далматинец",
 			imageName: "breed-dalmatian",
 			shortDescription: "Активная и пятнистая.",
-			extendedDescription: """
-Далматины — энергичные и дружелюбные собаки. 
-Нуждаются в регулярных нагрузках и внимании хозяина.
-""",
 			variants: [
 				DogOption(
 					name: "Дотти 2 года, Пушкин",
@@ -211,10 +182,6 @@ enum DogBreedCatalog {
 			name: "Пудель",
 			imageName: "breed-poodle",
 			shortDescription: "Умная, активная и интересная.",
-			extendedDescription: """
-Пудели легко обучаемы, славятся сообразительностью. 
-Требуют ухода за шерстью и регулярных прогулок.
-""",
 			variants: [
 				DogOption(
 					name: "Коко 2 года, СПБ",
@@ -236,3 +203,4 @@ enum DogBreedCatalog {
 		)
 	]
 }
+
