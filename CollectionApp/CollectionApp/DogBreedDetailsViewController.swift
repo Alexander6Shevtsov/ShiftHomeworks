@@ -27,6 +27,11 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 	private let locationCheckbox = UIButton(type: .system)
 	private let locationLabel = UILabel()
 	
+	private let mainStack = UIStackView()
+	private let filtersStack = UIStackView()
+	private let ageRow = UIStackView()
+	private let locationRow = UIStackView()
+	
 	private var adPhones: [Phone] = []
 	private lazy var adsCollectionView: UICollectionView = {
 		let layout = UICollectionViewFlowLayout()
@@ -55,13 +60,17 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 	private func setupUI() {
 		activity.hidesWhenStopped = true
 		activity.translatesAutoresizingMaskIntoConstraints = false
-		
 		view.addSubview(activity)
 		
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
 		contentView.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(scrollView)
 		scrollView.addSubview(contentView)
+		
+		mainStack.axis = .vertical
+		mainStack.spacing = 12
+		mainStack.translatesAutoresizingMaskIntoConstraints = false
+		contentView.addSubview(mainStack)
 		
 		nameLabel.font = .preferredFont(forTextStyle: .title2)
 		nameLabel.textColor = .label
@@ -93,18 +102,36 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 		ageCheckbox.addTarget(self, action: #selector(ageCheckboxTapped), for: .touchUpInside)
 		locationCheckbox.addTarget(self, action: #selector(locationCheckboxTapped), for: .touchUpInside)
 		
-		[
-			nameLabel,
-			imageView,
-			priceLabel,
-			descriptionLabel,
-			ageCheckbox, ageLabel,
-			locationCheckbox, locationLabel,
-			adsCollectionView
-		].forEach { sub in
-			sub.translatesAutoresizingMaskIntoConstraints = false
-			contentView.addSubview(sub)
-		}
+		ageRow.axis = .horizontal
+		ageRow.alignment = .center
+		ageRow.spacing = 8
+		ageRow.translatesAutoresizingMaskIntoConstraints = false
+		ageCheckbox.translatesAutoresizingMaskIntoConstraints = false
+		ageLabel.translatesAutoresizingMaskIntoConstraints = false
+		ageRow.addArrangedSubview(ageCheckbox)
+		ageRow.addArrangedSubview(ageLabel)
+		
+		locationRow.axis = .horizontal
+		locationRow.alignment = .center
+		locationRow.spacing = 8
+		locationRow.translatesAutoresizingMaskIntoConstraints = false
+		locationCheckbox.translatesAutoresizingMaskIntoConstraints = false
+		locationLabel.translatesAutoresizingMaskIntoConstraints = false
+		locationRow.addArrangedSubview(locationCheckbox)
+		locationRow.addArrangedSubview(locationLabel)
+		
+		filtersStack.axis = .vertical
+		filtersStack.spacing = 12
+		filtersStack.translatesAutoresizingMaskIntoConstraints = false
+		filtersStack.addArrangedSubview(ageRow)
+		filtersStack.addArrangedSubview(locationRow)
+		
+		mainStack.addArrangedSubview(nameLabel)
+		mainStack.addArrangedSubview(imageView)
+		mainStack.addArrangedSubview(priceLabel)
+		mainStack.addArrangedSubview(descriptionLabel)
+		mainStack.addArrangedSubview(filtersStack)
+		mainStack.addArrangedSubview(adsCollectionView)
 	}
 	
 	private func configureCheckboxButton(_ button: UIButton) {
@@ -134,49 +161,23 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 			contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
 			contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
 			
-			nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-			nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-			nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-			nameLabel.heightAnchor.constraint(equalToConstant: nameLineHeight),
+			mainStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+			mainStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+			mainStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+			mainStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
 			
-			imageView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 12),
-			imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-			imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-			imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.6),
-			imageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 180),
-			
-			priceLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 12),
-			priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-			priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-			priceLabel.heightAnchor.constraint(equalToConstant: priceLineHeight),
-			
-			descriptionLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 8),
-			descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-			descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-			
-			ageCheckbox.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
-			ageCheckbox.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
 			ageCheckbox.widthAnchor.constraint(equalToConstant: 28),
 			ageCheckbox.heightAnchor.constraint(equalToConstant: 28),
-			
-			ageLabel.centerYAnchor.constraint(equalTo: ageCheckbox.centerYAnchor),
-			ageLabel.leadingAnchor.constraint(equalTo: ageCheckbox.trailingAnchor, constant: 8),
-			ageLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -16),
-			
-			locationCheckbox.topAnchor.constraint(equalTo: ageCheckbox.bottomAnchor, constant: 12),
-			locationCheckbox.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
 			locationCheckbox.widthAnchor.constraint(equalToConstant: 28),
 			locationCheckbox.heightAnchor.constraint(equalToConstant: 28),
 			
-			locationLabel.centerYAnchor.constraint(equalTo: locationCheckbox.centerYAnchor),
-			locationLabel.leadingAnchor.constraint(equalTo: locationCheckbox.trailingAnchor, constant: 8),
-			locationLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -16),
+			nameLabel.heightAnchor.constraint(equalToConstant: nameLineHeight),
+			priceLabel.heightAnchor.constraint(equalToConstant: priceLineHeight),
 			
-			adsCollectionView.topAnchor.constraint(equalTo: locationCheckbox.bottomAnchor, constant: 20),
-			adsCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-			adsCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+			imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 0.6),
+			imageView.heightAnchor.constraint(greaterThanOrEqualToConstant: 180),
+			
 			adsCollectionView.heightAnchor.constraint(equalToConstant: 130),
-			adsCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
 		])
 	}
 	
