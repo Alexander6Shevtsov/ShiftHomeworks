@@ -69,6 +69,111 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		426EA8FD2EB7AC4C00B45F84 /* DogBreeds */ = {
+			isa = PBXGroup;
+			children = (
+				426EA8FE2EB7AC6B00B45F84 /* List */,
+				426EA8FF2EB7AC7800B45F84 /* Details */,
+			);
+			path = DogBreeds;
+			sourceTree = "<group>";
+		};
+		426EA8FE2EB7AC6B00B45F84 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				426EA9002EB7AC8E00B45F84 /* View */,
+				426EA9012EB7AC9700B45F84 /* Model */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		426EA8FF2EB7AC7800B45F84 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				426EA9022EB7ACA900B45F84 /* Contract */,
+				426EA9032EB7ADDC00B45F84 /* Entities */,
+				426EA9042EB7ADED00B45F84 /* Interactor */,
+				426EA9052EB7ADFA00B45F84 /* Presenter */,
+				426EA9062EB7AE0300B45F84 /* Router */,
+				426EA9072EB7AE0C00B45F84 /* Builder */,
+				426EA9082EB7AE1200B45F84 /* View */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		426EA9002EB7AC8E00B45F84 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				42F534ED2EAFC546009C3577 /* DogsBreedsView.swift */,
+				42F534EF2EAFFA9B009C3577 /* DogBreedCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		426EA9012EB7AC9700B45F84 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				42F534EB2EAFBBCA009C3577 /* DogBreedCatalog.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		426EA9022EB7ACA900B45F84 /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				426EA8FB2EB74D3500B45F84 /* DogBreedDetailsContract.swift */,
+			);
+			path = Contract;
+			sourceTree = "<group>";
+		};
+		426EA9032EB7ADDC00B45F84 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				42F534832EAF77AF009C3577 /* DogBreedEntities.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		426EA9042EB7ADED00B45F84 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				42F534DF2EAFADEA009C3577 /* DogBreedDetailsInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		426EA9052EB7ADFA00B45F84 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				42F534E52EAFB55D009C3577 /* DogBreedDetailsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		426EA9062EB7AE0300B45F84 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				42F534E12EAFB328009C3577 /* DogBreedDetailsRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		426EA9072EB7AE0C00B45F84 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				42F534E92EAFB9B4009C3577 /* DogBreedDetailsBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		426EA9082EB7AE1200B45F84 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				42F534B12EAF8091009C3577 /* DogBreedDetailsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		42C9985F2EA4E39100470A98 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +216,7 @@
 				42C998652EA4EC3E00470A98 /* Catalog */,
 				42C998682EA4ECED00470A98 /* PhoneDetails */,
 				42C9986B2EA4ED7100470A98 /* Innovations */,
+				426EA8FD2EB7AC4C00B45F84 /* DogBreeds */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -187,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				42F647112E98E88400B82F72 /* PhoneCell.swift */,
+				42F534F12EB0CC1B009C3577 /* AdPhoneCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -213,17 +320,6 @@
 				42C9985F2EA4E39100470A98 /* App */,
 				42C998642EA4EC2500470A98 /* Modules */,
 				42C998602EA4E52600470A98 /* Resources */,
-				42F534B12EAF8091009C3577 /* DogBreedDetailsViewController.swift */,
-				42F534832EAF77AF009C3577 /* DogBreedEntities.swift */,
-				42F534DF2EAFADEA009C3577 /* DogBreedDetailsInteractor.swift */,
-				42F534E12EAFB328009C3577 /* DogBreedDetailsRouter.swift */,
-				42F534E52EAFB55D009C3577 /* DogBreedDetailsPresenter.swift */,
-				42F534E92EAFB9B4009C3577 /* DogBreedDetailsBuilder.swift */,
-				42F534EB2EAFBBCA009C3577 /* DogBreedCatalog.swift */,
-				42F534ED2EAFC546009C3577 /* DogsBreedsView.swift */,
-				42F534EF2EAFFA9B009C3577 /* DogBreedCell.swift */,
-				42F534F12EB0CC1B009C3577 /* AdPhoneCell.swift */,
-				426EA8FB2EB74D3500B45F84 /* DogBreedDetailsContract.swift */,
 			);
 			path = CollectionApp;
 			sourceTree = "<group>";
