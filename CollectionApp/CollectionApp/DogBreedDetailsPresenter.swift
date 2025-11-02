@@ -87,10 +87,13 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		view?.showLoading(false)
 		
 		view?.setBreedTitle(breed.name)
-		view?.setDogName(option.name)
-		view?.setDescriptionText(option.description)
-		view?.setDogImage(named: option.imageName)
-		view?.setPriceText("Цена: ₽\(option.price)")
+		let viewModel = DogDetailsViewModel(
+			name: option.name,
+			description: option.description,
+			priceText: "Цена: ₽\(option.price)",
+			imageName: option.imageName
+		)
+		view?.displayDog(viewModel)
 	}
 	
 	func didFailToLoadDog() {
@@ -98,10 +101,13 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		loadingWorkItem?.cancel()
 		view?.showLoading(false)
 		
-		view?.setDogName("")
-		view?.setDescriptionText("Нет подходящей собачки под выбранные параметры.")
-		view?.setDogImage(named: nil)
-		view?.setPriceText("")
+		let viewModel = DogDetailsViewModel(
+			name: "",
+			description: "Нет подходящей собачки под выбранные параметры.",
+			priceText: "",
+			imageName: nil
+		)
+		view?.displayDog(viewModel)
 	}
 	
 	func didLoadAdPhones(_ phones: [Phone]) {
@@ -109,4 +115,3 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		view?.setAdPhones(phones)
 	}
 }
-

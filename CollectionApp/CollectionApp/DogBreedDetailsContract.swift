@@ -5,15 +5,19 @@
 //  Created by Alexander Shevtsov on 02.11.2025.
 //
 
-import UIKit
+import Foundation
+
+struct DogDetailsViewModel {
+	let name: String
+	let description: String
+	let priceText: String
+	let imageName: String?
+}
 
 protocol IDogBreedDetailsView: AnyObject {
 	func showLoading(_ isLoading: Bool)
 	func setBreedTitle(_ title: String)
-	func setDogName(_ name: String)
-	func setDescriptionText(_ text: String)
-	func setDogImage(named: String?)
-	func setPriceText(_ text: String)
+	func displayDog(_ viewModel: DogDetailsViewModel)
 	func setAgeUnderThreeChecked(_ isOn: Bool)
 	func setLocationSPBChecked(_ isOn: Bool)
 	func setAdPhones(_ phones: [Phone])

@@ -203,24 +203,15 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 		self.title = title
 	}
 	
-	func setDogName(_ name: String) {
-		nameLabel.text = name
-	}
-	
-	func setDescriptionText(_ text: String) {
-		descriptionLabel.text = text
-	}
-	
-	func setDogImage(named: String?) {
-		if let named {
-			imageView.image = UIImage(named: named)
+	func displayDog(_ viewModel: DogDetailsViewModel) {
+		nameLabel.text = viewModel.name
+		descriptionLabel.text = viewModel.description
+		priceLabel.text = viewModel.priceText
+		if let imageName = viewModel.imageName {
+			imageView.image = UIImage(named: imageName)
 		} else {
 			imageView.image = nil
 		}
-	}
-	
-	func setPriceText(_ text: String) {
-		priceLabel.text = text
 	}
 	
 	func setAgeUnderThreeChecked(_ isOn: Bool) {
