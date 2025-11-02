@@ -16,7 +16,7 @@ protocol IDogBreedDetailsInteractorDelegate: AnyObject {
 
 protocol IDogBreedDetailsInteractor: AnyObject {
 	func loadDog(ageUnderThree: Bool, inSPB: Bool)
-	func loadRandomAdPhones(count: Int)
+	func loadRandomPhones(count: Int)
 }
 
 final class DogBreedDetailsInteractor: IDogBreedDetailsInteractor {
@@ -47,7 +47,7 @@ final class DogBreedDetailsInteractor: IDogBreedDetailsInteractor {
 		}
 	}
 	
-	func loadRandomAdPhones(count: Int) {
+	func loadRandomPhones(count: Int) {
 		let phones = Array(PhoneCatalog.phones.shuffled().prefix(count))
 		DispatchQueue.main.async { [weak self] in
 			self?.delegate?.didLoadAdPhones(phones)

@@ -141,7 +141,7 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 	private func configureCheckboxButton(_ button: UIButton) {
 		button.setImage(UIImage(systemName: "square"), for: .normal)
 		button.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
-		button.tintColor = .systemBlue
+		button.tintColor = .systemGreen
 	}
 	
 	private func setupLayout() {

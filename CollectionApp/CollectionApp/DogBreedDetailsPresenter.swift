@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetailsInteractorDelegate {
 	
 	private weak var view: IDogBreedDetailsView?
@@ -19,9 +20,6 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 	private var isLocationSPBOn: Bool = true
 	
 	private var adPhones: [Phone] = []
-	
-	private var loadingWorkItem: DispatchWorkItem?
-	private var isWaitingForDog: Bool = false
 	
 	init(
 		view: IDogBreedDetailsView,
@@ -46,20 +44,21 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		view?.setAgeUnderThreeChecked(isAgeUnderThreeOn)
 		view?.setLocationSPBChecked(isLocationSPBOn)
 		
-		interactor.loadDog(ageUnderThree: isAgeUnderThreeOn, inSPB: isLocationSPBOn)
+		view?.showLoading(true)
 		
-		interactor.loadRandomAdPhones(count: 3)
+		interactor.loadDog(ageUnderThree: isAgeUnderThreeOn, inSPB: isLocationSPBOn)
+		interactor.loadRandomPhones(count: 3)
 	}
 	
 	func ageUnderThreeToggled(isOn: Bool) {
 		isAgeUnderThreeOn = isOn
-		scheduleDelayedIndicator()
+		view?.showLoading(true)
 		interactor.loadDog(ageUnderThree: isAgeUnderThreeOn, inSPB: isLocationSPBOn)
 	}
 	
 	func locationSPBToggled(isOn: Bool) {
 		isLocationSPBOn = isOn
-		scheduleDelayedIndicator()
+		view?.showLoading(true)
 		interactor.loadDog(ageUnderThree: isAgeUnderThreeOn, inSPB: isLocationSPBOn)
 	}
 	
@@ -69,24 +68,10 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		router.openPhoneDetails(phone)
 	}
 	
-	private func scheduleDelayedIndicator() {
-		loadingWorkItem?.cancel()
-		isWaitingForDog = true
-		
-		let work = DispatchWorkItem { [weak self] in
-			guard let self, self.isWaitingForDog else { return }
-			self.view?.showLoading(true)
-		}
-		loadingWorkItem = work
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.15, execute: work)
-	}
-		
 	func didLoadDog(option: DogOption, breed: DogBreed) {
-		isWaitingForDog = false
-		loadingWorkItem?.cancel()
 		view?.showLoading(false)
-		
 		view?.setBreedTitle(breed.name)
+		
 		let viewModel = DogDetailsViewModel(
 			name: option.name,
 			description: option.description,
@@ -97,8 +82,6 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 	}
 	
 	func didFailToLoadDog() {
-		isWaitingForDog = false
-		loadingWorkItem?.cancel()
 		view?.showLoading(false)
 		
 		let viewModel = DogDetailsViewModel(
@@ -115,3 +98,4 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		view?.setAdPhones(phones)
 	}
 }
+
