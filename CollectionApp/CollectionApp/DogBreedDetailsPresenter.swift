@@ -5,7 +5,7 @@
 //  Created by Alexander Shevtsov on 27.10.2025.
 //
 
-import UIKit
+import Foundation
 
 final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetailsInteractorDelegate {
 	
@@ -89,7 +89,7 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		view?.setBreedTitle(breed.name)
 		view?.setDogName(option.name)
 		view?.setDescriptionText(option.description)
-		view?.setDogImage(UIImage(named: option.imageName))
+		view?.setDogImage(named: option.imageName)
 		view?.setPriceText("Цена: ₽\(option.price)")
 	}
 	
@@ -100,7 +100,7 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		
 		view?.setDogName("")
 		view?.setDescriptionText("Нет подходящей собачки под выбранные параметры.")
-		view?.setDogImage(nil)
+		view?.setDogImage(named: nil)
 		view?.setPriceText("")
 	}
 	

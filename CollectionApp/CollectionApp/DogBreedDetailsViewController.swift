@@ -13,7 +13,7 @@ protocol IDogBreedDetailsView: AnyObject {
 	func setBreedTitle(_ title: String)
 	func setDogName(_ name: String)
 	func setDescriptionText(_ text: String)
-	func setDogImage(_ image: UIImage?)
+	func setDogImage(named: String?)
 	func setPriceText(_ text: String)
 	func setAgeUnderThreeChecked(_ isOn: Bool)
 	func setLocationSPBChecked(_ isOn: Bool)
@@ -230,8 +230,12 @@ final class DogBreedDetailsViewController: UIViewController, IDogBreedDetailsVie
 		descriptionLabel.text = text
 	}
 	
-	func setDogImage(_ image: UIImage?) {
-		imageView.image = image
+	func setDogImage(named: String?) {
+		if let named {
+			imageView.image = UIImage(named: named)
+		} else {
+			imageView.image = nil
+		}
 	}
 	
 	func setPriceText(_ text: String) {
@@ -305,3 +309,4 @@ extension DogBreedDetailsViewController:
 		return CGSize(width: itemWidth, height: itemHeight)
 	}
 }
+
