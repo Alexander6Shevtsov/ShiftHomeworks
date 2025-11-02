@@ -49,6 +49,8 @@ final class DogBreedDetailsInteractor: IDogBreedDetailsInteractor {
 	
 	func loadRandomAdPhones(count: Int) {
 		let phones = Array(PhoneCatalog.phones.shuffled().prefix(count))
-		delegate?.didLoadAdPhones(phones)
+		DispatchQueue.main.async { [weak self] in
+			self?.delegate?.didLoadAdPhones(phones)
+		}
 	}
 }
