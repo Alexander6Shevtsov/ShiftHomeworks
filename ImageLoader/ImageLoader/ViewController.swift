@@ -24,7 +24,6 @@ final class ViewController: UIViewController {
 		searchBar.translatesAutoresizingMaskIntoConstraints = false
 		
 		tableView.dataSource = self
-		tableView.delegate = self
 		tableView.tableFooterView = UIView()
 		view.addSubview(tableView)
 		tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -71,20 +70,42 @@ extension ViewController: UITableViewDataSource {
 		
 		cell.contentConfiguration = config
 		cell.selectionStyle = .none
-		
 		return cell
 	}
 }
 
-extension ViewController: UITableViewDelegate {}
-
 extension ViewController: UISearchBarDelegate {
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
-		
 		guard let text = searchBar.text,
 			  let url = URL(string: text), UIApplication.shared.canOpenURL(url) else {
 			return
 		}
+		
+		if downloads.contains(where: { $0.url == url }) {
+			return
+		}
+		
+		let newDownload = ImageDownload(url: url)
+		downloads.append(newDownload)
+		let newIndex = downloads.count - 1
+		tableView.insertRows(at: [IndexPath(row: newIndex, section: 0)], with: .automatic)
+		
+		DownloadManager.shared.startDownload(
+			for: url,
+			progress: { [weak self] progress in
+				guard let self = self,
+					  let idx = self.downloads.firstIndex(where: { $0.url == url }) else { return }
+				self.downloads[idx].progress = progress
+				self.tableView.reloadRows(at: [IndexPath(row: idx, section: 0)], with: .none)
+			},
+			completion: { [weak self] image, error in
+				guard let self = self,
+					  let idx = self.downloads.firstIndex(where: { $0.url == url }) else { return }
+				self.downloads[idx].image = image
+				self.downloads[idx].error = error
+				self.tableView.reloadRows(at: [IndexPath(row: idx, section: 0)], with: .automatic)
+			}
+		)
 	}
 }
