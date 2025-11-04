@@ -42,8 +42,6 @@ final class ViewController: UIViewController {
 	}
 }
 
-// MARK: - UITableViewDataSource
-
 extension ViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		downloads.count
@@ -78,11 +76,7 @@ extension ViewController: UITableViewDataSource {
 	}
 }
 
-// MARK: - UITableViewDelegate
-
 extension ViewController: UITableViewDelegate {}
-
-// MARK: - UISearchBarDelegate
 
 extension ViewController: UISearchBarDelegate {
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
