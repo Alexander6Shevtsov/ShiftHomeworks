@@ -8,57 +8,61 @@
 import UIKit
 
 final class DownloadManager: NSObject {
+	
 	static let shared = DownloadManager()
+	
+	var onProgress: ((UUID, Double) -> Void)?
+	var onCompletion: ((UUID, UIImage?, String?) -> Void)?
 	
 	var backgroundSessionCompletionHandler: (() -> Void)?
 	
 	private lazy var session: URLSession = {
-		let config = URLSessionConfiguration.background(withIdentifier: "ImageLoader.DownloadManager")
-		config.waitsForConnectivity = true
+		let config = URLSessionConfiguration.background(withIdentifier: "ImageLoader.BackgroundSession")
 		return URLSession(configuration: config, delegate: self, delegateQueue: nil)
 	}()
 	
-	private var tasks: [URL: URLSessionDownloadTask] = [:]
-	private var progresses: [URL: (Double) -> Void] = [:]
-	private var completions: [URL: (UIImage?, String?) -> Void] = [:]
-	private var resumeDataDict: [URL: Data] = [:]
+	private var taskById: [UUID: URLSessionDownloadTask] = [:]
+	private var idByTaskIdentifier: [Int: UUID] = [:]
+	private var resumeById: [UUID: Data] = [:]
 	
-	private override init() {	super.init() }
-	
-	func startDownload(
-		for url: URL,
-		progress: @escaping (Double) -> Void,
-		completion: @escaping (UIImage?, String?) -> Void
-	) {
-		if tasks[url] != nil { return } // 1
+	private override init() { super.init() }
+}
+
+extension DownloadManager {
+	func start(url: URL) -> DownloadItem {
+		var item = DownloadItem(url: url)
+		item.state = .downloading
 		
 		let task = session.downloadTask(with: url)
-		tasks[url] = task
-		progresses[url] = progress
-		completions[url] = completion
+		taskById[item.id] = task
+		idByTaskIdentifier[task.taskIdentifier] = item.id
 		task.resume()
+		
+		DispatchQueue.main.async { [weak self] in
+			self?.onProgress?(item.id, 0.0)
+		}
+		return item
 	}
 	
-	func pauseDownload(for url: URL) {
-		guard let task = tasks[url] else { return }
-		task.cancel { [weak self] resumeData in
-			self?.resumeDataDict[url] = resumeData
-			self?.tasks[url] = nil
+	func pause(itemId: UUID) {
+		guard let task = taskById[itemId] else { return }
+		task.cancel { [weak self] data in
+			guard let self = self else { return }
+			if let data = data {
+				self.resumeById[itemId] = data
+			}
+			self.taskById[itemId] = nil
+			self.idByTaskIdentifier[task.taskIdentifier] = nil
 		}
 	}
 	
-	func resumeDownload(
-		for url: URL,
-		progress: @escaping (Double) -> Void,
-		completion: @escaping (UIImage?, String?) -> Void
-	) {
-		guard let resumeData = resumeDataDict[url] else { return }
-		let task = session.downloadTask(withResumeData: resumeData)
-		tasks[url] = task
-		progresses[url] = progress
-		completions[url] = completion
+	func resume(itemId: UUID) {
+		guard let data = resumeById[itemId] else { return }
+		let task = session.downloadTask(withResumeData: data)
+		taskById[itemId] = task
+		idByTaskIdentifier[task.taskIdentifier] = itemId
+		resumeById[itemId] = nil
 		task.resume()
-		resumeDataDict[url] = nil
 	}
 }
 
@@ -70,19 +74,12 @@ extension DownloadManager: URLSessionDownloadDelegate {
 		totalBytesWritten: Int64,
 		totalBytesExpectedToWrite: Int64
 	) {
-		guard let url = downloadTask.originalRequest?.url,
-			  let progressBlock = progresses[url] else { return }
-		
+		guard let itemId = idByTaskIdentifier[downloadTask.taskIdentifier] else { return }
 		let expected = totalBytesExpectedToWrite
-		let progress: Double
-		if expected > 0 {
-			progress = Double(totalBytesWritten) / Double(expected)
-		} else {
-			progress = 0
-		}
+		let progress = expected > 0 ? Double(totalBytesWritten) / Double(expected) : 0.0
 		
-		DispatchQueue.main.async {
-			progressBlock(progress)
+		DispatchQueue.main.async { [weak self] in
+			self?.onProgress?(itemId, progress)
 		}
 	}
 	
@@ -91,16 +88,27 @@ extension DownloadManager: URLSessionDownloadDelegate {
 		downloadTask: URLSessionDownloadTask,
 		didFinishDownloadingTo location: URL
 	) {
-		guard let url = downloadTask.originalRequest?.url,
-			  let completion = completions[url] else { return }
-		let data = try? Data(contentsOf: location)
-		let image = data.flatMap(UIImage.init(data:))
-		DispatchQueue.main.async {
-			completion(image, image == nil ? "Не удалось загрузить" : nil)
+		guard let itemId = idByTaskIdentifier[downloadTask.taskIdentifier] else { return }
+		
+		let image: UIImage?
+		do {
+			let data = try Data(contentsOf: location)
+			image = UIImage(data: data)
+		} catch {
+			DispatchQueue.main.async { [weak self] in
+				self?.onCompletion?(itemId, nil, "Read file error: \(error.localizedDescription)")
+			}
+			taskById[itemId] = nil
+			idByTaskIdentifier[downloadTask.taskIdentifier] = nil
+			return
 		}
-		tasks[url] = nil
-		progresses[url] = nil
-		completions[url] = nil
+		
+		DispatchQueue.main.async { [weak self] in
+			self?.onCompletion?(itemId, image, image == nil ? "Failed to decode image" : nil)
+		}
+		
+		taskById[itemId] = nil
+		idByTaskIdentifier[downloadTask.taskIdentifier] = nil
 	}
 	
 	func urlSession(
@@ -108,15 +116,14 @@ extension DownloadManager: URLSessionDownloadDelegate {
 		task: URLSessionTask,
 		didCompleteWithError error: Error?
 	) {
-		guard let url = task.originalRequest?.url else { return }
-		if let error = error as NSError?, error.code != NSURLErrorCancelled {
-			let completion = completions[url]
-			DispatchQueue.main.async {
-				completion?(nil, error.localizedDescription)
+		guard let itemId = idByTaskIdentifier[task.taskIdentifier] else { return }
+		
+		if let err = error as NSError?, err.code != NSURLErrorCancelled {
+			DispatchQueue.main.async { [weak self] in
+				self?.onCompletion?(itemId, nil, err.localizedDescription)
 			}
-			tasks[url] = nil
-			progresses[url] = nil
-			completions[url] = nil
+			taskById[itemId] = nil
+			idByTaskIdentifier[task.taskIdentifier] = nil
 		}
 	}
 	
@@ -127,4 +134,3 @@ extension DownloadManager: URLSessionDownloadDelegate {
 		}
 	}
 }
-
