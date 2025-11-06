@@ -38,9 +38,6 @@ extension DownloadManager {
 		idByTaskIdentifier[task.taskIdentifier] = item.id
 		task.resume()
 		
-		DispatchQueue.main.async { [weak self] in
-			self?.onProgress?(item.id, 0.0)
-		}
 		return item
 	}
 	
@@ -117,7 +114,6 @@ extension DownloadManager: URLSessionDownloadDelegate {
 		didCompleteWithError error: Error?
 	) {
 		guard let itemId = idByTaskIdentifier[task.taskIdentifier] else { return }
-		
 		if let err = error as NSError?, err.code != NSURLErrorCancelled {
 			DispatchQueue.main.async { [weak self] in
 				self?.onCompletion?(itemId, nil, err.localizedDescription)
