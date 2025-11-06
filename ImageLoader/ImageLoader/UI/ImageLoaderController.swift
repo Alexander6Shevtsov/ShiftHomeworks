@@ -28,8 +28,7 @@ final class ImageLoaderController: UIViewController {
 		searchBar.delegate = self
 		
 		let textField = searchBar.searchTextField
-		textField.returnKeyType = .go
-		textField.enablesReturnKeyAutomatically = false
+		textField.enablesReturnKeyAutomatically = true
 		
 		view.addSubview(searchBar)
 		searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +37,7 @@ final class ImageLoaderController: UIViewController {
 	private func setupTable() {
 		tableView.register(ImageCell.self, forCellReuseIdentifier: "ImageCell")
 		tableView.dataSource = self
-		tableView.rowHeight = 80
+		tableView.rowHeight = 60
 		view.addSubview(tableView)
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		
@@ -57,6 +56,7 @@ final class ImageLoaderController: UIViewController {
 	private func setupCallbacks() {
 		DownloadManager.shared.onProgress = { [weak self] id, progress in
 			guard let self = self else { return }
+			
 			if let index = self.items.firstIndex(where: { $0.id == id }) {
 				self.items[index].progress = progress
 				self.items[index].state = .downloading
@@ -72,7 +72,7 @@ final class ImageLoaderController: UIViewController {
 					self.items[index].progress = 1.0
 				} else {
 					self.items[index].state = .failed
-					self.showError(message: error ?? "Не удалось загрузить")
+					self.showError(message: "Не удалось загрузить изображение")
 				}
 				self.reloadRow(at: index)
 			}
@@ -80,17 +80,17 @@ final class ImageLoaderController: UIViewController {
 	}
 	
 	private func reloadRow(at index: Int) {
-		DispatchQueue.main.async { [weak self] in
-			self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-		}
+		tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
 	}
 	
 	private func showError(message: String) {
-		DispatchQueue.main.async { [weak self] in
-			let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .default))
-			self?.present(alert, animated: true)
-		}
+		let alert = UIAlertController(
+			title: "Ошибка",
+			message: message,
+			preferredStyle: .alert
+		)
+		alert.addAction(UIAlertAction(title: "OK", style: .default))
+		present(alert, animated: true)
 	}
 	
 	private func performSearch(with text: String?) {
@@ -105,7 +105,7 @@ final class ImageLoaderController: UIViewController {
 			  let scheme = comps.scheme?.lowercased(),
 			  (scheme == "http" || scheme == "https"),
 			  comps.host?.isEmpty == false else {
-			showError(message: "Введите правильный http/https URL.")
+			showError(message: "Введите правильный URL")
 			return
 		}
 		
@@ -113,14 +113,15 @@ final class ImageLoaderController: UIViewController {
 		
 		items.append(item)
 		let index = items.count - 1
-		DispatchQueue.main.async { [weak self] in
-			self?.tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-		}
+		tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
 	}
 }
 
 extension ImageLoaderController: UITableViewDataSource {
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(
+		_ tableView: UITableView,
+		numberOfRowsInSection section: Int
+	) -> Int {
 		items.count
 	}
 	
