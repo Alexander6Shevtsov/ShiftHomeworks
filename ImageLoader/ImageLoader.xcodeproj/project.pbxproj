@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4248759C2EBC97DF0030401D /* DownloadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4248759B2EBC97DF0030401D /* DownloadItem.swift */; };
 		425D66212EB8EB0600A065F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425D66172EB8EB0600A065F8 /* AppDelegate.swift */; };
 		425D66222EB8EB0600A065F8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425D661E2EB8EB0600A065F8 /* SceneDelegate.swift */; };
 		425D66232EB8EB0600A065F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425D661F2EB8EB0600A065F8 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4248759B2EBC97DF0030401D /* DownloadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadItem.swift; sourceTree = "<group>"; };
 		425D65FF2EB8EADF00A065F8 /* ImageLoader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageLoader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		425D66172EB8EB0600A065F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		425D66182EB8EB0600A065F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				425D661B2EB8EB0600A065F8 /* LaunchScreen.storyboard */,
 				425D66182EB8EB0600A065F8 /* Assets.xcassets */,
 				425D66192EB8EB0600A065F8 /* Info.plist */,
+				4248759B2EBC97DF0030401D /* DownloadItem.swift */,
 			);
 			path = ImageLoader;
 			sourceTree = "<group>";
@@ -145,6 +148,7 @@
 			files = (
 				425D66212EB8EB0600A065F8 /* AppDelegate.swift in Sources */,
 				425D662B2EBA452100A065F8 /* DownloadManager.swift in Sources */,
+				4248759C2EBC97DF0030401D /* DownloadItem.swift in Sources */,
 				425D66292EB8FF1D00A065F8 /* ImageDownload.swift in Sources */,
 				425D66222EB8EB0600A065F8 /* SceneDelegate.swift in Sources */,
 				425D66232EB8EB0600A065F8 /* ViewController.swift in Sources */,

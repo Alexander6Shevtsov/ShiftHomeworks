@@ -17,6 +17,7 @@ final class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .systemBackground
+		title = "Загрузка изображений"
 		
 		searchBar.placeholder = "Введите адрес изображения"
 		searchBar.delegate = self
@@ -24,6 +25,7 @@ final class ViewController: UIViewController {
 		searchBar.translatesAutoresizingMaskIntoConstraints = false
 		
 		tableView.dataSource = self
+		tableView.delegate = self
 		tableView.tableFooterView = UIView()
 		view.addSubview(tableView)
 		tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,8 +43,15 @@ final class ViewController: UIViewController {
 	}
 }
 
+extension ViewController: UITableViewDelegate {
+	
+}
+
 extension ViewController: UITableViewDataSource {
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	func tableView(
+		_ tableView: UITableView,
+		numberOfRowsInSection section: Int
+	) -> Int {
 		downloads.count
 	}
 	
@@ -60,12 +69,23 @@ extension ViewController: UITableViewDataSource {
 		if let image = download.image {
 			config.secondaryText = nil
 			config.image = image
+			cell.accessoryView = nil
 		} else if let error = download.error {
 			config.secondaryText = "Ошибка: \(error)"
+			config.secondaryTextProperties.font = UIFont.preferredFont(forTextStyle: .headline)
 			config.image = nil
+			cell.accessoryView = nil
 		} else {
 			config.secondaryText = String(format: "Прогресс: %.0f%%", download.progress * 100)
+			config.secondaryTextProperties.font = UIFont.preferredFont(forTextStyle: .headline)
 			config.image = nil
+			let button = UIButton(type: .system)
+			let title = download.isPaused ? "Продолжить" : "Пауза"
+			button.setTitle(title, for: .normal)
+			button.sizeToFit()
+			button.tag = indexPath.row
+			button.addTarget(self, action: #selector(togglePauseResume(_:)), for: .touchUpInside)
+			cell.accessoryView = button
 		}
 		
 		cell.contentConfiguration = config
@@ -78,11 +98,17 @@ extension ViewController: UISearchBarDelegate {
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		searchBar.resignFirstResponder()
 		guard let text = searchBar.text,
-			  let url = URL(string: text), UIApplication.shared.canOpenURL(url) else {
+			  let url = URL(string: text),
+			  let comps = URLComponents(url: url, resolvingAgainstBaseURL: false),
+			  let scheme = comps.scheme?.lowercased(),
+			  (scheme == "http" || scheme == "https"),
+			  comps.host?.isEmpty == false else {
+			showAlert(title: "Ошибка", message: "Введите корректный URL (http/https).")
 			return
 		}
 		
 		if downloads.contains(where: { $0.url == url }) {
+			showAlert(title: "Уже добавлено", message: "Загрузка по этому URL уже есть в списке.")
 			return
 		}
 		
@@ -107,5 +133,44 @@ extension ViewController: UISearchBarDelegate {
 				self.tableView.reloadRows(at: [IndexPath(row: idx, section: 0)], with: .automatic)
 			}
 		)
+	}
+}
+
+@objc private extension ViewController {
+	func togglePauseResume(_ sender: UIButton) {
+		let row = sender.tag
+		guard row < downloads.count else { return }
+		let download = downloads[row]
+		let url = download.url
+		
+		if download.isPaused {
+			downloads[row].isPaused = false
+			DownloadManager.shared.resumeDownload(
+				for: url,
+				progress: { [weak self] progress in
+					guard let self = self,
+						  let idx = self.downloads.firstIndex(where: { $0.url == url }) else { return }
+					self.downloads[idx].progress = progress
+					self.tableView.reloadRows(at: [IndexPath(row: idx, section: 0)], with: .none)
+				},
+				completion: { [weak self] image, error in
+					guard let self = self,
+						  let idx = self.downloads.firstIndex(where: { $0.url == url }) else { return }
+					self.downloads[idx].image = image
+					self.downloads[idx].error = error
+					self.tableView.reloadRows(at: [IndexPath(row: idx, section: 0)], with: .automatic)
+				}
+			)
+		} else {
+			downloads[row].isPaused = true
+			DownloadManager.shared.pauseDownload(for: url)
+		}
+		tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+	}
+	
+	func showAlert(title: String, message: String) {
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "OK", style: .default))
+		present(alert, animated: true)
 	}
 }

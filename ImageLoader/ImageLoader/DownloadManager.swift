@@ -10,6 +10,8 @@ import UIKit
 final class DownloadManager: NSObject {
 	static let shared = DownloadManager()
 	
+	var backgroundSessionCompletionHandler: (() -> Void)?
+	
 	private lazy var session: URLSession = {
 		let config = URLSessionConfiguration.background(withIdentifier: "ImageLoader.DownloadManager")
 		config.waitsForConnectivity = true
@@ -28,7 +30,7 @@ final class DownloadManager: NSObject {
 		progress: @escaping (Double) -> Void,
 		completion: @escaping (UIImage?, String?) -> Void
 	) {
-		if tasks[url] != nil { return } // !
+		if tasks[url] != nil { return } // 1
 		
 		let task = session.downloadTask(with: url)
 		tasks[url] = task
@@ -70,7 +72,15 @@ extension DownloadManager: URLSessionDownloadDelegate {
 	) {
 		guard let url = downloadTask.originalRequest?.url,
 			  let progressBlock = progresses[url] else { return }
-		let progress = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
+		
+		let expected = totalBytesExpectedToWrite
+		let progress: Double
+		if expected > 0 {
+			progress = Double(totalBytesWritten) / Double(expected)
+		} else {
+			progress = 0
+		}
+		
 		DispatchQueue.main.async {
 			progressBlock(progress)
 		}
@@ -109,4 +119,12 @@ extension DownloadManager: URLSessionDownloadDelegate {
 			completions[url] = nil
 		}
 	}
+	
+	func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+		DispatchQueue.main.async { [weak self] in
+			self?.backgroundSessionCompletionHandler?()
+			self?.backgroundSessionCompletionHandler = nil
+		}
+	}
 }
+

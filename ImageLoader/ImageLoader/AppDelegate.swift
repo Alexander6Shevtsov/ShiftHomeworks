@@ -9,6 +9,7 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+	var backgroundSessionCompletionHandler: (() -> Void)?
 	
 	func application(
 		_ application: UIApplication,
@@ -26,5 +27,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			name: "Default Configuration",
 			sessionRole: connectingSceneSession.role
 		)
+	}
+	
+	func application(
+		_ application: UIApplication,
+		handleEventsForBackgroundURLSession identifier: String,
+		completionHandler: @escaping () -> Void
+	) {
+		backgroundSessionCompletionHandler = completionHandler
+		
+		DownloadManager.shared.backgroundSessionCompletionHandler = completionHandler
 	}
 }
