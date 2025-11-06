@@ -9,13 +9,12 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-	var backgroundSessionCompletionHandler: (() -> Void)?
 	
 	func application(
 		_ application: UIApplication,
 		didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
 	) -> Bool { return true }
-		
+	
 	func application(
 		_ application: UIApplication,
 		configurationForConnecting connectingSceneSession: UISceneSession,
@@ -32,8 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		handleEventsForBackgroundURLSession identifier: String,
 		completionHandler: @escaping () -> Void
 	) {
-		backgroundSessionCompletionHandler = completionHandler
-		
 		DownloadManager.shared.backgroundSessionCompletionHandler = completionHandler
 	}
 }
+

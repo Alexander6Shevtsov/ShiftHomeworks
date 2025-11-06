@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4248759C2EBC97DF0030401D /* DownloadItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4248759B2EBC97DF0030401D /* DownloadItem.swift */; };
+		4248759C2EBC97DF0030401D /* DownloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4248759B2EBC97DF0030401D /* DownloadModel.swift */; };
 		4248759E2EBCA4560030401D /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4248759D2EBCA0CB0030401D /* ImageCell.swift */; };
 		425D66212EB8EB0600A065F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425D66172EB8EB0600A065F8 /* AppDelegate.swift */; };
 		425D66222EB8EB0600A065F8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425D661E2EB8EB0600A065F8 /* SceneDelegate.swift */; };
@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4248759B2EBC97DF0030401D /* DownloadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadItem.swift; sourceTree = "<group>"; };
+		4248759B2EBC97DF0030401D /* DownloadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadModel.swift; sourceTree = "<group>"; };
 		4248759D2EBCA0CB0030401D /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		425D65FF2EB8EADF00A065F8 /* ImageLoader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageLoader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		425D66172EB8EB0600A065F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +41,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		424875E12EBD00550030401D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				425D66172EB8EB0600A065F8 /* AppDelegate.swift */,
+				425D661E2EB8EB0600A065F8 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		424875E22EBD006A0030401D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				425D661F2EB8EB0600A065F8 /* ImageLoaderController.swift */,
+				4248759D2EBCA0CB0030401D /* ImageCell.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		424875E32EBD007D0030401D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				425D662A2EBA452100A065F8 /* DownloadManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		424875E42EBD008D0030401D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4248759B2EBC97DF0030401D /* DownloadModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		424875E52EBD00F00030401D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				425D661B2EB8EB0600A065F8 /* LaunchScreen.storyboard */,
+				425D66182EB8EB0600A065F8 /* Assets.xcassets */,
+				425D66192EB8EB0600A065F8 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		425D65F62EB8EADF00A065F8 = {
 			isa = PBXGroup;
 			children = (
@@ -60,15 +104,11 @@
 		425D66202EB8EB0600A065F8 /* ImageLoader */ = {
 			isa = PBXGroup;
 			children = (
-				425D66172EB8EB0600A065F8 /* AppDelegate.swift */,
-				425D661E2EB8EB0600A065F8 /* SceneDelegate.swift */,
-				425D661F2EB8EB0600A065F8 /* ImageLoaderController.swift */,
-				425D662A2EBA452100A065F8 /* DownloadManager.swift */,
-				4248759D2EBCA0CB0030401D /* ImageCell.swift */,
-				4248759B2EBC97DF0030401D /* DownloadItem.swift */,
-				425D661B2EB8EB0600A065F8 /* LaunchScreen.storyboard */,
-				425D66182EB8EB0600A065F8 /* Assets.xcassets */,
-				425D66192EB8EB0600A065F8 /* Info.plist */,
+				424875E12EBD00550030401D /* App */,
+				424875E22EBD006A0030401D /* UI */,
+				424875E32EBD007D0030401D /* Services */,
+				424875E42EBD008D0030401D /* Models */,
+				424875E52EBD00F00030401D /* Resources */,
 			);
 			path = ImageLoader;
 			sourceTree = "<group>";
@@ -148,7 +188,7 @@
 			files = (
 				425D66212EB8EB0600A065F8 /* AppDelegate.swift in Sources */,
 				425D662B2EBA452100A065F8 /* DownloadManager.swift in Sources */,
-				4248759C2EBC97DF0030401D /* DownloadItem.swift in Sources */,
+				4248759C2EBC97DF0030401D /* DownloadModel.swift in Sources */,
 				425D66222EB8EB0600A065F8 /* SceneDelegate.swift in Sources */,
 				4248759E2EBCA4560030401D /* ImageCell.swift in Sources */,
 				425D66232EB8EB0600A065F8 /* ImageLoaderController.swift in Sources */,
@@ -177,7 +217,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ImageLoader/Info.plist;
+				INFOPLIST_FILE = ImageLoader/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -212,7 +252,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ImageLoader/Info.plist;
+				INFOPLIST_FILE = ImageLoader/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

@@ -1,5 +1,5 @@
 //
-//  DownloadItem.swift
+//  DownloadModel.swift
 //  ImageLoader
 //
 //  Created by Alexander Shevtsov on 05.11.2025.
@@ -15,7 +15,7 @@ enum DownloadState {
 	case failed
 }
 
-struct DownloadItem {
+struct DownloadModel {
 	let id: UUID
 	let url: URL
 	var state: DownloadState

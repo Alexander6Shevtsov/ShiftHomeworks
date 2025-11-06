@@ -16,48 +16,30 @@ final class DownloadManager: NSObject {
 	
 	var backgroundSessionCompletionHandler: (() -> Void)?
 	
-	private lazy var foregroundSession: URLSession = {
-		let config = URLSessionConfiguration.default
-		config.waitsForConnectivity = true
-		config.allowsConstrainedNetworkAccess = true
-		config.allowsExpensiveNetworkAccess = true
-		var headers = config.httpAdditionalHeaders ?? [:]
-		headers["Accept-Encoding"] = "identity"
-		config.httpAdditionalHeaders = headers
-		return URLSession(configuration: config, delegate: self, delegateQueue: nil)
-	}()
-	
-	private lazy var backgroundSession: URLSession = {
-		let config = URLSessionConfiguration.background(
-			withIdentifier: "ImageLoader.BackgroundSession"
-		)
-		var headers = config.httpAdditionalHeaders ?? [:]
-		headers["Accept-Encoding"] = "identity"
-		config.httpAdditionalHeaders = headers
-		return URLSession(configuration: config, delegate: self, delegateQueue: nil)
-	}()
-	
-	private var session: URLSession {
-		if UIApplication.shared.applicationState == .active {
-			return foregroundSession
-		} else {
-			return backgroundSession
-		}
-	}
+	private(set) var backgroundSession: URLSession!
 	
 	private var taskById: [UUID: URLSessionDownloadTask] = [:]
 	private var idByTaskIdentifier: [Int: UUID] = [:]
 	private var resumeById: [UUID: Data] = [:]
 	
-	private override init() { super.init() }
+	private override init() {
+		super.init()
+		
+		let config = URLSessionConfiguration.background(withIdentifier: "ImageLoader.BackgroundSession")
+		var headers = config.httpAdditionalHeaders ?? [:]
+		headers["Accept-Encoding"] = "identity"
+		config.httpAdditionalHeaders = headers
+		
+		self.backgroundSession = URLSession(configuration: config, delegate: self, delegateQueue: nil)
+	}
 }
 
 extension DownloadManager {
-	func start(url: URL) -> DownloadItem {
-		var item = DownloadItem(url: url)
+	func start(url: URL) -> DownloadModel {
+		var item = DownloadModel(url: url)
 		item.state = .downloading
 		
-		let task = session.downloadTask(with: url)
+		let task = backgroundSession.downloadTask(with: url)
 		taskById[item.id] = task
 		idByTaskIdentifier[task.taskIdentifier] = item.id
 		task.resume()
@@ -80,7 +62,7 @@ extension DownloadManager {
 	
 	func resume(itemId: UUID) {
 		guard let data = resumeById[itemId] else { return }
-		let task = session.downloadTask(withResumeData: data)
+		let task = backgroundSession.downloadTask(withResumeData: data)
 		taskById[itemId] = task
 		idByTaskIdentifier[task.taskIdentifier] = itemId
 		resumeById[itemId] = nil
@@ -98,22 +80,16 @@ extension DownloadManager: URLSessionDownloadDelegate {
 	) {
 		guard let itemId = idByTaskIdentifier[downloadTask.taskIdentifier] else { return }
 		
-		let expectedCandidates: [Int64?] = [
+		let unknown = NSURLSessionTransferSizeUnknown
+		let expected = [
 			totalBytesExpectedToWrite,
 			downloadTask.countOfBytesExpectedToReceive,
 			downloadTask.response?.expectedContentLength
 		]
-		
-		let expected = expectedCandidates
 			.compactMap { $0 }
-			.first(where: { $0 > 0 })
+			.first(where: { $0 > 0 && $0 != unknown })
 		
-		let progress: Double
-		if let expected = expected {
-			progress = Double(totalBytesWritten) / Double(expected)
-		} else {
-			progress = 0.0
-		}
+		let progress = expected.map { Double(totalBytesWritten) / Double($0) } ?? 0.0
 		
 		DispatchQueue.main.async { [weak self] in
 			self?.onProgress?(itemId, min(max(progress, 0.0), 1.0))
@@ -127,21 +103,10 @@ extension DownloadManager: URLSessionDownloadDelegate {
 	) {
 		guard let itemId = idByTaskIdentifier[downloadTask.taskIdentifier] else { return }
 		
-		let image: UIImage?
-		do {
-			let data = try Data(contentsOf: location)
-			image = UIImage(data: data)
-		} catch {
-			DispatchQueue.main.async { [weak self] in
-				self?.onCompletion?(itemId, nil, "Ошибка: \(error.localizedDescription)")
-			}
-			taskById[itemId] = nil
-			idByTaskIdentifier[downloadTask.taskIdentifier] = nil
-			return
-		}
+		let image = UIImage(contentsOfFile: location.path)
 		
 		DispatchQueue.main.async { [weak self] in
-			self?.onCompletion?(itemId, image, image == nil ? "Ошибка" : nil)
+			self?.onCompletion?(itemId, image, image == nil ? "Не удалось загрузить изображение" : nil)
 		}
 		
 		taskById[itemId] = nil

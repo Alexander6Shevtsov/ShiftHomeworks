@@ -12,7 +12,7 @@ final class ImageLoaderController: UIViewController {
 	private let searchBar = UISearchBar()
 	private let tableView = UITableView(frame: .zero, style: .plain)
 	
-	private var items: [DownloadItem] = []
+	private var items: [DownloadModel] = []
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -30,7 +30,6 @@ final class ImageLoaderController: UIViewController {
 		let textField = searchBar.searchTextField
 		textField.returnKeyType = .go
 		textField.enablesReturnKeyAutomatically = false
-		textField.delegate = self
 		
 		view.addSubview(searchBar)
 		searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +72,7 @@ final class ImageLoaderController: UIViewController {
 					self.items[index].progress = 1.0
 				} else {
 					self.items[index].state = .failed
-					self.showError(message: error ?? "error")
+					self.showError(message: error ?? "Не удалось загрузить")
 				}
 				self.reloadRow(at: index)
 			}
@@ -88,7 +87,7 @@ final class ImageLoaderController: UIViewController {
 	
 	private func showError(message: String) {
 		DispatchQueue.main.async { [weak self] in
-			let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+			let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "OK", style: .default))
 			self?.present(alert, animated: true)
 		}
@@ -158,13 +157,6 @@ extension ImageLoaderController: UITableViewDataSource {
 extension ImageLoaderController: UISearchBarDelegate {
 	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
 		performSearch(with: searchBar.text)
-	}
-}
-
-extension ImageLoaderController: UITextFieldDelegate {
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		performSearch(with: textField.text)
-		return true
 	}
 }
 

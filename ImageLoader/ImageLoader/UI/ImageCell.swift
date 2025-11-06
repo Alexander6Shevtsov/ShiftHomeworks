@@ -19,7 +19,6 @@ final class ImageCell: UITableViewCell {
 	var onPause: (() -> Void)?
 	var onResume: (() -> Void)?
 	
-	// MARK: - Init
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		setupViews()
@@ -30,7 +29,7 @@ final class ImageCell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func configure(with item: DownloadItem) {
+	func configure(with item: DownloadModel) {
 		urlLabel.text = item.url.absoluteString
 		
 		pictureView.image = item.image
@@ -51,7 +50,7 @@ final class ImageCell: UITableViewCell {
 		}
 		
 		if item.state == .failed {
-			percentLabel.text = "Failed"
+			percentLabel.text = "Ошибка"
 		} else if item.state == .completed {
 			percentLabel.text = "100%"
 		} else {
@@ -140,3 +139,4 @@ final class ImageCell: UITableViewCell {
 		onResume?()
 	}
 }
+
