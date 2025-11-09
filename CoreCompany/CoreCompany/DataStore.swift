@@ -46,7 +46,7 @@ enum DataStore {
 	static func fetchEmployees(for company: Company) -> [Employee] {
 		let context = CoreDataStack.shared.viewContext
 		let request: NSFetchRequest<Employee> = Employee.fetchRequest()
-		request.predicate = NSPredicate(format: "company.id == %@", company)
+		request.predicate = NSPredicate(format: "company == %@", company)
 		request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
 		do {
 			return try context.fetch(request)

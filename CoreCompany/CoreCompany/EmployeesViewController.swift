@@ -1,26 +1,37 @@
 //
-//  CompaniesViewController.swift
+//  EmployeesViewController.swift
 //  CoreCompany
 //
-//  Created by Alexander Shevtsov on 07.11.2025.
+//  Created by Alexander Shevtsov on 09.11.2025.
 //
 
 import UIKit
 import CoreData
 
-final class CompaniesViewController: UITableViewController {
+final class EmployeesViewController: UITableViewController {
 	
-	private var items: [Company] = []
+	private let company: Company
+	private var employees: [Employee] = []
+	
+	init(company: Company) {
+		self.company = company
+		super.init(style: .plain)
+	}
+	
+	@available(*, unavailable)
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .systemBackground
 		setupNavigationBar()
-		reloadData()
+		//		reloadData()
 	}
 	
 	private func setupNavigationBar() {
-		title = "Компании"
+		title = "Сотрудники"
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
 			barButtonSystemItem: .add,
 			target: self,
@@ -30,32 +41,35 @@ final class CompaniesViewController: UITableViewController {
 	
 	@objc
 	private func addTapped() {
-		_ = DataStore.createCompany()
+		_ = DataStore.createEmployee(for: company)
 		reloadData()
 	}
 	
 	private func reloadData() {
-		items = DataStore.fetchCompanies()
+		employees = DataStore.fetchEmployees(for: company)
 		tableView.reloadData()
 	}
+	
 	
 	override func tableView(
 		_ tableView: UITableView,
 		numberOfRowsInSection section: Int
 	) -> Int {
-		return items.count
+		return employees.count
 	}
 	
 	override func tableView(
 		_ tableView: UITableView,
 		cellForRowAt indexPath: IndexPath
 	) -> UITableViewCell {
-		let reuseId = "CompanyCell"
+		let reuseId = "EmployeeCell"
 		let cell = tableView.dequeueReusableCell(
 			withIdentifier: reuseId
 		) ?? UITableViewCell(style: .default, reuseIdentifier: reuseId)
-		let company = items[indexPath.row]
-		cell.textLabel?.text = company.name
+		let employee = employees[indexPath.row]
+		var content = cell.defaultContentConfiguration()
+		content.text = employee.name
+		cell.contentConfiguration = content
 		return cell
 	}
 	
@@ -65,8 +79,8 @@ final class CompaniesViewController: UITableViewController {
 		forRowAt indexPath: IndexPath
 	) {
 		guard editingStyle == .delete else { return }
-		let company = items[indexPath.row]
-		DataStore.deleteCompany(company)
+		let employee = employees[indexPath.row]
+		DataStore.deleteEmployee(employee)
 		reloadData()
 	}
 	
@@ -75,8 +89,5 @@ final class CompaniesViewController: UITableViewController {
 		didSelectRowAt indexPath: IndexPath
 	) {
 		tableView.deselectRow(at: indexPath, animated: true)
-		let company = items[indexPath.row]
-		let controller = EmployeesViewController(company: company)
-		navigationController?.pushViewController(controller, animated: true)
 	}
 }
