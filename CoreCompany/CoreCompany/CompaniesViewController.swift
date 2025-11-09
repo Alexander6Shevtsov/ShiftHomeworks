@@ -19,6 +19,11 @@ final class CompaniesViewController: UITableViewController {
 		reloadData()
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		reloadData()
+	}
+	
 	private func setupNavigationBar() {
 		title = "Компании"
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -55,7 +60,10 @@ final class CompaniesViewController: UITableViewController {
 			withIdentifier: reuseId
 		) ?? UITableViewCell(style: .default, reuseIdentifier: reuseId)
 		let company = items[indexPath.row]
-		cell.textLabel?.text = company.name
+		var content = cell.defaultContentConfiguration()
+		content.text = company.name
+		content.textProperties.numberOfLines = 1
+		cell.contentConfiguration = content
 		return cell
 	}
 	

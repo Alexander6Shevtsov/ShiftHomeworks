@@ -27,7 +27,7 @@ final class EmployeesViewController: UITableViewController {
 		super.viewDidLoad()
 		view.backgroundColor = .systemBackground
 		setupNavigationBar()
-		//		reloadData()
+		reloadData()
 	}
 	
 	private func setupNavigationBar() {
@@ -50,7 +50,6 @@ final class EmployeesViewController: UITableViewController {
 		tableView.reloadData()
 	}
 	
-	
 	override func tableView(
 		_ tableView: UITableView,
 		numberOfRowsInSection section: Int
@@ -63,12 +62,12 @@ final class EmployeesViewController: UITableViewController {
 		cellForRowAt indexPath: IndexPath
 	) -> UITableViewCell {
 		let reuseId = "EmployeeCell"
-		let cell = tableView.dequeueReusableCell(
-			withIdentifier: reuseId
-		) ?? UITableViewCell(style: .default, reuseIdentifier: reuseId)
+		let cell = tableView.dequeueReusableCell(withIdentifier: reuseId)
+		?? UITableViewCell(style: .default, reuseIdentifier: reuseId)
 		let employee = employees[indexPath.row]
 		var content = cell.defaultContentConfiguration()
 		content.text = employee.name
+		content.textProperties.numberOfLines = 1
 		cell.contentConfiguration = content
 		return cell
 	}
