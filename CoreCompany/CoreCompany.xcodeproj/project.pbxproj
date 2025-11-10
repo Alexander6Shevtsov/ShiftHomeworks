@@ -55,6 +55,48 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		42028D342EC0DE9A009CFC68 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				42028D2B2EBF9549009CFC68 /* CoreDataStack.swift */,
+				42028D302EC09ED0009CFC68 /* DataStore.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		42028D352EC0DEC3009CFC68 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				42028D2D2EBF9FBE009CFC68 /* Model.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		42028D362EC0DF48009CFC68 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				42028D372EC0DF54009CFC68 /* Companies */,
+				42028D382EC0DF6B009CFC68 /* Employees */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		42028D372EC0DF54009CFC68 /* Companies */ = {
+			isa = PBXGroup;
+			children = (
+				4262CE942EBE36E600875B41 /* CompaniesViewController.swift */,
+			);
+			path = Companies;
+			sourceTree = "<group>";
+		};
+		42028D382EC0DF6B009CFC68 /* Employees */ = {
+			isa = PBXGroup;
+			children = (
+				42028D322EC0C82D009CFC68 /* EmployeesViewController.swift */,
+			);
+			path = Employees;
+			sourceTree = "<group>";
+		};
 		4262CE6B2EBE36C800875B41 = {
 			isa = PBXGroup;
 			children = (
@@ -75,11 +117,9 @@
 			isa = PBXGroup;
 			children = (
 				42028D2A2EBF9328009CFC68 /* App */,
-				4262CE942EBE36E600875B41 /* CompaniesViewController.swift */,
-				42028D322EC0C82D009CFC68 /* EmployeesViewController.swift */,
-				42028D2B2EBF9549009CFC68 /* CoreDataStack.swift */,
-				42028D302EC09ED0009CFC68 /* DataStore.swift */,
-				42028D2D2EBF9FBE009CFC68 /* Model.xcdatamodeld */,
+				42028D362EC0DF48009CFC68 /* Features */,
+				42028D342EC0DE9A009CFC68 /* Data */,
+				42028D352EC0DEC3009CFC68 /* Model */,
 			);
 			path = CoreCompany;
 			sourceTree = "<group>";

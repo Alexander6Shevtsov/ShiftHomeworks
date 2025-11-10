@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 final class CompaniesViewController: UITableViewController {
 	
@@ -35,7 +34,7 @@ final class CompaniesViewController: UITableViewController {
 	
 	@objc
 	private func addTapped() {
-		_ = DataStore.createCompany()
+		DataStore.createCompany()
 		reloadData()
 	}
 	

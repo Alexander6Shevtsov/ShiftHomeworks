@@ -36,8 +36,8 @@ final class CoreDataStack {
 		do {
 			try context.save()
 		} catch {
-			let nsError = error as NSError
-			NSLog("Save error: \(nsError), \(nsError.userInfo)")
+			print("CoreData save error: \(error)")
+			NSLog("CoreData save error: \(error.localizedDescription)")
 		}
 	}
 }

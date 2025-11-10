@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreData
 
 final class EmployeesViewController: UITableViewController {
 	
@@ -31,7 +30,7 @@ final class EmployeesViewController: UITableViewController {
 	}
 	
 	private func setupNavigationBar() {
-		title = "Сотрудники"
+		title = "Сотрудники компании " + (company.name ?? "")
 		navigationItem.rightBarButtonItem = UIBarButtonItem(
 			barButtonSystemItem: .add,
 			target: self,
@@ -41,7 +40,7 @@ final class EmployeesViewController: UITableViewController {
 	
 	@objc
 	private func addTapped() {
-		_ = DataStore.createEmployee(for: company)
+		DataStore.createEmployee(for: company)
 		reloadData()
 	}
 	
