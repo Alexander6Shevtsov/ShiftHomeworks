@@ -8,7 +8,7 @@
 import UIKit
 
 enum DogBreedDetailsBuilder {
-	static func build(breed: DogBreed) -> UIViewController {
+	static func build(breed: DogBreed) -> (UIViewController & IDogBreedDetailsView) {
 		let view = DogBreedDetailsViewController()
 		let interactor = DogBreedDetailsInteractor(breed: breed)
 		let router = DogBreedDetailsRouter()

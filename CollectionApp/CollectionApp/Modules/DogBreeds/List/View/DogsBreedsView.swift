@@ -51,7 +51,7 @@ final class DogsBreedsView: UIView, UICollectionViewDataSource, UICollectionView
 		self.breeds = breeds
 		breedsCollectionView.reloadData()
 	}
-		
+	
 	private func setupView() {
 		backgroundColor = .systemBackground
 		addSubview(breedsCollectionView)
@@ -66,7 +66,7 @@ final class DogsBreedsView: UIView, UICollectionViewDataSource, UICollectionView
 			breedsCollectionView.heightAnchor.constraint(equalToConstant: 176)
 		])
 	}
-		
+	
 	func collectionView(
 		_ collectionView: UICollectionView,
 		numberOfItemsInSection section: Int
@@ -88,7 +88,7 @@ final class DogsBreedsView: UIView, UICollectionViewDataSource, UICollectionView
 		cell.configure(breed: breed)
 		return cell
 	}
-		
+	
 	func collectionView(
 		_ collectionView: UICollectionView,
 		didSelectItemAt indexPath: IndexPath
@@ -97,7 +97,7 @@ final class DogsBreedsView: UIView, UICollectionViewDataSource, UICollectionView
 		let breed = breeds[indexPath.item]
 		onSelectBreed?(breed)
 	}
-		
+	
 	func collectionView(
 		_ collectionView: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,

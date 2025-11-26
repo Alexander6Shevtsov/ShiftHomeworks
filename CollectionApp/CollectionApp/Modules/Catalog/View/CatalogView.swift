@@ -45,7 +45,7 @@ final class CatalogView: UIView {
 			PhoneCell.self,
 			forCellWithReuseIdentifier: PhoneCell.reuseID
 		)
-				
+		
 		breedsView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(collectionView)
 		addSubview(breedsView)

@@ -37,7 +37,7 @@ final class DogBreedCell: UICollectionViewCell {
 		imageView.image = UIImage(named: breed.imageName)
 		descriptionLabel.text = breed.shortDescription
 	}
-		
+	
 	private func setupViews() {
 		contentView.backgroundColor = .secondarySystemBackground
 		contentView.layer.cornerRadius = 12

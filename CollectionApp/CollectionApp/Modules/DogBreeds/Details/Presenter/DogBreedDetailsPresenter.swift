@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetailsInteractorDelegate {
+final class DogBreedDetailsPresenter {
 	
 	private weak var view: IDogBreedDetailsView?
 	
@@ -32,7 +32,9 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		self.router = router
 		self.breed = breed
 	}
-	
+}
+
+extension DogBreedDetailsPresenter: IDogBreedDetailsPresenter {
 	func viewDidLoad() {
 		view?.setBreedTitle(breed.name)
 		
@@ -67,7 +69,9 @@ final class DogBreedDetailsPresenter: IDogBreedDetailsPresenter, IDogBreedDetail
 		let phone = adPhones[index]
 		router.openPhoneDetails(phone)
 	}
-	
+}
+
+extension DogBreedDetailsPresenter: IDogBreedDetailsInteractorDelegate {
 	func didLoadDog(option: DogOption, breed: DogBreed) {
 		view?.showLoading(false)
 		view?.setBreedTitle(breed.name)
