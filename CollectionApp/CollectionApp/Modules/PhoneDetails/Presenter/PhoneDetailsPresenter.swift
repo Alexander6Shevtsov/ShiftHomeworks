@@ -13,6 +13,7 @@ protocol PhoneDetailsView: AnyObject {
 	func displayScreenSize(text: String)
 	func setMoreButtonTitle(title: String)
 	func showInnovations(featuresText: String)
+	func displayImage(named: String)
 }
 
 final class PhoneDetailsPresenter {
@@ -30,9 +31,11 @@ final class PhoneDetailsPresenter {
 		view?.displayReleaseDate(text: phone.releaseDate)
 		view?.displayScreenSize(text: phone.screenSize)
 		view?.setMoreButtonTitle(title: "Инновации")
+		view?.displayImage(named: phone.imageName)
 	}
 	
 	func didTapMore() {
 		view?.showInnovations(featuresText: phone.features)
 	}
 }
+

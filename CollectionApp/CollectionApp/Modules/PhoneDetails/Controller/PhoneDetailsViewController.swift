@@ -11,7 +11,11 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 	
 	var presenter: PhoneDetailsPresenter!
 	
+	private let scrollView = UIScrollView()
+	private let contentView = UIView()
+	
 	private let stackView = UIStackView()
+	private let imageView = UIImageView()
 	private let titleLabel = UILabel()
 	private let releaseDateTitle = UILabel()
 	private let releaseDateValue = UILabel()
@@ -37,8 +41,23 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 	}
 	
 	private func setupView() {
+		scrollView.translatesAutoresizingMaskIntoConstraints = false
+		scrollView.alwaysBounceVertical = true
+		scrollView.alwaysBounceHorizontal = false
+		view.addSubview(scrollView)
+		
+		contentView.translatesAutoresizingMaskIntoConstraints = false
+		scrollView.addSubview(contentView)
+		
 		stackView.axis = .vertical
 		stackView.spacing = 12
+		stackView.translatesAutoresizingMaskIntoConstraints = false
+		contentView.addSubview(stackView)
+		
+		imageView.contentMode = .scaleAspectFit
+		imageView.clipsToBounds = true
+		imageView.backgroundColor = .secondarySystemBackground
+		imageView.layer.cornerRadius = 12
 		
 		titleLabel.font = .preferredFont(forTextStyle: .title2)
 		titleLabel.textColor = .label
@@ -59,8 +78,7 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 		
 		moreButton.addTarget(self, action: #selector(moreTapped), for: .touchUpInside)
 		
-		view.addSubview(stackView)
-		
+		stackView.addArrangedSubview(imageView)
 		stackView.addArrangedSubview(titleLabel)
 		stackView.addArrangedSubview(releaseDateTitle)
 		stackView.addArrangedSubview(releaseDateValue)
@@ -70,15 +88,29 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 	}
 	
 	private func setupLayout() {
-		stackView.translatesAutoresizingMaskIntoConstraints = false
+		imageView.translatesAutoresizingMaskIntoConstraints = false
 		
 		let padding: CGFloat = 16
 		let safe = view.safeAreaLayoutGuide
+		
 		NSLayoutConstraint.activate([
-			stackView.topAnchor.constraint(equalTo: safe.topAnchor, constant: padding),
-			stackView.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: padding),
-			stackView.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -padding),
-			stackView.bottomAnchor.constraint(lessThanOrEqualTo: safe.bottomAnchor, constant: -padding)
+			scrollView.topAnchor.constraint(equalTo: safe.topAnchor),
+			scrollView.leadingAnchor.constraint(equalTo: safe.leadingAnchor),
+			scrollView.trailingAnchor.constraint(equalTo: safe.trailingAnchor),
+			scrollView.bottomAnchor.constraint(equalTo: safe.bottomAnchor),
+			
+			contentView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
+			contentView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
+			contentView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
+			contentView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
+			contentView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
+			
+			stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
+			stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+			stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+			stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding),
+			
+			imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
 		])
 	}
 	
@@ -108,5 +140,8 @@ final class PhoneDetailsViewController: UIViewController, PhoneDetailsView {
 		let navController = UINavigationController(rootViewController: innovationView)
 		present(navController, animated: true)
 	}
+	
+	func displayImage(named: String) {
+		imageView.image = UIImage(named: named)
+	}
 }
-

@@ -50,17 +50,17 @@ final class InnovationsViewController: UIViewController {
 			label.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -inset),
 			label.bottomAnchor.constraint(lessThanOrEqualTo: safe.bottomAnchor, constant: -inset)
 		])
-
+		
 		viewModel.onTextChanged = { [weak self] newText in
 			self?.label.text = newText
 		}
 	}
-
+	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		viewModel.startUpdating()
 	}
-
+	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		viewModel.stopUpdating()
