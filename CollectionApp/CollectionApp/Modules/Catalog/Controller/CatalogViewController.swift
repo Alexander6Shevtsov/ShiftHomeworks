@@ -11,38 +11,23 @@ final class CatalogViewController: UIViewController {
 	
 	private let phones = PhoneCatalog.phones
 	
-	private lazy var collectionView: UICollectionView = {
-		let layout = UICollectionViewFlowLayout()
-		layout.minimumInteritemSpacing = 8
-		layout.minimumLineSpacing = 6
-		layout.sectionInset = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
-		layout.sectionInsetReference = .fromSafeArea
-		layout.estimatedItemSize = .zero
-		
-		let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-		collection.backgroundColor = .systemBackground
-		collection.alwaysBounceVertical = true
-		collection.isScrollEnabled = true
-		collection.dataSource = self
-		collection.delegate = self
-		collection.register(PhoneCell.self, forCellWithReuseIdentifier: PhoneCell.reuseID)
-		return collection
-	}()
+	private var catalogView: CatalogView {
+		guard let view = self.view as? CatalogView else {
+			fatalError("Expected CatalogView")
+		}
+		return view
+	}
+	
+	override func loadView() {
+		view = CatalogView()
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Каталог"
-		view.backgroundColor = .systemBackground
-		view.addSubview(collectionView)
-		collectionView.translatesAutoresizingMaskIntoConstraints = false
 		
-		let safe = view.safeAreaLayoutGuide
-		NSLayoutConstraint.activate([
-			collectionView.topAnchor.constraint(equalTo: safe.topAnchor),
-			collectionView.leadingAnchor.constraint(equalTo: safe.leadingAnchor),
-			collectionView.trailingAnchor.constraint(equalTo: safe.trailingAnchor),
-			collectionView.bottomAnchor.constraint(equalTo: safe.bottomAnchor)
-		])
+		catalogView.collectionView.dataSource = self
+		catalogView.collectionView.delegate = self
 	}
 	
 	override func viewWillTransition(
@@ -50,8 +35,9 @@ final class CatalogViewController: UIViewController {
 		with coordinator: UIViewControllerTransitionCoordinator
 	) {
 		super.viewWillTransition(to: size, with: coordinator)
-		coordinator.animate(alongsideTransition: { _ in
-			self.collectionView.collectionViewLayout.invalidateLayout()
+		coordinator.animate(alongsideTransition: { [weak self] _ in
+			guard let self else { return }
+			self.catalogView.collectionView.collectionViewLayout.invalidateLayout()
 		})
 	}
 }
@@ -76,7 +62,7 @@ extension CatalogViewController: UICollectionViewDataSource {
 			assertionFailure("Failed to dequeue PhoneCell")
 			return UICollectionViewCell()
 		}
-		cell.setupCell(phones[indexPath.item])
+		cell.setupCell(phone: phones[indexPath.item])
 		return cell
 	}
 }
@@ -97,10 +83,10 @@ extension CatalogViewController: UICollectionViewDelegateFlowLayout {
 		let columns: CGFloat = isLandscape ? 3 : 1
 		
 		let horizontalInsets = layout.sectionInset.left + layout.sectionInset.right
-		let interitemSpacing = layout.minimumInteritemSpacing * (columns - 1)
+		let interItemSpacing = layout.minimumInteritemSpacing * (columns - 1)
 		let availableWidth = collection.bounds.inset(
 			by: collection.adjustedContentInset
-		).width - horizontalInsets - interitemSpacing
+		).width - horizontalInsets - interItemSpacing
 		let itemWidth = floor(availableWidth / columns)
 		
 		let rows: CGFloat = isLandscape ? 1 : 2
@@ -120,7 +106,11 @@ extension CatalogViewController: UICollectionViewDelegateFlowLayout {
 	) {
 		collectionView.deselectItem(at: indexPath, animated: true)
 		let phone = phones[indexPath.item]
-		let details = PhoneDetailsViewController(phone: phone)
-		navigationController?.pushViewController(details, animated: true)
+		
+		let detailsVC = PhoneDetailsViewController()
+		let presenter = PhoneDetailsPresenter(view: detailsVC, phone: phone)
+		detailsVC.presenter = presenter
+		
+		navigationController?.pushViewController(detailsVC, animated: true)
 	}
 }
