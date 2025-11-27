@@ -1,0 +1,63 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Trashes
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.VolumeIcon.icns
+
+# Xcode – user‑ and build‑generated files
+DerivedData/
+build/
+**/xcuserdata/
+**/xcdebugger/
+*.xcuserstate
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+!default.pbxuser
+!default.mode1v3
+!default.mode2v3
+!default.perspectivev3
+*.xccheckout
+*.xcscmblueprint
+
+# Shared schemes: keep only shared, ignore user ones
+**/xcshareddata/xcschemes/*.xcscheme
+!**/xcshareddata/xcschemes/*shared*.xcscheme
+
+# Workspace / project files (handled by **/xcuserdata/ above)
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Swift Package Manager
+.build/
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+Carthage/Checkouts/
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# Editor junk
+*.swp
+*.lock
+*.tmp
+*.bak
+
+# Archives
+*.xcarchive
+*.ipa
+*.dSYM
